@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaundroCat.CSharp.Plugins", "LaundroCat.CSharp.Plugins.csproj", "{65556684-3A64-9A5B-DEBB-D4405B260AFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaundroCat.CSharp.Editor", "LaundroCat.CSharp.Editor.csproj", "{B9F68C13-3268-80DD-0C0A-C66E92F2B43B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65556684-3A64-9A5B-DEBB-D4405B260AFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65556684-3A64-9A5B-DEBB-D4405B260AFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65556684-3A64-9A5B-DEBB-D4405B260AFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65556684-3A64-9A5B-DEBB-D4405B260AFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9F68C13-3268-80DD-0C0A-C66E92F2B43B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9F68C13-3268-80DD-0C0A-C66E92F2B43B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9F68C13-3268-80DD-0C0A-C66E92F2B43B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9F68C13-3268-80DD-0C0A-C66E92F2B43B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
