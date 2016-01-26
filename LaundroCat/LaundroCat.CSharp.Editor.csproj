@@ -108,6 +108,10 @@
       <Project>{65556684-3A64-9A5B-DEBB-D4405B260AFA}</Project>
       <Name>LaundroCat.CSharp.Plugins</Name>
     </ProjectReference>
+    <ProjectReference Include="LaundroCat.CSharp.csproj">
+      <Project>{FEC228C3-FD8E-C8B1-394C-AE2D75FF7F78}</Project>
+      <Name>LaundroCat.CSharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
