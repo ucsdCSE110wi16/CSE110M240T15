@@ -1,2 +1,2 @@
 # CSE110M240T15
-we're fucked
+This repository contains code implementing a 2D Roguelike Platformer in Unity.
