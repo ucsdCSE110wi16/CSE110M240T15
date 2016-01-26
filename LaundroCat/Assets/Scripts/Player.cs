@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		anim.SetBool("grounded", grounded);
-		anim.SetFloat("speed", Mathf.Abs(Input.GetAxis("Horizontal")));
+        anim.SetFloat("speed", Mathf.Abs(rb2d.velocity.x));
 
         // Moving to left change direction
         if (Input.GetAxis("Horizontal") < -0.1f)
@@ -43,8 +43,18 @@ public class Player : MonoBehaviour {
 
     // For physics movement
     void FixedUpdate() {
+        Vector3 easeVelocity = rb2d.velocity;
+        easeVelocity.y = rb2d.velocity.y;
+        easeVelocity.z = 0.0f; // Don't use z-axis for 3D things
+        easeVelocity.x *= 0.85f; // Multiplies easevelocity to reduce it
+
         float h = Input.GetAxis("Horizontal"); // a and d buttons or <- and -> buttons
-        rb2d.AddForce((Vector2.right * speed) * h); // Moves the player if we press left (>0) or right (<0)
+        rb2d.AddForce((Vector2.right * speed) * h); // Moves the player if we press left (>0) or right (<0)        
+        // fake friction / Easing the x speed of our player
+        if (grounded)
+        {
+            rb2d.velocity = easeVelocity;
+        }
 
         // Make player stop at a certain speed instead of speeding up infinitely
         if (rb2d.velocity.x > maxSpeed)
