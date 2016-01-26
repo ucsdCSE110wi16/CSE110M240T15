@@ -3,12 +3,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    // Floats
     public float maxSpeed = 3;
     public float speed = 50f;
     public float jumpPower = 150f;
 
+    // Booleans
     public bool grounded;
+    public bool canDoubleJump;
 
+    // Reference
     private Rigidbody2D rb2d;
 	private Animator anim;
 
@@ -34,10 +38,23 @@ public class Player : MonoBehaviour {
             transform.localScale = new Vector3(1, 1, 1);
         }
 
-        // The button jump is space
-        if (Input.GetButtonDown("Jump") && grounded)
+        // Where jumping is. The button jump is space
+        if (Input.GetButtonDown("Jump"))
         {
-            rb2d.AddForce(Vector2.up * jumpPower);
+            if (grounded)
+            {
+                rb2d.AddForce(Vector2.up * jumpPower / 1.50f); //1st jump power
+                canDoubleJump = true;
+            }
+            else
+            {
+                if (canDoubleJump)
+                {
+                    canDoubleJump = false;
+                    rb2d.velocity = new Vector2(rb2d.velocity.x, 0); // x and y, new resets
+                    rb2d.AddForce(Vector2.up * jumpPower); // 2nd jump power
+                }
+            }
         }
     }
 
