@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 3
   speed: 50
-  jumpPower: 200
+  jumpPower: 300
   grounded: 1
 --- !u!50 &562080517
 Rigidbody2D:
@@ -322,7 +322,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 886188806}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 72399323629381e4ab42ab7376c0b597, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
