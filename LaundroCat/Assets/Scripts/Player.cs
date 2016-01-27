@@ -16,6 +16,8 @@ public class Player : MonoBehaviour {
     private Rigidbody2D rb2d;
 	private Animator anim;
 
+    private Vector2 touchOrigin = -Vector2.one; //initialize touch input to off the screen
+
 	// Use this for initialization
 	void Start () {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
@@ -27,7 +29,36 @@ public class Player : MonoBehaviour {
 		anim.SetBool("grounded", grounded);
         anim.SetFloat("speed", Mathf.Abs(rb2d.velocity.x));
 
-        // Moving to left change direction
+        int horizontal = 0;
+        
+        if(Input.touchCount > 0)
+        {
+            Touch myTouch = Input.touches[0];
+
+            if(myTouch.phase == TouchPhase.Began) //check if touch begins
+            {
+                //set origin point of touch
+                touchOrigin = myTouch.position;
+            }
+
+            else if (myTouch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
+            {
+                Vector2 touchEnd = myTouch.position;
+
+                float x = touchEnd.x - touchOrigin.x;
+
+                touchOrigin.x = -1; //reset touchOrigin
+
+                horizontal = x > 0 ? 1 : -1;
+            }
+
+            if(horizontal != 0)
+            {
+                transform.localScale = new Vector3(horizontal, 1, 1);
+            }
+        }
+
+        /*// Moving to left change direction
         if (Input.GetAxis("Horizontal") < -0.1f)
         {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -35,7 +66,7 @@ public class Player : MonoBehaviour {
         // Moving to right change direction
         if (Input.GetAxis("Horizontal") > 0.1f)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1, 1, 1); 
         }
 
         // Where jumping is. The button jump is space
@@ -56,6 +87,7 @@ public class Player : MonoBehaviour {
                 }
             }
         }
+        */
     }
 
     // For physics movement
