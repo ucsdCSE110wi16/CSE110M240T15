@@ -15,6 +15,7 @@ public class Player : MonoBehaviour {
     // Reference
     private Rigidbody2D rb2d;
 	private Animator anim;
+    float h; // a and d buttons or <- and -> buttons
 
     private Vector2 touchOrigin = -Vector2.one; //initialize touch input to off the screen
 
@@ -29,36 +30,7 @@ public class Player : MonoBehaviour {
 		anim.SetBool("grounded", grounded);
         anim.SetFloat("speed", Mathf.Abs(rb2d.velocity.x));
 
-        int horizontal = 0;
-        
-        if(Input.touchCount > 0)
-        {
-            Touch myTouch = Input.touches[0];
-
-            if(myTouch.phase == TouchPhase.Began) //check if touch begins
-            {
-                //set origin point of touch
-                touchOrigin = myTouch.position;
-            }
-
-            else if (myTouch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
-            {
-                Vector2 touchEnd = myTouch.position;
-
-                float x = touchEnd.x - touchOrigin.x;
-
-                touchOrigin.x = -1; //reset touchOrigin
-
-                horizontal = x > 0 ? 1 : -1;
-            }
-
-            if(horizontal != 0)
-            {
-                transform.localScale = new Vector3(horizontal, 1, 1);
-            }
-        }
-
-        /*// Moving to left change direction
+        // Moving to left change direction
         if (Input.GetAxis("Horizontal") < -0.1f)
         {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -69,8 +41,8 @@ public class Player : MonoBehaviour {
             transform.localScale = new Vector3(1, 1, 1); 
         }
 
-        // Where jumping is. The button jump is space
-        if (Input.GetButtonDown("Jump"))
+        // Where jumping is. The button jump is space || it is two taps on the screen
+        if (Input.GetButtonDown("Jump") || Input.touchCount > 1)
         {
             if (grounded)
             {
@@ -87,7 +59,7 @@ public class Player : MonoBehaviour {
                 }
             }
         }
-        */
+        
     }
 
     // For physics movement
@@ -97,7 +69,30 @@ public class Player : MonoBehaviour {
         easeVelocity.z = 0.0f; // Don't use z-axis for 3D things
         easeVelocity.x *= 0.85f; // Multiplies easevelocity to reduce it
 
-        float h = Input.GetAxis("Horizontal"); // a and d buttons or <- and -> buttons
+        h = Input.GetAxis("Horizontal");
+    
+        // Horizontal for Android
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.touchCount > 0)
+            {
+                Touch myTouch = Input.touches[0];
+                if (myTouch.phase == TouchPhase.Began) //check if touch begins
+                {
+                    //set origin point of touch
+                    touchOrigin = myTouch.position;
+                }
+
+                else if (myTouch.phase == TouchPhase.Moved && touchOrigin.x >= 0) // moving right
+                {
+                    Vector2 touchEnd = myTouch.position;
+                    float x = touchEnd.x - touchOrigin.x;
+                    touchOrigin.x = -1; //reset touchOrigin
+                    h = x > 0 ? 1 : -1;
+                }
+            }
+        }
+
         rb2d.AddForce((Vector2.right * speed) * h); // Moves the player if we press left (>0) or right (<0)        
         // fake friction / Easing the x speed of our player
         if (grounded)
