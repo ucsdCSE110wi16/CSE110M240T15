@@ -17,10 +17,10 @@ public class Player : MonoBehaviour {
 	private Animator anim;
     float h; // a and d buttons or <- and -> buttons
 
-    private Vector2 touchOrigin = -Vector2.one; //initialize touch input to off the screen
+    //private Vector2 touchOrigin = -Vector2.one; //initialize touch input to off the screen
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
 		anim = gameObject.GetComponent<Animator>();
 	}
@@ -30,8 +30,8 @@ public class Player : MonoBehaviour {
 		anim.SetBool("grounded", grounded);
         anim.SetFloat("speed", Mathf.Abs(rb2d.velocity.x));
 
-        // Moving to left change direction
-        if (Input.GetAxis("Horizontal") < -0.1f)
+        // Moving to left change direction | left click which is 0, 1 = right click
+        if (Input.GetAxis("Horizontal") < -0.1f) 
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
@@ -41,8 +41,8 @@ public class Player : MonoBehaviour {
             transform.localScale = new Vector3(1, 1, 1); 
         }
 
-        // Where jumping is. The button jump is space || it is two taps on the screen
-        if (Input.GetButtonDown("Jump") || Input.touchCount > 1)
+        // Where jumping is. The button jump is space || it is a second tap on screen
+        if (Input.GetButtonDown("Jump") || (Input.GetMouseButtonDown(1)))
         {
             if (grounded)
             {
@@ -70,28 +70,6 @@ public class Player : MonoBehaviour {
         easeVelocity.x *= 0.85f; // Multiplies easevelocity to reduce it
 
         h = Input.GetAxis("Horizontal");
-    
-        // Horizontal for Android
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            if (Input.touchCount > 0)
-            {
-                Touch myTouch = Input.touches[0];
-                if (myTouch.phase == TouchPhase.Began) //check if touch begins
-                {
-                    //set origin point of touch
-                    touchOrigin = myTouch.position;
-                }
-
-                else if (myTouch.phase == TouchPhase.Moved && touchOrigin.x >= 0) // moving right
-                {
-                    Vector2 touchEnd = myTouch.position;
-                    float x = touchEnd.x - touchOrigin.x;
-                    touchOrigin.x = -1; //reset touchOrigin
-                    h = x > 0 ? 1 : -1;
-                }
-            }
-        }
 
         rb2d.AddForce((Vector2.right * speed) * h); // Moves the player if we press left (>0) or right (<0)        
         // fake friction / Easing the x speed of our player
