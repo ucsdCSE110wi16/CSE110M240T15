@@ -41,8 +41,9 @@ public class Player : MonoBehaviour {
             transform.localScale = new Vector3(1, 1, 1); 
         }
 
-        // Where jumping is. The button jump is space || it is a second tap on screen
-        if (Input.GetButtonDown("Jump") || (Input.GetMouseButtonDown(1)))
+        // Where jumping is. The button jump is space || it is a tap on the right side of the screen either 2 fingers or 1
+        if (Input.GetButtonDown("Jump") || ((Input.GetMouseButtonDown(0)||Input.GetMouseButtonDown(1)) 
+                            && Input.mousePosition.x > Screen.width/2))
         {
             if (grounded)
             {
