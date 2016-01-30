@@ -17,33 +17,65 @@ public class Player : MonoBehaviour {
 	private Animator anim;
     float h; // a and d buttons or <- and -> buttons
 
-    //private Vector2 touchOrigin = -Vector2.one; //initialize touch input to off the screen
+    //inside class
+    Vector2 firstPressPos;
+    Vector2 secondPressPos;
+    Vector2 currentSwipe;
 
     // Use this for initialization
     void Start () {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
 		anim = gameObject.GetComponent<Animator>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		anim.SetBool("grounded", grounded);
+
+    public void Swipe()
+    {
+
+        // Handle swiping
+        if ((Input.GetMouseButtonDown(0)) && Mathf.Abs(Input.mousePosition.x) < Screen.width / 2)
+        {
+            //save began touch 2d point
+            firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        }
+        if ((Input.GetMouseButton(0) && !Input.GetMouseButton(1)) && Mathf.Abs(Input.mousePosition.x) < Screen.width / 2)
+        {
+            //save ended touch 2d point
+            secondPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+            //create vector from the two points
+            currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
+
+            //normalize the 2d vector
+            currentSwipe.Normalize();
+        }
+       if (Input.GetMouseButtonUp(0))
+        {
+            currentSwipe = new Vector2(0, 0);
+        }
+    }
+
+    // Update is called once per frame
+    void Update() {
+        anim.SetBool("grounded", grounded);
         anim.SetFloat("speed", Mathf.Abs(rb2d.velocity.x));
 
-        // Moving to left change direction | left click which is 0, 1 = right click
-        if (Input.GetAxis("Horizontal") < -0.1f) 
+        Swipe(); // Calls above function
+        h = currentSwipe.x;
+
+        // Moving to left change direction | left swipe
+        if (Input.GetAxis("Horizontal") < -0.1f || (currentSwipe.x < 0)) //&& currentSwipe.y > -0.1f && currentSwipe.y < 0.1f)) 
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-        // Moving to right change direction
-        if (Input.GetAxis("Horizontal") > 0.1f)
+        // Moving to right change direction | right swipe
+        if (Input.GetAxis("Horizontal") > 0.1f || (currentSwipe.x > 0)) //&& currentSwipe.y > -0.1f && currentSwipe.y < 0.1f))
         {
             transform.localScale = new Vector3(1, 1, 1); 
         }
 
         // Where jumping is. The button jump is space || it is a tap on the right side of the screen either 2 fingers or 1
-        if (Input.GetButtonDown("Jump") || ((Input.GetMouseButtonDown(0)||Input.GetMouseButtonDown(1)) 
-                            && Input.mousePosition.x > Screen.width/2))
+        if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(1) ||
+           (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width/2)) // Stopped and press button on right side
         {
             if (grounded)
             {
@@ -70,7 +102,8 @@ public class Player : MonoBehaviour {
         easeVelocity.z = 0.0f; // Don't use z-axis for 3D things
         easeVelocity.x *= 0.85f; // Multiplies easevelocity to reduce it
 
-        h = Input.GetAxis("Horizontal");
+        if (Application.platform == RuntimePlatform.WindowsEditor)
+            h = Input.GetAxis("Horizontal");
 
         rb2d.AddForce((Vector2.right * speed) * h); // Moves the player if we press left (>0) or right (<0)        
         // fake friction / Easing the x speed of our player
