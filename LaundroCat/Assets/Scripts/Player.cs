@@ -20,7 +20,7 @@ public class Player : MonoBehaviour {
 
     // Stats
     public int currHealth;
-    public int maxHealth = 100;
+    public int maxHealth = 3;
 
     // Used for mobile inputs
     Vector2 firstPressPos;
@@ -145,6 +145,10 @@ public class Player : MonoBehaviour {
 
     void Die()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Loads current scene over again (restarts)
+        currHealth--;
+        if (currHealth == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Loads current scene over again (restarts)
+        }
     }
 }

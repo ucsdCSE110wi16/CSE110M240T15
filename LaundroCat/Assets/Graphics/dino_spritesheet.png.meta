@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 9891fb19df7d73a4bb45d60baa66299a
-timeCreated: 1454827468
+guid: b7c41daec95e6df41bbf487d7ec1f320
+timeCreated: 1454835747
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: duck_spritesheet_0
-    21300002: duck_spritesheet_1
-    21300004: duck_spritesheet_2
-    21300006: duck_spritesheet_3
+    21300000: dino_spritesheet_0
+    21300002: dino_spritesheet_1
+    21300004: dino_spritesheet_2
+    21300006: dino_spritesheet_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,48 +54,48 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: duck_spritesheet_0
+    - name: dino_spritesheet_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 2
         y: 0
-        width: 14
-        height: 16
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: dino_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 0
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: duck_spritesheet_1
+    - name: dino_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 18
+        x: 37
         y: 0
-        width: 14
-        height: 16
+        width: 12
+        height: 15
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: duck_spritesheet_2
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 0
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: duck_spritesheet_3
+    - name: dino_spritesheet_3
       rect:
         serializedVersion: 2
         x: 52
         y: 1
-        width: 14
-        height: 15
+        width: 12
+        height: 14
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []
