@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: player_elephant
+  m_Controller: {fileID: 9100000, guid: f0852bc802745bd449239b6e8d9d1977, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 488ac92d7681d5c469c4e5cd43099462, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 30f477efacfdfe64c9be389718dd1cca, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 529937aa52ace4340aa057c4a3755d46, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ac4649cc7715211479bf8319f69a1d3e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f7863534affa5f643877fc4ad051fa86, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 24f9e0f8db14d9640a0ab8037cb12ffe, type: 2}
