@@ -15,6 +15,6 @@ public class HUD : MonoBehaviour {
 
     void Update()
     {
-       // HeartUI.sprite = HeartSprites[player.currHealth];
+       HeartUI.sprite = HeartSprites[player.currHealth];
     }
 }
