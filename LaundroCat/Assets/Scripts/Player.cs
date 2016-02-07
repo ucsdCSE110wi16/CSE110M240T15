@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -17,15 +18,22 @@ public class Player : MonoBehaviour {
 	private Animator anim;
     private float h; // a and d buttons or <- and -> buttons
 
-    //inside class
+    // Stats
+    public int currHealth;
+    public int maxHealth = 100;
+
+    // Used for mobile inputs
     Vector2 firstPressPos;
     Vector2 secondPressPos;
     Vector2 currentSwipe;
 
     // Use this for initialization
-    public void Start () {
+    void Start () {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
 		anim = gameObject.GetComponent<Animator>();
+
+        // For health vars
+        currHealth = maxHealth;
 	}
 
     public void Swipe()
@@ -55,7 +63,7 @@ public class Player : MonoBehaviour {
     }
 
     // Update is called once per frame
-    public void Update()
+    void Update()
     {
         anim.SetBool("grounded", grounded);
         anim.SetFloat("speed", Mathf.Abs(rb2d.velocity.x));
@@ -93,10 +101,20 @@ public class Player : MonoBehaviour {
                 }
             }
         }
+
+        // Make character die (health mechanics)
+        if (currHealth > maxHealth)
+        {
+            currHealth = maxHealth;
+        }
+        if (currHealth <= 0)
+        {
+            Die();
+        }
     }
 
     // For physics movement
-    public void FixedUpdate() {
+    void FixedUpdate() {
         Vector3 easeVelocity = rb2d.velocity;
         easeVelocity.y = rb2d.velocity.y;
         easeVelocity.z = 0.0f; // Don't use z-axis for 3D things
@@ -123,5 +141,10 @@ public class Player : MonoBehaviour {
         {
 			rb2d.velocity = new Vector2(-maxSpeed, rb2d.velocity.y);
         }
+    }
+
+    void Die()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Loads current scene over again (restarts)
     }
 }
