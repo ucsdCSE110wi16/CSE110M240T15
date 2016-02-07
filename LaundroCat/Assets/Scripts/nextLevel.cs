@@ -4,12 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class nextLevel : MonoBehaviour {
 
-    void OnTriggerStay(Collider col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log ("FUCK");
-       /* if( col.name == "player_turtle")
+       if( col.name == "player_turtle")
         {
             SceneManager.LoadScene(0);
-        } */
+        }
     }
 }
