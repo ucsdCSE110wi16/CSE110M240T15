@@ -4,18 +4,25 @@ using System.Collections;
 public class GroundCheck : MonoBehaviour {
 
     private Player player;
+    private gameMaster gm;
 
     void Start()
     {
         player = gameObject.GetComponentInParent<Player>();
+        gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
     }
 
     // Gets called when the groundCheck enters something
     void OnTriggerEnter2D(Collider2D col)
     {
         player.grounded = true;
-    }
 
+        if (col.CompareTag("Laundry"))
+        {
+            Destroy(col.gameObject);
+            gm.laundryPoints += 1;
+        }
+    }
     void OnTriggerStay2D(Collider2D col)
     {
         player.grounded = true;
