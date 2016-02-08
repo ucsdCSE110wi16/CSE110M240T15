@@ -222,7 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 5
   speed: 50
-  jumpPower: 300
+  jumpPower: 400
   grounded: 1
   canDoubleJump: 0
   currHealth: 0

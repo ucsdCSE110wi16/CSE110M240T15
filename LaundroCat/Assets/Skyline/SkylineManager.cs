@@ -4,7 +4,7 @@ using System.Collections;
 public class SkylineManager : MonoBehaviour {
     private static int CHUNK_SIZE = 5;
     private static int NUM_OF_CHUNKS = 8;
-    private static int NUM_OF_CHUNK_TYPES= 4;
+    private static int NUM_OF_CHUNK_TYPES= 5;
 
     public Transform prefab;
     public Transform prefab2;
@@ -37,6 +37,9 @@ public class SkylineManager : MonoBehaviour {
                     break;
                 case 3:
                     buildTerrain3(nextPos);
+                    break;
+                case 4:
+                    buildTerrain4(nextPos);
                     break;
             }
         }
@@ -87,14 +90,36 @@ public class SkylineManager : MonoBehaviour {
         }
     }
 
-    // build chunk 3
+    // build chunk 3 - trampoline
     void buildTerrain3(Vector3 start)
     {
+        start.y -= 3; 
         Vector3 next = start;
         for (int i = 0; i < CHUNK_SIZE; i++)
         {
             Transform o = (Transform)Instantiate(prefab2);
 
+            o.localPosition = next;
+            next.x++;
+        }
+    }
+
+    //build chunk 4 - bump
+    void buildTerrain4(Vector3 start)
+    {
+        Vector3 next = start;
+        Vector3 next2;
+        for (int i = 0; i < CHUNK_SIZE; i++)
+        {
+            Transform o = (Transform)Instantiate(prefab);
+
+            if(i == CHUNK_SIZE/2)
+            {
+                next2 = next;
+                next2.y++;
+                Transform o2 = (Transform)Instantiate(prefab);
+                o2.localPosition = next2;
+            }
             o.localPosition = next;
             next.x++;
         }
