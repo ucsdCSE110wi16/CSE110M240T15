@@ -243,7 +243,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &562080518
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -432,6 +432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 462230, guid: 4f45104bf614e394380454d5f19b6dd1, type: 2}
+  prefab2: {fileID: 499362, guid: 7f46bc03b36f3cf419bc3130558e0494, type: 2}
   startPos: {x: 0, y: -1, z: 0}
 --- !u!1 &1165027920
 GameObject:

@@ -2,10 +2,12 @@
 using System.Collections;
 
 public class SkylineManager : MonoBehaviour {
-    private static int CHUNK_SIZE = 8;
-    private static int NUM_OF_CHUNKS = 5;
+    private static int CHUNK_SIZE = 5;
+    private static int NUM_OF_CHUNKS = 8;
+    private static int NUM_OF_CHUNK_TYPES= 4;
 
     public Transform prefab;
+    public Transform prefab2;
     public Vector3 startPos;
     private Vector3 nextPos;
 
@@ -17,18 +19,24 @@ public class SkylineManager : MonoBehaviour {
 
         for (int i = 0; i < NUM_OF_CHUNKS; i++) {
             int gap = Random.Range(0, 3);
-            int chunk = Random.Range(1, 3);
+            int chunk = Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x = nextPos.x + CHUNK_SIZE + gap;
 
             // add more chunks
             switch (chunk)
             {
-                case 1:
+                case 0:
                     buildTerrain1(nextPos);
                     break;
-                case 2:
+                case 1:
                     buildInitialTerrain(nextPos);
+                    break;
+                case 2:
+                    buildTerrain2(nextPos);
+                    break;
+                case 3:
+                    buildTerrain3(nextPos);
                     break;
             }
         }
@@ -55,6 +63,37 @@ public class SkylineManager : MonoBehaviour {
         Vector3 next = start;
         for (int i = 0; i < CHUNK_SIZE; i++) {
             Transform o = (Transform)Instantiate(prefab);
+
+            o.localPosition = next;
+            next.x++;
+        }
+    }
+
+    //builc chunk 2 = tunnel thing
+    void buildTerrain2(Vector3 start) {
+        Vector3 next = start;
+        Vector3 next2 = start;
+        next2.y += 4;
+        for (int i = 0; i < CHUNK_SIZE; i++) {
+            Instantiate(prefab);
+            Transform o = (Transform)Instantiate(prefab);
+            Transform o2 = (Transform)Instantiate(prefab);
+
+            o.localPosition = next;
+            o2.localPosition = next2;
+            
+            next.x++;
+            next2.x++;
+        }
+    }
+
+    // build chunk 3
+    void buildTerrain3(Vector3 start)
+    {
+        Vector3 next = start;
+        for (int i = 0; i < CHUNK_SIZE; i++)
+        {
+            Transform o = (Transform)Instantiate(prefab2);
 
             o.localPosition = next;
             next.x++;
