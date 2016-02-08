@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/Scenes/store_menu.unity
   - enabled: 1
     path: Assets/Scenes/settings_menu.unity
+  - enabled: 1
+    path: Assets/Scenes/test_AndyNathan.unity
