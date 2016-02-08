@@ -17,7 +17,7 @@ public class GroundCheck : MonoBehaviour {
     {
         player.grounded = true;
 
-        if (col.CompareTag("Laundry"))
+        if (col.CompareTag("laundry"))
         {
             Destroy(col.gameObject);
             gm.laundryPoints += 1;
