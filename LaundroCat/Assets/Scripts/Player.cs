@@ -86,6 +86,7 @@ public class Player : MonoBehaviour {
             transform.localScale = new Vector3(1, 1, 1);
         }
 
+        //TODO THIS DOESN"T WORK ON THE BOUNCY PLATFORMS
         // Where jumping is. The button jump is space || it is a tap on the right side of the screen either 2 fingers or 1
         if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(1) ||
            (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width / 2)) // Stopped and press button on right side
