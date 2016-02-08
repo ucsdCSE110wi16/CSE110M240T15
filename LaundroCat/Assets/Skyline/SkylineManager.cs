@@ -8,6 +8,7 @@ public class SkylineManager : MonoBehaviour {
 
     public Transform prefab;
     public Transform prefab2;
+    public Transform prefab3;
     public Vector3 startPos;
     private Vector3 nextPos;
 
@@ -43,6 +44,9 @@ public class SkylineManager : MonoBehaviour {
                     break;
             }
         }
+
+        nextPos.x = nextPos.x + CHUNK_SIZE;
+        buildEnd(nextPos);
     }
     
 
@@ -123,5 +127,11 @@ public class SkylineManager : MonoBehaviour {
             o.localPosition = next;
             next.x++;
         }
+    }
+
+    void buildEnd(Vector3 start)
+    {
+        Transform o = (Transform)Instantiate(prefab3);
+        o.localPosition = start;
     }
 }

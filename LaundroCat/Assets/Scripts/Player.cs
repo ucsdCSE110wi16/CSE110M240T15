@@ -17,7 +17,6 @@ public class Player : MonoBehaviour {
     private Rigidbody2D rb2d;
 	private Animator anim;
     private float h; // a and d buttons or <- and -> buttons
-    private gameMaster gm;
 
     // Stats
     public int currHealth;
@@ -36,8 +35,6 @@ public class Player : MonoBehaviour {
         // For health vars
         currHealth = maxHealth;
 
-        // for the gameMaster
-        gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
 	}
 
     public void Swipe()
@@ -157,12 +154,4 @@ public class Player : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if(col.CompareTag("Laundry"))
-        {
-            Destroy(col.gameObject);
-            gm.laundryPoints += 1;
-        }
-    }
 }

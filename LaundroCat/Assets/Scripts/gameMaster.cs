@@ -7,9 +7,9 @@ public class gameMaster : MonoBehaviour {
     public int laundryPoints = 0;
     public Text laundryText;
 
-    void update()
+    void Update()
     {
-        laundryText.text = ("Laundry: " + laundryPoints);
+        laundryText.text = ("Laundry: " + laundryPoints.ToString());
 
     }
 }
