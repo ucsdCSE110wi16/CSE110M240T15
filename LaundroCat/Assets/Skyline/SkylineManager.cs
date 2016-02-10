@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class SkylineManager : MonoBehaviour {
-    private static int CHUNK_SIZE = 5;
-    private static int NUM_OF_CHUNKS = 8;
-    private static int NUM_OF_CHUNK_TYPES= 5;
+    private static int CHUNK_SIZE = 8;
+    private static int NUM_OF_CHUNKS = 6;
+    private static int NUM_OF_CHUNK_TYPES= 8;
 
     public Transform prefab;
     public Transform prefab2;
@@ -24,17 +24,18 @@ public class SkylineManager : MonoBehaviour {
 
             nextPos.x = nextPos.x + CHUNK_SIZE + gap;
 
-            // add more chunks
+           // add more chunks
+           // /*
             switch (chunk)
-            {
+              {
                 case 0:
-                    buildTerrain1(nextPos);
+                    buildTerrainLine(nextPos);
                     break;
                 case 1:
                     buildInitialTerrain(nextPos);
                     break;
                 case 2:
-                    buildTerrain2(nextPos);
+                    buildTerrainTunnel(nextPos);
                     break;
                 case 3:
                     buildTerrain3(nextPos);
@@ -42,7 +43,17 @@ public class SkylineManager : MonoBehaviour {
                 case 4:
                     buildTerrain4(nextPos);
                     break;
-            }
+                case 5:
+                    buildTerrainHill(nextPos);
+                    break;
+                case 6:
+                    buildTerrainSlope(nextPos);
+                    break;
+                case 7:
+                    buildTerrainHOLYFUCK(nextPos);
+                    break;
+              }
+            //*/
         }
 
         nextPos.x = nextPos.x + CHUNK_SIZE;
@@ -64,9 +75,8 @@ public class SkylineManager : MonoBehaviour {
     }
 
 
-    // build chunk 1
-    void buildTerrain1(Vector3 start) {
-        start.y++;
+    // build chunk 1 = straight line
+    void buildTerrainLine(Vector3 start) {
         Vector3 next = start;
         for (int i = 0; i < CHUNK_SIZE; i++) {
             Transform o = (Transform)Instantiate(prefab);
@@ -77,21 +87,10 @@ public class SkylineManager : MonoBehaviour {
     }
 
     //builc chunk 2 = tunnel thing
-    void buildTerrain2(Vector3 start) {
-        Vector3 next = start;
-        Vector3 next2 = start;
-        next2.y += 4;
-        for (int i = 0; i < CHUNK_SIZE; i++) {
-            Instantiate(prefab);
-            Transform o = (Transform)Instantiate(prefab);
-            Transform o2 = (Transform)Instantiate(prefab);
-
-            o.localPosition = next;
-            o2.localPosition = next2;
-            
-            next.x++;
-            next2.x++;
-        }
+    void buildTerrainTunnel(Vector3 start) {
+        buildTerrainLine(start);
+        start.y += 4;
+        buildTerrainLine(start);
     }
 
     // build chunk 3 - trampoline
@@ -127,6 +126,61 @@ public class SkylineManager : MonoBehaviour {
             o.localPosition = next;
             next.x++;
         }
+    }
+
+    // build terrain hill
+    void buildTerrainHill(Vector3 start)
+    {
+        Vector3 temp = start;
+        Vector3 next;
+
+        for (int i = 0; i < 3; i++) {
+            next = temp;
+            for (int j = 0; j < CHUNK_SIZE - (i*2); j++) { 
+                Transform o = (Transform)Instantiate(prefab);
+
+                o.localPosition = next;
+                next.x++;
+            }
+            temp.x++;
+            temp.y++;
+        }
+    
+    }
+
+    // build terrain slope
+    void buildTerrainSlope(Vector3 start) {
+        Vector3 temp = start;
+        temp.y -= 2;
+        buildTerrainLine(temp);
+        temp.y++;
+
+        Vector3 next;
+        for (int i = 0; i < 3; i++) {
+            next = temp;
+
+            for (int j = 0; j < (CHUNK_SIZE/2)-i; j++) {
+               Transform o = (Transform)Instantiate(prefab);
+
+               o.localPosition = next;
+                next.x++;
+            }
+            temp.x = start.x;
+            temp.y++;
+        }
+    }
+
+    // build terrain holy fuck
+    void buildTerrainHOLYFUCK(Vector3 start) {
+        Vector3 next = start;
+        next.y++;
+        next.x += (CHUNK_SIZE / 4);
+
+        Transform o = (Transform)Instantiate(prefab);
+        Transform o2 = (Transform)Instantiate(prefab);
+        o.localPosition = next;
+        next.x += (CHUNK_SIZE / 2);
+        o2.localPosition = next;
     }
 
     void buildEnd(Vector3 start)
