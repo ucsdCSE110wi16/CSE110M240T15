@@ -24,6 +24,13 @@ public class enemyChase : MonoBehaviour {
         transform.eulerAngles = new Vector3(1, 0, 0);
         transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), speed * 2 * Time.deltaTime);
 
+        var relativePoint = transform.InverseTransformPoint(target.position);
+        if (relativePoint.x < 0.0) {
+            Vector3 flipped = transform.localScale;
+            flipped.x *= -1;
+            transform.localScale = flipped;
+        }
+
     }
 
 }
