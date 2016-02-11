@@ -104,6 +104,11 @@ public class Player : MonoBehaviour {
             }
         }
 
+        // Make character die when below camera
+        if (transform.position.y < -6) {
+            currHealth = 0;
+        }
+
         // Make character die (health mechanics)
         if (currHealth > maxHealth)
         {
@@ -148,7 +153,7 @@ public class Player : MonoBehaviour {
     void Die()
     {
         currHealth--;
-        if (currHealth == 0)
+        if (currHealth <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Loads current scene over again (restarts)
         }

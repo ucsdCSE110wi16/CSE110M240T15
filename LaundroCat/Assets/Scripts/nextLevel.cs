@@ -8,7 +8,7 @@ public class nextLevel : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-       if( col.name == "player_turtle")
+       if( col.tag == "Player")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

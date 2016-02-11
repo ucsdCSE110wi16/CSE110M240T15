@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/main_menu.unity
   - enabled: 1
-    path: Assets/Scenes/test_Reebal.unity
+    path: Assets/Scenes/test_AndyNathan.unity
   - enabled: 1
-    path: Assets/Scenes/store_menu.unity
+    path: Assets/Scenes/test_Reebal.unity
   - enabled: 1
     path: Assets/Scenes/settings_menu.unity
   - enabled: 1
-    path: Assets/Scenes/test_AndyNathan.unity
+    path: Assets/Scenes/store_menu.unity
