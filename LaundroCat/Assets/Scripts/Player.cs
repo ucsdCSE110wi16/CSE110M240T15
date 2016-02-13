@@ -12,11 +12,16 @@ public class Player : MonoBehaviour {
     // Booleans
     public bool grounded;
     public bool canDoubleJump;
+    public bool wallSliding;
+    public bool facingRight = true;
 
     // Reference
     private Rigidbody2D rb2d;
 	private Animator anim;
     private float h; // a and d buttons or <- and -> buttons
+    public Transform wallCheckPoint;
+    public bool wallCheck;
+    public LayerMask wallLayerMask;
 
     // Stats
     public int currHealth;
@@ -76,17 +81,19 @@ public class Player : MonoBehaviour {
         if (Input.GetAxis("Horizontal") < -0.1f || (currentSwipe.x < 0)) //&& currentSwipe.y > -0.1f && currentSwipe.y < 0.1f)) 
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            facingRight = false;
         }
         // Moving to right change direction | right swipe
         if (Input.GetAxis("Horizontal") > 0.1f || (currentSwipe.x > 0)) //&& currentSwipe.y > -0.1f && currentSwipe.y < 0.1f))
         {
             transform.localScale = new Vector3(1, 1, 1);
+            facingRight = true;
         }
 
         //TODO THIS DOESN"T WORK ON THE BOUNCY PLATFORMS
         // Where jumping is. The button jump is space || it is a tap on the right side of the screen either 2 fingers or 1
-        if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(1) ||
-           (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width / 2)) // Stopped and press button on right side
+        if ((Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(1) ||
+           (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width / 2)) && !wallSliding) // Stopped and press button on right side
         {
             if (grounded)
             {
@@ -118,6 +125,44 @@ public class Player : MonoBehaviour {
         {
             Die();
         }
+
+        // Wall Jump
+        if (!grounded)
+        {
+            wallCheck = Physics2D.OverlapCircle(wallCheckPoint.position, 0.1f, wallLayerMask);
+            if (facingRight && (Input.GetAxis("Horizontal") > 0.1f || currentSwipe.x > 0)
+                || !facingRight && (Input.GetAxis("Horizontal") < -0.1f || currentSwipe.x < 0))
+            {
+                if (wallCheck)
+                {
+                    HandleWallSliding();
+                }
+            }
+        }
+
+        if (wallCheck == false || grounded)
+        {
+            wallSliding = false;
+        }
+    }
+
+    void HandleWallSliding()
+    {
+        rb2d.velocity = new Vector2(rb2d.velocity.x, -0.7f); // hardcoded, fix later just for testing
+        wallSliding = true;
+
+        // Input jump
+        if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(1) ||
+           (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width / 2)) {
+            if (facingRight)
+            {
+                rb2d.AddForce(new Vector2(-1, 1) * jumpPower);
+            }
+            else
+            {
+                rb2d.AddForce(new Vector2(1, 1) * jumpPower);
+            }
+        }
     }
 
     // For physics movement
@@ -130,7 +175,17 @@ public class Player : MonoBehaviour {
         if (Application.platform == RuntimePlatform.WindowsEditor)
             h = Input.GetAxis("Horizontal");
 
-        rb2d.AddForce((Vector2.right * speed) * h); // Moves the player if we press left (>0) or right (<0)        
+        if (grounded)
+        {
+            rb2d.AddForce((Vector2.right * speed) * h); // Moves the player if we press left (>0) or right (<0)
+        }
+        else
+        {
+            // If not grounded then add half force we normally do so it's not too floaty 
+            rb2d.AddForce((Vector2.right * speed / 3) * h);
+        }
+        
+          
         // fake friction / Easing the x speed of our player
         if (grounded)
         {
@@ -158,5 +213,4 @@ public class Player : MonoBehaviour {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Loads current scene over again (restarts)
         }
     }
-
 }
