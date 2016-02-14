@@ -6,6 +6,7 @@ TagManager:
   tags:
   - laundry
   - GameMaster
+  - Weapon
   layers:
   - Default
   - TransparentFX

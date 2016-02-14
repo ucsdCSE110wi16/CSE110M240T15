@@ -2,7 +2,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
 
     // Floats
     public float maxSpeed = 3;
@@ -14,10 +15,11 @@ public class Player : MonoBehaviour {
     public bool canDoubleJump;
     public bool wallSliding;
     public bool facingRight = true;
+    public bool weapon_beam = false;
 
     // Reference
     private Rigidbody2D rb2d;
-	private Animator anim;
+    private Animator anim;
     private float h; // a and d buttons or <- and -> buttons
     public Transform wallCheckPoint;
     public bool wallCheck;
@@ -33,14 +35,15 @@ public class Player : MonoBehaviour {
     Vector2 currentSwipe;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
-		anim = gameObject.GetComponent<Animator>();
+        anim = gameObject.GetComponent<Animator>();
 
         // For health vars
         currHealth = maxHealth;
 
-	}
+    }
 
     public void Swipe()
     {
@@ -62,7 +65,7 @@ public class Player : MonoBehaviour {
             //normalize the 2d vector
             currentSwipe.Normalize();
         }
-       if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
             currentSwipe = new Vector2(0, 0);
         }
@@ -112,7 +115,8 @@ public class Player : MonoBehaviour {
         }
 
         // Make character die when below camera
-        if (transform.position.y < -6) {
+        if (transform.position.y < -6)
+        {
             currHealth = 0;
         }
 
@@ -153,7 +157,8 @@ public class Player : MonoBehaviour {
 
         // Input jump
         if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(1) ||
-           (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width / 2)) {
+           (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width / 2))
+        {
             if (facingRight)
             {
                 rb2d.AddForce(new Vector2(-1, 1) * jumpPower);
@@ -166,7 +171,8 @@ public class Player : MonoBehaviour {
     }
 
     // For physics movement
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         Vector3 easeVelocity = rb2d.velocity;
         easeVelocity.y = rb2d.velocity.y;
         easeVelocity.z = 0.0f; // Don't use z-axis for 3D things
@@ -182,10 +188,10 @@ public class Player : MonoBehaviour {
         else
         {
             // If not grounded then add twice force we normally do so it's not too floaty 
-            rb2d.AddForce((Vector2.right * speed * 1.5f) * h);
+            rb2d.AddForce((Vector2.right * speed * 2f) * h);
         }
-        
-          
+
+
         // fake friction / Easing the x speed of our player
         if (grounded)
         {
@@ -201,7 +207,7 @@ public class Player : MonoBehaviour {
         // Same as above but for going left
         if (rb2d.velocity.x < -maxSpeed)
         {
-			rb2d.velocity = new Vector2(-maxSpeed, rb2d.velocity.y);
+            rb2d.velocity = new Vector2(-maxSpeed, rb2d.velocity.y);
         }
     }
 
@@ -212,5 +218,12 @@ public class Player : MonoBehaviour {
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Loads current scene over again (restarts)
         }
+    }
+
+    // Freezes player
+    public void Stop()
+    {
+        rb2d.velocity = Vector3.zero;
+        rb2d.Sleep();
     }
 }
