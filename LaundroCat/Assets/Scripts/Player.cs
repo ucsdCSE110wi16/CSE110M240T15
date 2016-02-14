@@ -181,8 +181,8 @@ public class Player : MonoBehaviour {
         }
         else
         {
-            // If not grounded then add half force we normally do so it's not too floaty 
-            rb2d.AddForce((Vector2.right * speed / 3) * h);
+            // If not grounded then add twice force we normally do so it's not too floaty 
+            rb2d.AddForce((Vector2.right * speed * 1.5f) * h);
         }
         
           
