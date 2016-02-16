@@ -211,7 +211,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         currHealth--;
         if (currHealth <= 0)
