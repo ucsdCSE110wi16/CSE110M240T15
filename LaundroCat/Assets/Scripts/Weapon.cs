@@ -32,17 +32,19 @@ public class Weapon : MonoBehaviour {
                                                      player.transform.position.z);
     }
 
-    void OnMouseDown()
+    void OnMouseOver()
     {
-        if (player.weapon_beam)
-        {
-            weapon_beam_anim.enabled = true;
-            if (player.facingRight)
-                weapon_beam.transform.localScale = new Vector3(-10, 5, 1);
-            else
-                weapon_beam.transform.localScale = new Vector3(10, 5, 1);
-            player.weapon_beam = false;
+        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) && player.weapon_beam) {
+            if (player.weapon_beam)
+            {
+                weapon_beam_anim.enabled = true;
+                if (player.facingRight)
+                    weapon_beam.transform.localScale = new Vector3(-12, 5, 1);
+                else
+                    weapon_beam.transform.localScale = new Vector3(12, 5, 1);
+                player.weapon_beam = false;
+            }
+            Destroy(enemy);
         }
-        Destroy(enemy);
     }
 }
