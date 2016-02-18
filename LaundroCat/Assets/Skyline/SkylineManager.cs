@@ -6,9 +6,12 @@ public class SkylineManager : MonoBehaviour {
     private static int NUM_OF_CHUNKS = 6;
     private static int NUM_OF_CHUNK_TYPES= 9;
 
-    public Transform prefab;
-    public Transform prefab2;
-    public Transform prefab3;
+    public Transform skyline;
+    public Transform bounce;
+    public Transform levelTrigger;
+    public Transform stairs;
+    public Transform stairsRev;
+    
     public Vector3 startPos;
     private Vector3 nextPos;
 
@@ -21,7 +24,8 @@ public class SkylineManager : MonoBehaviour {
 
         for (int i = 0; i < NUM_OF_CHUNKS; i++) {
             int gap = Random.Range(0, 3);
-            int chunk = Random.Range(0, NUM_OF_CHUNK_TYPES);
+            int chunk = 1; 
+                //Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x += gap;
 
@@ -30,11 +34,11 @@ public class SkylineManager : MonoBehaviour {
             switch (chunk)
               {
                 case 0:
-                    nextPos = buildTerrainLine(nextPos, CHUNK_SIZE);
+                    nextPos = buildLine(nextPos, CHUNK_SIZE);
                     Debug.Log("TerrainLine" + nextPos);
                     break;
                 case 1:
-                    nextPos = buildTerrainHOLYFUCK(nextPos);
+                    nextPos = buildTerrainMountain(nextPos);
                     Debug.Log("HOLY FUCK" + nextPos);
                     break;
                 case 2:
@@ -62,11 +66,11 @@ public class SkylineManager : MonoBehaviour {
                     Debug.Log("Terrain: HOLYFUCK" + nextPos);
                     break;
                 case 8:
-                    nextPos = buildTerrainWallJump(nextPos);
+                    nextPos = buildTerrainCWall(nextPos);
                     Debug.Log("Terrain: WallJump" + nextPos);
                     break;
                 default:
-                    nextPos = buildTerrainLine(nextPos, CHUNK_SIZE);
+                    nextPos = buildLine(nextPos, CHUNK_SIZE);
                     Debug.Log("Terrain: Line" + nextPos);
                     break;
               }
@@ -82,7 +86,7 @@ public class SkylineManager : MonoBehaviour {
         Vector3 next = start;
         for (int i = 0; i < CHUNK_SIZE; i++)
         {
-            Transform o = (Transform)Instantiate(prefab);
+            Transform o = (Transform)Instantiate(skyline);
 
             o.localPosition = next;
             next.x++;
@@ -91,10 +95,10 @@ public class SkylineManager : MonoBehaviour {
 
     // build a wall of size height going from bottom to top
     // @return: returns the vector at the top of the wall
-    Vector3 buildTerrainWall(Vector3 start, int height) {
+    Vector3 buildWall(Vector3 start, int height) {
         Vector3 next = start;
         for (int i = 0; i < height; i++) {
-            Transform o = (Transform)Instantiate(prefab);
+            Transform o = (Transform)Instantiate(skyline);
 
             o.localPosition = next;
             next.y++;
@@ -106,10 +110,10 @@ public class SkylineManager : MonoBehaviour {
 
     // build a line of size length going left to right
     // @ return: returns the vector at the end of the line
-    Vector3 buildTerrainLine(Vector3 start, int length) {
+    Vector3 buildLine(Vector3 start, int length) {
         Vector3 next = start;
         for (int i = 0; i < length; i++) {
-            Transform o = (Transform)Instantiate(prefab);
+            Transform o = (Transform)Instantiate(skyline);
 
             o.localPosition = next;
             next.x++;
@@ -117,14 +121,61 @@ public class SkylineManager : MonoBehaviour {
         return next;
     }
 
+    // builds a staircase (if notRev -> going up and right, else -> going down and right
+    Vector3 buildStaircase(Vector3 start, int length, bool notRev) {
+
+        if (notRev)
+            for (int i = 0; i < length; i++) {
+                Transform o = (Transform)Instantiate(stairs);
+                o.localPosition = start;
+                start.x++;
+                start.y++;
+            }
+        else
+            for (int i = 0; i < length; i++) {
+                Transform o = (Transform)Instantiate(stairsRev);
+                o.localPosition = start;
+                start.x++;
+                start.y--;
+            }
+
+        return start;
+    }
+
+    // build chunk 1
+    Vector3 buildTerrainMountain(Vector3 start) {
+        Vector3 end = start;
+        end.x += 9;
+
+        buildLine(start, 9);
+        start.y++;
+        buildStaircase(start, 1, true);
+        start.x++;
+        buildLine(start, 7);
+        start.y++;
+        start.x++;
+        buildStaircase(start, 1, true);
+        start.x++;
+        buildLine(start, 4);
+        start.x++;
+        start.y++;
+        buildStaircase(start, 1, true);
+        start.x++;
+        start = buildLine(start, 1);
+        buildStaircase(start, 3, false);
+
+        return end;
+
+    }
+
     //builc chunk 2 = tunnel thing
     Vector3 buildTerrainTunnel(Vector3 start) {
         Vector3 end = start;
         end.x += CHUNK_SIZE;
 
-        buildTerrainLine(start, CHUNK_SIZE);
+        buildLine(start, CHUNK_SIZE);
         start.y += 4;
-        buildTerrainLine(start, CHUNK_SIZE);
+        buildLine(start, CHUNK_SIZE);
 
         return end;
     }
@@ -139,7 +190,7 @@ public class SkylineManager : MonoBehaviour {
         Vector3 next = start;
         for (int i = 0; i < CHUNK_SIZE; i++)
         {
-            Transform o = (Transform)Instantiate(prefab2);
+            Transform o = (Transform)Instantiate(bounce);
 
             o.localPosition = next;
             next.x++;
@@ -155,13 +206,13 @@ public class SkylineManager : MonoBehaviour {
         Vector3 next2;
         for (int i = 0; i < CHUNK_SIZE; i++)
         {
-            Transform o = (Transform)Instantiate(prefab);
+            Transform o = (Transform)Instantiate(skyline);
 
             if(i == CHUNK_SIZE/2)
             {
                 next2 = next;
                 next2.y++;
-                Transform o2 = (Transform)Instantiate(prefab);
+                Transform o2 = (Transform)Instantiate(skyline);
                 o2.localPosition = next2;
             }
             o.localPosition = next;
@@ -181,7 +232,7 @@ public class SkylineManager : MonoBehaviour {
         for (int i = 0; i < 3; i++) {
             next = temp;
             for (int j = 0; j < CHUNK_SIZE - (i*2); j++) { 
-                Transform o = (Transform)Instantiate(prefab);
+                Transform o = (Transform)Instantiate(skyline);
 
                 o.localPosition = next;
                 next.x++;
@@ -197,15 +248,15 @@ public class SkylineManager : MonoBehaviour {
     Vector3 buildTerrainSlope(Vector3 start) {
         Vector3 temp = start;
         temp.y -= 2;
-        buildTerrainLine(temp, CHUNK_SIZE);
+        buildLine(temp, CHUNK_SIZE);
         temp.y++;
 
         Vector3 next;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             next = temp;
 
             for (int j = 0; j < (CHUNK_SIZE/2)-i; j++) {
-               Transform o = (Transform)Instantiate(prefab);
+               Transform o = (Transform)Instantiate(skyline);
 
                o.localPosition = next;
                 next.x++;
@@ -224,8 +275,8 @@ public class SkylineManager : MonoBehaviour {
         next.y++;
         next.x += (CHUNK_SIZE / 4);
 
-        Transform o = (Transform)Instantiate(prefab);
-        Transform o2 = (Transform)Instantiate(prefab);
+        Transform o = (Transform)Instantiate(skyline);
+        Transform o2 = (Transform)Instantiate(skyline);
         o.localPosition = next;
         next.x += (CHUNK_SIZE / 2);
         o2.localPosition = next;
@@ -235,21 +286,21 @@ public class SkylineManager : MonoBehaviour {
     }
 
     // build terrain walljump
-    Vector3 buildTerrainWallJump(Vector3 start) {
+    Vector3 buildTerrainCWall(Vector3 start) {
         Vector3 next = start;
-        buildTerrainLine(next, CHUNK_SIZE);
+        buildLine(next, CHUNK_SIZE);
         next.y+=3;
-        next = buildTerrainWall(next, 4);
+        next = buildWall(next, 4);
         next.x++;
-        buildTerrainLine(next, 1);
+        buildLine(next, 1);
         next.y -= 3;
-        buildTerrainLine(next, 1);
+        buildLine(next, 1);
 
         next.x = start.x;
         next.y -= 3;
         next.x += 4;
 
-        buildTerrainWall(next, 7);
+        buildWall(next, 7);
 
         start.x += CHUNK_SIZE;
         return start;
@@ -257,7 +308,7 @@ public class SkylineManager : MonoBehaviour {
 
     void buildEnd(Vector3 start)
     {
-        Transform o = (Transform)Instantiate(prefab3);
+        Transform o = (Transform)Instantiate(levelTrigger);
         o.localPosition = start;
     }
 }
