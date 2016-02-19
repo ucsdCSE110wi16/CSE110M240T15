@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-
     // Floats
     public float maxSpeed = 3;
     public float speed = 50f;
