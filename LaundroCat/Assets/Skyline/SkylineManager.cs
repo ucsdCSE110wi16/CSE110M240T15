@@ -10,6 +10,7 @@ public class SkylineManager : MonoBehaviour {
     public Transform bounce;
     public Transform levelTrigger;
     public Transform platform;
+    public Transform ramp;
     
     public Vector3 startPos;
     private Vector3 nextPos;
@@ -23,8 +24,8 @@ public class SkylineManager : MonoBehaviour {
 
         for (int i = 0; i < NUM_OF_CHUNKS; i++) {
             int gap = Random.Range(0, 3);
-            int chunk =  
-                Random.Range(0, NUM_OF_CHUNK_TYPES);
+            int chunk = 2;
+                //Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x += gap;
 
@@ -41,7 +42,7 @@ public class SkylineManager : MonoBehaviour {
                     Debug.Log("HOLY FUCK" + nextPos);
                     break;
                 case 2:
-                    nextPos = buildTerrainTunnel(nextPos);
+                    nextPos = buildTerrainRunway(nextPos);
                     Debug.Log("Tunnel" + nextPos);
                     break;
                 case 3:
@@ -92,6 +93,12 @@ public class SkylineManager : MonoBehaviour {
         }
     }
 
+    // instantiates a unit of whatever prefab passed in
+    void buildBlock(Vector3 start, Transform t) {
+        Transform o = (Transform)Instantiate(t);
+        o.localPosition = start;
+    }
+
     Vector3 buildPlatform(Vector3 start, int length) {
         Vector3 next = start;
         for (int i = 0; i < length; i++) {
@@ -101,6 +108,16 @@ public class SkylineManager : MonoBehaviour {
             next.x++;
         }
         return next;
+    }
+
+    Vector3 buildRamp(Vector3 start, int length) {
+        for (int i = 0; i < length; i++) {
+            buildBlock(start, ramp);
+            start.x++;
+            start.y++;
+        }
+
+        return start;
     }
 
     // build a wall of size height going from bottom to top
@@ -143,14 +160,16 @@ public class SkylineManager : MonoBehaviour {
     }
 
 
-    //builc chunk 2 = tunnel thing
-    Vector3 buildTerrainTunnel(Vector3 start) {
+    //builc chunk 2 = runway
+    Vector3 buildTerrainRunway(Vector3 start) {
         Vector3 end = start;
         end.x += CHUNK_SIZE;
-
         buildLine(start, CHUNK_SIZE);
-        start.y += 4;
-        buildLine(start, CHUNK_SIZE);
+        start.x += 6;
+        start.y++;
+        buildRamp(start, 2);
+        start.x++;
+        buildBlock(start, skyline);
 
         return end;
     }

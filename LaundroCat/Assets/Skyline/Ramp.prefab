@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21226480}
   - 60: {fileID: 6018210}
   m_Layer: 0
-  m_Name: Stairs
+  m_Name: Ramp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 176704}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 32e4fed5a3c614b409a4a86e51dd5c9f, type: 2}
+  m_Material: {fileID: 6200000, guid: 72399323629381e4ab42ab7376c0b597, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6ba4309bcbbd70042a082448706dc6d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ecaef62a9253aed4eb602d58bd50915a, type: 3}
   m_Color: {r: 0, g: 0.9117647, b: 0.19492915, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -84,7 +84,16 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ecaef62a9253aed4eb602d58bd50915a,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 72399323629381e4ab42ab7376c0b597, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 176704}
