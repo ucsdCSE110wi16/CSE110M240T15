@@ -24,8 +24,8 @@ public class SkylineManager : MonoBehaviour {
 
         for (int i = 0; i < NUM_OF_CHUNKS; i++) {
             int gap = Random.Range(0, 3);
-            int chunk = 2;
-                //Random.Range(0, NUM_OF_CHUNK_TYPES);
+            int chunk = 
+                Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x += gap;
 
@@ -35,23 +35,23 @@ public class SkylineManager : MonoBehaviour {
               {
                 case 0:
                     nextPos = buildLine(nextPos, CHUNK_SIZE);
-                    Debug.Log("TerrainLine" + nextPos);
+                    Debug.Log("Terrain: Line" + nextPos);
                     break;
                 case 1:
                     nextPos = buildTerrainPlatform(nextPos);
-                    Debug.Log("HOLY FUCK" + nextPos);
+                    Debug.Log("Terrain: Platform" + nextPos);
                     break;
                 case 2:
                     nextPos = buildTerrainRunway(nextPos);
-                    Debug.Log("Tunnel" + nextPos);
+                    Debug.Log("Terrain: Runway" + nextPos);
                     break;
                 case 3:
                     nextPos = buildTerrainBounce(nextPos);
-                    Debug.Log("TerrainBounce" + nextPos);
+                    Debug.Log("Terrain: Bounce" + nextPos);
                     break;
                 case 4:
-                    nextPos = buildTerrainBump(nextPos);
-                    Debug.Log("TerrainBump" + nextPos);
+                    nextPos = buildTerrainLeapOfFaith(nextPos);
+                    Debug.Log("Terrain: LeapOfFaith" + nextPos);
                     break;
                 case 5:
                     nextPos = buildTerrainHill(nextPos);
@@ -76,6 +76,7 @@ public class SkylineManager : MonoBehaviour {
               }
             
         }
+        nextPos.x++;
         buildEnd(nextPos);
     }
     
@@ -138,14 +139,21 @@ public class SkylineManager : MonoBehaviour {
     // build a line of size length going left to right
     // @ return: returns the vector at the end of the line
     Vector3 buildLine(Vector3 start, int length) {
-        Vector3 next = start;
-        for (int i = 0; i < length; i++) {
-            Transform o = (Transform)Instantiate(skyline);
 
-            o.localPosition = next;
-            next.x++;
+        if (length > 0)
+            for (int i = 0; i < length; i++) {
+                buildBlock(start, skyline);
+                start.x++;
+            }
+        if (length < 0) {
+            length *= -1;
+            for (int i = 0; i < length; i++) {
+                buildBlock(start, skyline);
+                start.x--;
+            }
         }
-        return next;
+
+        return start;
     }
 
     // build chunk 1 
@@ -194,27 +202,22 @@ public class SkylineManager : MonoBehaviour {
     }
 
     //build chunk 4 - bump
-    Vector3 buildTerrainBump(Vector3 start)
+    Vector3 buildTerrainLeapOfFaith(Vector3 start)
     {
-        Vector3 next = start;
-        Vector3 next2;
-        for (int i = 0; i < CHUNK_SIZE; i++)
-        {
-            Transform o = (Transform)Instantiate(skyline);
+        Vector3 end = start;
+        end.x += CHUNK_SIZE + 3;
+        start.x += 3;
+        start.y++;
+        buildRamp(start, 2);
+        start.y--;
+        start.x-=3;
+       
+        start = buildLine(start, CHUNK_SIZE + 2);
+        start = buildWall(start, 5);
 
-            if(i == CHUNK_SIZE/2)
-            {
-                next2 = next;
-                next2.y++;
-                Transform o2 = (Transform)Instantiate(skyline);
-                o2.localPosition = next2;
-            }
-            o.localPosition = next;
-            next.x++;
-        }
+        start = buildLine(start, -3);
 
-        start.x += CHUNK_SIZE;
-        return start;
+        return end;
     }
 
     // build terrain hill
