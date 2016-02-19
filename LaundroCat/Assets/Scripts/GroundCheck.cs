@@ -32,6 +32,7 @@ public class GroundCheck : MonoBehaviour {
             Destroy(col.gameObject);
         }
     }
+
     void OnTriggerStay2D(Collider2D col)
     {
         player.grounded = true;

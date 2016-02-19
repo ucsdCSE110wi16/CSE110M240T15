@@ -9,8 +9,7 @@ public class SkylineManager : MonoBehaviour {
     public Transform skyline;
     public Transform bounce;
     public Transform levelTrigger;
-    public Transform stairs;
-    public Transform stairsRev;
+    public Transform platform;
     
     public Vector3 startPos;
     private Vector3 nextPos;
@@ -24,8 +23,8 @@ public class SkylineManager : MonoBehaviour {
 
         for (int i = 0; i < NUM_OF_CHUNKS; i++) {
             int gap = Random.Range(0, 3);
-            int chunk = 1; 
-                //Random.Range(0, NUM_OF_CHUNK_TYPES);
+            int chunk =  
+                Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x += gap;
 
@@ -38,7 +37,7 @@ public class SkylineManager : MonoBehaviour {
                     Debug.Log("TerrainLine" + nextPos);
                     break;
                 case 1:
-                    nextPos = buildTerrainMountain(nextPos);
+                    nextPos = buildTerrainPlatform(nextPos);
                     Debug.Log("HOLY FUCK" + nextPos);
                     break;
                 case 2:
@@ -93,6 +92,17 @@ public class SkylineManager : MonoBehaviour {
         }
     }
 
+    Vector3 buildPlatform(Vector3 start, int length) {
+        Vector3 next = start;
+        for (int i = 0; i < length; i++) {
+            Transform o = (Transform)Instantiate(platform);
+
+            o.localPosition = next;
+            next.x++;
+        }
+        return next;
+    }
+
     // build a wall of size height going from bottom to top
     // @return: returns the vector at the top of the wall
     Vector3 buildWall(Vector3 start, int height) {
@@ -121,52 +131,17 @@ public class SkylineManager : MonoBehaviour {
         return next;
     }
 
-    // builds a staircase (if notRev -> going up and right, else -> going down and right
-    Vector3 buildStaircase(Vector3 start, int length, bool notRev) {
-
-        if (notRev)
-            for (int i = 0; i < length; i++) {
-                Transform o = (Transform)Instantiate(stairs);
-                o.localPosition = start;
-                start.x++;
-                start.y++;
-            }
-        else
-            for (int i = 0; i < length; i++) {
-                Transform o = (Transform)Instantiate(stairsRev);
-                o.localPosition = start;
-                start.x++;
-                start.y--;
-            }
-
-        return start;
-    }
-
-    // build chunk 1
-    Vector3 buildTerrainMountain(Vector3 start) {
+    // build chunk 1 
+    Vector3 buildTerrainPlatform(Vector3 start) {
         Vector3 end = start;
-        end.x += 9;
-
-        buildLine(start, 9);
-        start.y++;
-        buildStaircase(start, 1, true);
-        start.x++;
-        buildLine(start, 7);
-        start.y++;
-        start.x++;
-        buildStaircase(start, 1, true);
-        start.x++;
-        buildLine(start, 4);
-        start.x++;
-        start.y++;
-        buildStaircase(start, 1, true);
-        start.x++;
-        start = buildLine(start, 1);
-        buildStaircase(start, 3, false);
+        end.x += CHUNK_SIZE;
+        buildLine(start, CHUNK_SIZE);
+        start.y += 2;
+        buildPlatform(start, CHUNK_SIZE);
 
         return end;
-
     }
+
 
     //builc chunk 2 = tunnel thing
     Vector3 buildTerrainTunnel(Vector3 start) {
