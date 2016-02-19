@@ -66,7 +66,7 @@ public class SkylineManager : MonoBehaviour {
                     Debug.Log("Terrain: HOLYFUCK" + nextPos);
                     break;
                 case 8:
-                    nextPos = buildTerrainCWall(nextPos);
+                    nextPos = buildTerrainWalljump(nextPos);
                     Debug.Log("Terrain: WallJump" + nextPos);
                     break;
                 default:
@@ -283,18 +283,9 @@ public class SkylineManager : MonoBehaviour {
     }
 
     // build terrain walljump
-    Vector3 buildTerrainCWall(Vector3 start) {
+    Vector3 buildTerrainWalljump(Vector3 start) {
         Vector3 next = start;
         buildLine(next, CHUNK_SIZE);
-        next.y+=3;
-        next = buildWall(next, 4);
-        next.x++;
-        buildLine(next, 1);
-        next.y -= 3;
-        buildLine(next, 1);
-
-        next.x = start.x;
-        next.y -= 3;
         next.x += 4;
 
         buildWall(next, 7);
