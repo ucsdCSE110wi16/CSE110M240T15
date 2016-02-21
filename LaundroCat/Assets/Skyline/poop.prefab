@@ -14,7 +14,7 @@ GameObject:
   - 50: {fileID: 5034088}
   - 114: {fileID: 11443910}
   m_Layer: 0
-  m_Name: poop2
+  m_Name: poop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

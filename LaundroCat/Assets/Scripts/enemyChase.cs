@@ -19,6 +19,9 @@ public class enemyChase : MonoBehaviour {
 
         Vector3 forwardAxis = new Vector3(0, 0, -1);
 
+        float distance = Vector3.Distance(target.position, transform.position);
+        if (distance > 4) return;
+
         transform.LookAt(target.position, forwardAxis);
         Debug.DrawLine(transform.position, target.position);
         transform.eulerAngles = new Vector3(1, 0, 0);

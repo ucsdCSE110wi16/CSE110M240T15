@@ -11,7 +11,7 @@ public class SkylineManager : MonoBehaviour {
     public Transform levelTrigger;
     public Transform platform;
     public Transform ramp;
-    public Transform poop2;
+    public Transform poop;
     
     public Vector3 startPos;
     private Vector3 nextPos;
@@ -25,8 +25,8 @@ public class SkylineManager : MonoBehaviour {
 
         for (int i = 0; i < NUM_OF_CHUNKS; i++) {
             int gap = Random.Range(0, 3);
-            int chunk = 10;
-               // Random.Range(0, NUM_OF_CHUNK_TYPES);
+            int chunk = 
+                Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x += gap;
             // add more chunks
@@ -101,6 +101,8 @@ public class SkylineManager : MonoBehaviour {
         }
     }
 
+    /*******  BUILD BASIC STUFF (BLOCKS/LINES/ETC) *******/
+
     // instantiates a unit of whatever prefab passed in
     void buildBlock(Vector3 start, Transform t) {
         Transform o = (Transform)Instantiate(t);
@@ -109,7 +111,7 @@ public class SkylineManager : MonoBehaviour {
 
     //call this method if you want to break the level
     void buildEnemy(Vector3 start) {
-        buildBlock(start, poop2);
+        buildBlock(start, poop);
     }
 
     Vector3 buildPlatform(Vector3 start, int length) {
@@ -168,6 +170,11 @@ public class SkylineManager : MonoBehaviour {
 
         return start;
     }
+
+
+
+    /********** BUILD TERRAIN ********/
+
 
     // build chunk 1 
     Vector3 buildTerrainPlatform(Vector3 start) {
