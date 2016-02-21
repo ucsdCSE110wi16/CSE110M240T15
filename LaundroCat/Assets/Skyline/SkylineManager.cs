@@ -25,11 +25,10 @@ public class SkylineManager : MonoBehaviour {
 
         for (int i = 0; i < NUM_OF_CHUNKS; i++) {
             int gap = Random.Range(0, 3);
-            int chunk =
-                Random.Range(0, NUM_OF_CHUNK_TYPES);
+            int chunk = 10;
+               // Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x += gap;
-
             // add more chunks
             
             switch (chunk)
@@ -72,7 +71,11 @@ public class SkylineManager : MonoBehaviour {
                     break;
                 case 9:
                     nextPos = buildTerrainJump(nextPos);
-                    Debug.Log("TerrainL Jump");
+                    Debug.Log("Terrain: Jump");
+                    break;
+                case 10:
+                    nextPos = buildTerrainEnemy(nextPos);
+                    Debug.Log("Terrain: Enemy");
                     break;
                 default:
                     nextPos = buildLine(nextPos, CHUNK_SIZE, skyline);
@@ -146,6 +149,7 @@ public class SkylineManager : MonoBehaviour {
 
 
     // build a line out of any prefab t of size length going left to right
+    // chunk default
     // @ return: returns the vector at the end of the line
     Vector3 buildLine(Vector3 start, int length, Transform t) {
 
@@ -220,7 +224,7 @@ public class SkylineManager : MonoBehaviour {
         return end;
     }
 
-    // build terrain hill
+    // build cuhnk 5: terrain hill
     Vector3 buildTerrainHill(Vector3 start)
     {
         Vector3 temp = start;
@@ -241,7 +245,7 @@ public class SkylineManager : MonoBehaviour {
         return start;
     }
 
-    //Builds a ramp to a bounce platform
+    //chunk 6: Builds a ramp to a bounce platform
     Vector3 buildTerrainJump(Vector3 start) {
         Vector3 temp = buildTerrainRunway(start);
         temp.x += CHUNK_SIZE;
@@ -250,7 +254,7 @@ public class SkylineManager : MonoBehaviour {
         return temp;
     }
 
-    // build terrain slope
+    // chunk 7: build terrain slope
     Vector3 buildTerrainSlope(Vector3 start) {
         Vector3 temp = start;
         temp.y -= 2;
@@ -275,7 +279,7 @@ public class SkylineManager : MonoBehaviour {
         return start;
     }
 
-    // build terrain holy fuck
+    // chunk 8: build terrain holy fuck
     Vector3 buildTerrainHOLYFUCK(Vector3 start) {
         Vector3 next = start;
         next.y++;
@@ -291,7 +295,7 @@ public class SkylineManager : MonoBehaviour {
         return start;
     }
 
-    // build terrain walljump
+    // chunk 9: build terrain walljump
     Vector3 buildTerrainWalljump(Vector3 start) {
         Vector3 next = start;
         buildLine(next, CHUNK_SIZE, skyline);
@@ -303,13 +307,19 @@ public class SkylineManager : MonoBehaviour {
         return start;
     }
 
-    //This doesn't work idk how to make enemies
+    // chunk 10: build terrain enemy
     Vector3 buildTerrainEnemy(Vector3 start)
     {
         Vector3 end = buildLine(start, CHUNK_SIZE, skyline);
         Vector3 temp = end;
-        temp.x = (end.x - CHUNK_SIZE) / 2;
+        temp.y++;
+        temp.x--;
+        buildBlock(temp, skyline);
+        temp.x -= CHUNK_SIZE / 2;
+        
         buildEnemy(temp);
+        start.y++;
+        buildBlock(start, skyline);
         return end;
     }
 
