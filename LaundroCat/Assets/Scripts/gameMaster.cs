@@ -10,6 +10,5 @@ public class gameMaster : MonoBehaviour {
     void Update()
     {
         laundryText.text = ("Laundry: " + laundryPoints.ToString());
-
     }
 }

@@ -5,6 +5,7 @@ public class GroundCheck : MonoBehaviour {
 
     private Player player;
     private gameMaster gm;
+    public Transform laundry_sound;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class GroundCheck : MonoBehaviour {
 
         if (col.CompareTag("laundry"))
         {
+            Instantiate(laundry_sound, transform.position, transform.rotation);
             Destroy(col.gameObject);
             gm.laundryPoints += 1;
         }
