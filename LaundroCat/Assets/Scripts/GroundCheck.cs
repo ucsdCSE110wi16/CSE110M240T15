@@ -22,7 +22,17 @@ public class GroundCheck : MonoBehaviour {
             Destroy(col.gameObject);
             gm.laundryPoints += 1;
         }
+
+        if (col.CompareTag("Weapon"))
+        {
+            if (col.name == "weapon_beam_pickup")
+            {
+                player.weapon_beam = true;
+            }
+            Destroy(col.gameObject);
+        }
     }
+
     void OnTriggerStay2D(Collider2D col)
     {
         player.grounded = true;
@@ -32,5 +42,6 @@ public class GroundCheck : MonoBehaviour {
     void OnTriggerExit2D(Collider2D col)
     {
         player.grounded = false;
+        player.canDoubleJump = true;
     }
 }

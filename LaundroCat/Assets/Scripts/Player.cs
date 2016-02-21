@@ -2,8 +2,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour {
-
+public class Player : MonoBehaviour
+{
     // Floats
     public float maxSpeed = 3;
     public float speed = 50f;
@@ -12,11 +12,17 @@ public class Player : MonoBehaviour {
     // Booleans
     public bool grounded;
     public bool canDoubleJump;
+    public bool wallSliding;
+    public bool facingRight = true;
+    public bool weapon_beam = false;
 
     // Reference
     private Rigidbody2D rb2d;
-	private Animator anim;
+    private Animator anim;
     private float h; // a and d buttons or <- and -> buttons
+    public Transform wallCheckPoint;
+    public bool wallCheck;
+    public LayerMask wallLayerMask;
 
     // Stats
     public int currHealth;
@@ -28,14 +34,15 @@ public class Player : MonoBehaviour {
     Vector2 currentSwipe;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
-		anim = gameObject.GetComponent<Animator>();
+        anim = gameObject.GetComponent<Animator>();
 
         // For health vars
         currHealth = maxHealth;
 
-	}
+    }
 
     public void Swipe()
     {
@@ -57,7 +64,7 @@ public class Player : MonoBehaviour {
             //normalize the 2d vector
             currentSwipe.Normalize();
         }
-       if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
             currentSwipe = new Vector2(0, 0);
         }
@@ -76,17 +83,19 @@ public class Player : MonoBehaviour {
         if (Input.GetAxis("Horizontal") < -0.1f || (currentSwipe.x < 0)) //&& currentSwipe.y > -0.1f && currentSwipe.y < 0.1f)) 
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            facingRight = false;
         }
         // Moving to right change direction | right swipe
         if (Input.GetAxis("Horizontal") > 0.1f || (currentSwipe.x > 0)) //&& currentSwipe.y > -0.1f && currentSwipe.y < 0.1f))
         {
             transform.localScale = new Vector3(1, 1, 1);
+            facingRight = true;
         }
 
         //TODO THIS DOESN"T WORK ON THE BOUNCY PLATFORMS
         // Where jumping is. The button jump is space || it is a tap on the right side of the screen either 2 fingers or 1
-        if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(1) ||
-           (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width / 2)) // Stopped and press button on right side
+        if ((Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(1) ||
+           (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width / 2)) && !wallSliding) // Stopped and press button on right side
         {
             if (grounded)
             {
@@ -104,6 +113,12 @@ public class Player : MonoBehaviour {
             }
         }
 
+        // Make character die when below camera
+        if (transform.position.y < -6)
+        {
+            currHealth = 0;
+        }
+
         // Make character die (health mechanics)
         if (currHealth > maxHealth)
         {
@@ -113,10 +128,50 @@ public class Player : MonoBehaviour {
         {
             Die();
         }
+
+        // Wall Jump
+        if (!grounded)
+        {
+            wallCheck = Physics2D.OverlapCircle(wallCheckPoint.position, 0.1f, wallLayerMask);
+            if (facingRight && (Input.GetAxis("Horizontal") > 0.1f || currentSwipe.x > 0)
+                || !facingRight && (Input.GetAxis("Horizontal") < -0.1f || currentSwipe.x < 0))
+            {
+                if (wallCheck)
+                {
+                    HandleWallSliding();
+                }
+            }
+        }
+
+        if (wallCheck == false || grounded)
+        {
+            wallSliding = false;
+        }
+    }
+
+    void HandleWallSliding()
+    {
+        rb2d.velocity = new Vector2(rb2d.velocity.x, -0.7f); // hardcoded, fix later just for testing
+        wallSliding = true;
+
+        // Input jump
+        if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(1) ||
+           (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width / 2))
+        {
+            if (facingRight)
+            {
+                rb2d.AddForce(new Vector2(-1, 1) * jumpPower);
+            }
+            else
+            {
+                rb2d.AddForce(new Vector2(1, 1) * jumpPower);
+            }
+        }
     }
 
     // For physics movement
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         Vector3 easeVelocity = rb2d.velocity;
         easeVelocity.y = rb2d.velocity.y;
         easeVelocity.z = 0.0f; // Don't use z-axis for 3D things
@@ -125,7 +180,17 @@ public class Player : MonoBehaviour {
         if (Application.platform == RuntimePlatform.WindowsEditor)
             h = Input.GetAxis("Horizontal");
 
-        rb2d.AddForce((Vector2.right * speed) * h); // Moves the player if we press left (>0) or right (<0)        
+        if (grounded)
+        {
+            rb2d.AddForce((Vector2.right * speed) * h); // Moves the player if we press left (>0) or right (<0)
+        }
+        else
+        {
+            // If not grounded then add twice force we normally do so it's not too floaty 
+            rb2d.AddForce((Vector2.right * speed * 2f) * h);
+        }
+
+
         // fake friction / Easing the x speed of our player
         if (grounded)
         {
@@ -141,17 +206,23 @@ public class Player : MonoBehaviour {
         // Same as above but for going left
         if (rb2d.velocity.x < -maxSpeed)
         {
-			rb2d.velocity = new Vector2(-maxSpeed, rb2d.velocity.y);
+            rb2d.velocity = new Vector2(-maxSpeed, rb2d.velocity.y);
         }
     }
 
-    void Die()
+    public void Die()
     {
         currHealth--;
-        if (currHealth == 0)
+        if (currHealth <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Loads current scene over again (restarts)
         }
     }
 
+    // Freezes player
+    public void Stop()
+    {
+        rb2d.velocity = Vector3.zero;
+        rb2d.Sleep();
+    }
 }
