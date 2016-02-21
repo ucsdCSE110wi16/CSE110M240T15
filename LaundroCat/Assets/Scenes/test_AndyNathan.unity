@@ -361,6 +361,7 @@ MonoBehaviour:
   levelTrigger: {fileID: 433792, guid: 4f5a5c3de0a0a954baa39558329f2bf8, type: 2}
   platform: {fileID: 454898, guid: c1b36d4be7679574087176db2064f8e1, type: 2}
   ramp: {fileID: 434822, guid: f2dbdc89ad48d2e4ead2ef015e734ab5, type: 2}
+  poop: {fileID: 483870, guid: 75d279d671034a54785fea8688eece2e, type: 2}
   startPos: {x: 0, y: -3.3, z: 0}
 --- !u!1001 &1068495338
 Prefab:

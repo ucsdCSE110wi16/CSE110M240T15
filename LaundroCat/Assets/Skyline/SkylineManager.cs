@@ -4,13 +4,14 @@ using System.Collections;
 public class SkylineManager : MonoBehaviour {
     private static int CHUNK_SIZE = 8;
     private static int NUM_OF_CHUNKS = 6;
-    private static int NUM_OF_CHUNK_TYPES= 9;
+    private static int NUM_OF_CHUNK_TYPES= 13;
 
     public Transform skyline;
     public Transform bounce;
     public Transform levelTrigger;
     public Transform platform;
     public Transform ramp;
+    public Transform poop;
     
     public Vector3 startPos;
     private Vector3 nextPos;
@@ -24,17 +25,16 @@ public class SkylineManager : MonoBehaviour {
 
         for (int i = 0; i < NUM_OF_CHUNKS; i++) {
             int gap = Random.Range(0, 3);
-            int chunk = 
+            int chunk = 12;
                 Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x += gap;
-
             // add more chunks
             
             switch (chunk)
               {
                 case 0:
-                    nextPos = buildLine(nextPos, CHUNK_SIZE);
+                    nextPos = buildLine(nextPos, CHUNK_SIZE, skyline);
                     Debug.Log("Terrain: Line" + nextPos);
                     break;
                 case 1:
@@ -69,8 +69,24 @@ public class SkylineManager : MonoBehaviour {
                     nextPos = buildTerrainWalljump(nextPos);
                     Debug.Log("Terrain: WallJump" + nextPos);
                     break;
+                case 9:
+                    nextPos = buildTerrainJump(nextPos);
+                    Debug.Log("Terrain: Jump");
+                    break;
+                case 10:
+                    nextPos = buildTerrainEnemy(nextPos);
+                    Debug.Log("Terrain: Enemy");
+                    break;
+                case 11:
+                    nextPos = buildTerrainBattlefield(nextPos);
+                    Debug.Log("Terrain: Battlefield");
+                    break;
+                case 12:
+                    nextPos = buildTerrainSteps(nextPos);
+                    Debug.Log("Terrain: Steps");
+                    break;
                 default:
-                    nextPos = buildLine(nextPos, CHUNK_SIZE);
+                    nextPos = buildLine(nextPos, CHUNK_SIZE, skyline);
                     Debug.Log("Terrain: Line" + nextPos);
                     break;
               }
@@ -88,16 +104,22 @@ public class SkylineManager : MonoBehaviour {
         for (int i = 0; i < CHUNK_SIZE; i++)
         {
             Transform o = (Transform)Instantiate(skyline);
-
             o.localPosition = next;
             next.x++;
         }
     }
 
+    /*******  BUILD BASIC STUFF (BLOCKS/LINES/ETC) *******/
+
     // instantiates a unit of whatever prefab passed in
     void buildBlock(Vector3 start, Transform t) {
         Transform o = (Transform)Instantiate(t);
         o.localPosition = start;
+    }
+
+    //call this method if you want to break the level
+    void buildEnemy(Vector3 start) {
+        buildBlock(start, poop);
     }
 
     Vector3 buildPlatform(Vector3 start, int length) {
@@ -136,19 +158,20 @@ public class SkylineManager : MonoBehaviour {
     }
 
 
-    // build a line of size length going left to right
+    // build a line out of any prefab t of size length going left to right
+    // chunk default
     // @ return: returns the vector at the end of the line
-    Vector3 buildLine(Vector3 start, int length) {
+    Vector3 buildLine(Vector3 start, int length, Transform t) {
 
         if (length > 0)
             for (int i = 0; i < length; i++) {
-                buildBlock(start, skyline);
+                buildBlock(start, t);
                 start.x++;
             }
         if (length < 0) {
             length *= -1;
             for (int i = 0; i < length; i++) {
-                buildBlock(start, skyline);
+                buildBlock(start, t);
                 start.x--;
             }
         }
@@ -156,11 +179,16 @@ public class SkylineManager : MonoBehaviour {
         return start;
     }
 
+
+
+    /********** BUILD TERRAIN ********/
+
+
     // build chunk 1 
     Vector3 buildTerrainPlatform(Vector3 start) {
         Vector3 end = start;
         end.x += CHUNK_SIZE;
-        buildLine(start, CHUNK_SIZE);
+        buildLine(start, CHUNK_SIZE, skyline);
         start.y += 2;
         buildPlatform(start, CHUNK_SIZE);
 
@@ -168,11 +196,11 @@ public class SkylineManager : MonoBehaviour {
     }
 
 
-    //builc chunk 2 = runway
+    //build chunk 2 = runway
     Vector3 buildTerrainRunway(Vector3 start) {
         Vector3 end = start;
         end.x += CHUNK_SIZE;
-        buildLine(start, CHUNK_SIZE);
+        buildLine(start, CHUNK_SIZE, skyline);
         start.x += 6;
         start.y++;
         buildRamp(start, 2);
@@ -186,22 +214,13 @@ public class SkylineManager : MonoBehaviour {
     Vector3 buildTerrainBounce(Vector3 start)
     {
         Vector3 end = start;
-        end.x += CHUNK_SIZE;
 
-        start.y -= 2; 
-        Vector3 next = start;
-        for (int i = 0; i < CHUNK_SIZE; i++)
-        {
-            Transform o = (Transform)Instantiate(bounce);
-
-            o.localPosition = next;
-            next.x++;
-        }
-
+        start.y -= 2;
+        end = buildLine(start, CHUNK_SIZE, bounce);
         return end;
     }
 
-    //build chunk 4 - bump
+    //build chunk 4
     Vector3 buildTerrainLeapOfFaith(Vector3 start)
     {
         Vector3 end = start;
@@ -212,15 +231,15 @@ public class SkylineManager : MonoBehaviour {
         start.y--;
         start.x-=3;
        
-        start = buildLine(start, CHUNK_SIZE + 2);
+        start = buildLine(start, CHUNK_SIZE + 2, skyline);
         start = buildWall(start, 5);
 
-        start = buildLine(start, -3);
+        start = buildLine(start, -3, skyline);
 
         return end;
     }
 
-    // build terrain hill
+    // build cuhnk 5: terrain hill
     Vector3 buildTerrainHill(Vector3 start)
     {
         Vector3 temp = start;
@@ -241,11 +260,20 @@ public class SkylineManager : MonoBehaviour {
         return start;
     }
 
-    // build terrain slope
+    //chunk 6: Builds a ramp to a bounce platform
+    Vector3 buildTerrainJump(Vector3 start) {
+        Vector3 temp = buildTerrainRunway(start);
+        temp.x += CHUNK_SIZE;
+        temp = buildLine(temp, CHUNK_SIZE, bounce);
+        temp.x += CHUNK_SIZE/2;
+        return temp;
+    }
+
+    // chunk 7: build terrain slope
     Vector3 buildTerrainSlope(Vector3 start) {
         Vector3 temp = start;
         temp.y -= 2;
-        buildLine(temp, CHUNK_SIZE);
+        buildLine(temp, CHUNK_SIZE, skyline);
         temp.y++;
 
         Vector3 next;
@@ -266,7 +294,7 @@ public class SkylineManager : MonoBehaviour {
         return start;
     }
 
-    // build terrain holy fuck
+    // chunk 8: build terrain holy fuck
     Vector3 buildTerrainHOLYFUCK(Vector3 start) {
         Vector3 next = start;
         next.y++;
@@ -282,16 +310,69 @@ public class SkylineManager : MonoBehaviour {
         return start;
     }
 
-    // build terrain walljump
+    // chunk 9: build terrain walljump
     Vector3 buildTerrainWalljump(Vector3 start) {
         Vector3 next = start;
-        buildLine(next, CHUNK_SIZE);
+        buildLine(next, CHUNK_SIZE, skyline);
         next.x += 4;
 
         buildWall(next, 7);
 
         start.x += CHUNK_SIZE;
         return start;
+    }
+
+    // chunk 10: build terrain enemy
+    Vector3 buildTerrainEnemy(Vector3 start)
+    {
+        Vector3 end = buildLine(start, CHUNK_SIZE, skyline);
+        Vector3 temp = end;
+        temp.y++;
+        temp.x--;
+        buildBlock(temp, skyline);
+        temp.x -= CHUNK_SIZE / 2;
+        
+        buildEnemy(temp);
+        start.y++;
+        buildBlock(start, skyline);
+        return end;
+    }
+
+    //chunk 11: builds a base with three soft platforms
+    Vector3 buildTerrainBattlefield(Vector3 start)
+    {
+        int baseSize = CHUNK_SIZE * 2;
+        int platSize = baseSize / 3;
+
+        Vector3 end = buildLine(start, baseSize, skyline);
+        start.y += 2;
+        Vector3 pos = buildLine(start, platSize, platform);
+        pos.y += 2;
+        pos = buildLine(pos, platSize, platform);
+        pos.y -= 2;
+        buildLine(pos, platSize, platform);
+
+        return end;
+    }
+
+    //Chunk 12: builds a series of steps up with soft platforms
+    Vector3 buildTerrainSteps(Vector3 start)
+    {
+        int baseSize = CHUNK_SIZE / 2;
+        int platSize = baseSize;
+
+        Vector3 end = buildLine(start, baseSize, skyline);
+        start.y += 2;
+        start.x = (end.x + start.x) / 2;
+        end = buildLine(start, platSize, platform);
+
+        start.y += 2;
+        start.x = (end.x + start.x) / 2;
+        end = buildLine(start, platSize, platform);
+
+        end = buildLine(end, baseSize, skyline);
+
+        return end;
     }
 
     void buildEnd(Vector3 start)
