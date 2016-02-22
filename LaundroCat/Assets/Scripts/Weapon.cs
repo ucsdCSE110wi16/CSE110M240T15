@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour {
     private Transform weapon_beam;
     private Animator weapon_beam_anim;
     private BoxCollider2D weapon_beam_collider;
-    private GameObject enemy;
+    private GameObject[] enemy;
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +15,7 @@ public class Weapon : MonoBehaviour {
         weapon_beam = GameObject.Find("weapon_beam").GetComponent<Transform>();
         weapon_beam_anim = GameObject.Find("weapon_beam").GetComponent<Animator>();
         weapon_beam_collider = GameObject.Find("weapon_beam").GetComponent<BoxCollider2D>();
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        enemy = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     // Update is called once per frame
@@ -50,6 +50,7 @@ public class Weapon : MonoBehaviour {
                 weapon_beam.transform.localScale = new Vector3(12, 5, 1);
             player.weapon_beam = false;
         }
-        Destroy(enemy);
+        for (int i = 0; i < enemy.Length; i++)
+            DestroyObject(enemy[i]);
     }
 }
