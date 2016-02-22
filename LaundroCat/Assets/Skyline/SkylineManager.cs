@@ -4,7 +4,7 @@ using System.Collections;
 public class SkylineManager : MonoBehaviour {
     private static int CHUNK_SIZE = 8;
     private static int NUM_OF_CHUNKS = 6;
-    private static int NUM_OF_CHUNK_TYPES= 14;
+    private static int NUM_OF_CHUNK_TYPES= 13;
 
     public Transform skyline;
     public Transform bounce;
@@ -13,6 +13,7 @@ public class SkylineManager : MonoBehaviour {
     public Transform ramp;
     public Transform rampRev;
     public Transform poop;
+    public Transform laundry;
     
     public Vector3 startPos;
     private Vector3 nextPos;
@@ -26,14 +27,14 @@ public class SkylineManager : MonoBehaviour {
 
         for (int i = 0; i < NUM_OF_CHUNKS; i++) {
             int gap = Random.Range(0, 3);
-            int chunk = 13;
+            int chunk = 1;
                 Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x += gap;
             // add more chunks
             
             switch (chunk)
-              {
+            {
                 case 0:
                     nextPos = buildLine(nextPos, CHUNK_SIZE, skyline);
                     Debug.Log("Terrain: Line" + nextPos);
@@ -47,7 +48,7 @@ public class SkylineManager : MonoBehaviour {
                     Debug.Log("Terrain: Runway" + nextPos);
                     break;
                 case 3:
-                    nextPos = buildTerrainBounce(nextPos);
+                    nextPos = buildTerrainRainingPoop(nextPos);
                     Debug.Log("Terrain: Bounce" + nextPos);
                     break;
                 case 4:
@@ -86,10 +87,6 @@ public class SkylineManager : MonoBehaviour {
                     nextPos = buildTerrainSteps(nextPos);
                     Debug.Log("Terrain: Steps");
                     break;
-                case 13:
-                    nextPos = buildTerrainEnemyLauncher(nextPos);
-                    Debug.Log("Terrain: Enemy Launcher");
-                    break;
                 // in case we mess up heres a default case
                 default:
                     nextPos = buildLine(nextPos, CHUNK_SIZE, skyline);
@@ -115,17 +112,12 @@ public class SkylineManager : MonoBehaviour {
         }
     }
 
-    /*******  BUILD BASIC STUFF (BLOCKS/LINES/ETC) *******/
+    /*******  BUILD BASIC UNITS (BLOCKS/LINES/ETC) *******/
 
     // instantiates a unit of whatever prefab passed in
     void buildBlock(Vector3 start, Transform t) {
         Transform o = (Transform)Instantiate(t);
         o.localPosition = start;
-    }
-
-    //call this method if you want to break the level
-    void buildEnemy(Vector3 start) {
-        buildBlock(start, poop);
     }
 
     Vector3 buildPlatform(Vector3 start, int length) {
@@ -206,6 +198,13 @@ public class SkylineManager : MonoBehaviour {
         start.y += 2;
         buildPlatform(start, CHUNK_SIZE);
 
+        start.y--;
+        buildBlock(start, poop);
+        start.x += 2;
+        buildBlock(start, laundry);
+        start.x += 2;
+        buildBlock(start, laundry);
+
         return end;
     }
 
@@ -224,13 +223,23 @@ public class SkylineManager : MonoBehaviour {
         return end;
     }
 
-    // build chunk 3 - trampoline
-    Vector3 buildTerrainBounce(Vector3 start)
+    // build chunk 3 - raining poop
+    Vector3 buildTerrainRainingPoop(Vector3 start)
     {
-        Vector3 end = start;
+        Vector3 end = buildLine(start, CHUNK_SIZE, bounce);
 
-        start.y -= 2;
-        end = buildLine(start, CHUNK_SIZE, bounce);
+        start.y += (float)4.5;
+        start.x++;
+
+        for (int i = 0; i < 2; i++) {
+            start = buildPlatform(start, 2);
+            Vector3 tmp = start;
+            tmp.x--;
+            tmp.y++;
+            buildBlock(tmp, poop);
+            start.x += 2;
+        }
+
         return end;
     }
 
@@ -346,7 +355,7 @@ public class SkylineManager : MonoBehaviour {
         buildBlock(temp, skyline);
         temp.x -= CHUNK_SIZE / 2;
         
-        buildEnemy(temp);
+        buildBlock(temp, poop);
         start.y++;
         buildBlock(start, skyline);
         return end;
@@ -388,33 +397,6 @@ public class SkylineManager : MonoBehaviour {
         end.y -= 4;
         return end;
     }
-
-    // chunk 13: build enemy launcher
-    Vector3 buildTerrainEnemyLauncher(Vector3 start) {
-        Vector3 end = start;
-        end.x += 11;
-
-        start = buildLine(start, 5, skyline);
-        start.x--;
-        start.y++;
-        buildLine(start, -4, skyline);
-        start.y++;
-        buildLine(start, -3, skyline);
-        start.y -= 2;
-        buildLine(start, 7, skyline);
-        buildWall(end, 2);
-        start.x += (float)2.5;
-        start.y += (float)1.5;
-        buildRamp(start, -2);
-
-        for (int i = 0; i < 3; i++) {
-            start.x++;
-            buildEnemy(start);
-        }
-
-        return end;
-    }
-
 
 
     /********** BUILD END *********/
