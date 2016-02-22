@@ -546,6 +546,7 @@ GameObject:
   - 4: {fileID: 80208168}
   - 212: {fileID: 80208167}
   - 61: {fileID: 80208166}
+  - 95: {fileID: 80208169}
   m_Layer: 0
   m_Name: weapon_beam_pickup
   m_TagString: Weapon
@@ -564,9 +565,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.10874295, y: 0.020137787}
+  m_Offset: {x: -0.6625204, y: 0.6470561}
   serializedVersion: 2
-  m_Size: {x: 0.7386687, y: 0.754777}
+  m_Size: {x: 0.6481137, y: 0.6433253}
 --- !u!212 &80208167
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -593,8 +594,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80093ac78ce264c499fb4154d0fd0a10, type: 3}
-  m_Color: {r: 0.7490196, g: 0.7490196, b: 0.166, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 623bf5a0e8179cb49b91e676dd167bd2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!4 &80208168
@@ -609,6 +610,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
+--- !u!95 &80208169
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 80208165}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 17c82541fc9eb954ea09b7376dbe6836, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!4 &125938828 stripped
 Transform:
   m_PrefabParentObject: {fileID: 440320, guid: 4421c3aac758d9645aef4c81989b7081, type: 2}
@@ -931,8 +949,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c7fa566297895ba42b61599c340b7b84, type: 3}
   HeartUI: {fileID: 186340}
   WeaponToggle:
+  - {fileID: 21300000, guid: b7f95721e3e01ad43850f8cea83122b9, type: 3}
   - {fileID: 21300000, guid: d1b898247662811439f1abb0678a6009, type: 3}
-  - {fileID: 21300002, guid: d1b898247662811439f1abb0678a6009, type: 3}
   PowerUpUI: {fileID: 826004658}
 --- !u!1 &562080515
 GameObject:
@@ -1281,11 +1299,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d1b898247662811439f1abb0678a6009, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b7f95721e3e01ad43850f8cea83122b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
