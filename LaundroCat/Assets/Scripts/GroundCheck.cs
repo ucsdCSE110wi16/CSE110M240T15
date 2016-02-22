@@ -33,6 +33,10 @@ public class GroundCheck : MonoBehaviour {
             }
             Destroy(col.gameObject);
         }
+
+		if (col.CompareTag ("Enemy")) {
+			Destroy (col.gameObject, 0.1f);
+		}
     }
 
     void OnTriggerStay2D(Collider2D col)
