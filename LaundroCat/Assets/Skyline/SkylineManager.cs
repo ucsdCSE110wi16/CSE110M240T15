@@ -27,7 +27,7 @@ public class SkylineManager : MonoBehaviour {
 
         for (int i = 0; i < NUM_OF_CHUNKS; i++) {
             int gap = Random.Range(0, 3);
-            int chunk = 1;
+			int chunk =
                 Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x += gap;

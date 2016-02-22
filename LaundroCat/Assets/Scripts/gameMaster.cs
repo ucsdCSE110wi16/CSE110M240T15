@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class gameMaster : MonoBehaviour {
 
     public int laundryPoints = 0;
-    public Text laundryText;
+	public Text laundryText;
 
     void Update()
     {

@@ -31,7 +31,7 @@ public class Weapon : MonoBehaviour {
                                                      player.transform.position.y,
                                                      player.transform.position.z);
 		// Shooter on MouseDown
-		Rect bounds = new Rect(Screen.width - 100, 0, Screen.width, 100);
+		Rect bounds = new Rect(Screen.width - Screen.width/4, 0, Screen.width, Screen.height/4);
 
 		if ((Input.GetMouseButtonDown (0) || Input.GetMouseButtonDown (1))
 		    && bounds.Contains (Input.mousePosition) && player.weapon_beam) {
