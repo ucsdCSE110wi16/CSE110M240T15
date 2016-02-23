@@ -166,6 +166,7 @@ GameObject:
   - 223: {fileID: 70915259}
   - 114: {fileID: 70915258}
   - 114: {fileID: 70915257}
+  - 114: {fileID: 70915256}
   - 114: {fileID: 70915261}
   m_Layer: 5
   m_Name: Canvas
@@ -174,6 +175,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &70915256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 70915255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11feed4cfa8567f4aaf7a311e2b05813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &70915257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +272,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 70915255}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 584a89b2d84c5e247890831bc8183f86, type: 3}
+  m_Script: {fileID: 11500000, guid: 217201632c41a5c40aa0b1836aa68588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   loadingImage: {fileID: 0}
