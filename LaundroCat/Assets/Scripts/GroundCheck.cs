@@ -35,6 +35,7 @@ public class GroundCheck : MonoBehaviour {
         }
 
 		if (col.CompareTag ("Enemy")) {
+			StartCoroutine (player.Knockback (0.02f, 25, player.transform.position));
 			Destroy (col.gameObject, 0.1f);
 		}
     }

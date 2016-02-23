@@ -160,11 +160,11 @@ public class Player : MonoBehaviour
         {
             if (facingRight)
             {
-                rb2d.AddForce(new Vector2(-1, 1) * jumpPower);
+                rb2d.AddForce(new Vector2(-1, 1) * jumpPower * 1.3f);
             }
             else
             {
-                rb2d.AddForce(new Vector2(1, 1) * jumpPower);
+				rb2d.AddForce (new Vector2 (1, 1) * jumpPower * 1.3f);
             }
         }
     }
@@ -237,6 +237,7 @@ public class Player : MonoBehaviour
 
 		yield return 0; 
 	}
+
 	/*
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.CompareTag("Enemy"))
