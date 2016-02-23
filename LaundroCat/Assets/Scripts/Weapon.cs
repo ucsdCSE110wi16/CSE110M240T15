@@ -34,8 +34,9 @@ public class Weapon : MonoBehaviour {
 		Rect bounds = new Rect(Screen.width - Screen.width/4, 0, Screen.width, Screen.height/4);
 
 		if ((Input.GetMouseButtonDown (0) || Input.GetMouseButtonDown (1))
-		    && bounds.Contains (Input.mousePosition) && player.weapon_beam) {
-			UsePowerUp ();
+			&& (bounds.Contains (Input.GetTouch(0).position) || bounds.Contains(Input.GetTouch(1).position))
+			&& player.weapon_beam) {
+				UsePowerUp ();
 		}
     }
 

@@ -225,4 +225,22 @@ public class Player : MonoBehaviour
         rb2d.velocity = Vector3.zero;
         rb2d.Sleep();
     }
+
+	// Enemy knockback
+	public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir) {
+		float timer = 0; 
+
+		while (knockDur > timer) {
+			timer += Time.deltaTime;
+			rb2d.AddForce (new Vector3 (knockbackDir.x * -100, knockbackDir.y * knockbackPwr, transform.position.z));
+		}
+
+		yield return 0; 
+	}
+	/*
+	void OnTriggerEnter2D(Collider2D col) {
+		if (col.CompareTag("Enemy"))
+			StartCoroutine (Knockback (0.02f, 50, transform.position));
+	}
+	*/
 }
