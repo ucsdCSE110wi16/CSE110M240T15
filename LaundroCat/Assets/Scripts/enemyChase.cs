@@ -15,7 +15,9 @@ public class enemyChase : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+		if (gameObject == null) {
+			return;
+		}
         target = GameObject.FindWithTag("Player").transform;
 
         Vector3 forwardAxis = new Vector3(0, 0, -1);
@@ -34,7 +36,11 @@ public class enemyChase : MonoBehaviour {
             flipped.x *= -1;
             transform.localScale = flipped;
         }
-
     }
+
+	void OnDestroy() {
+		Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
+		Instantiate(GameObject.FindWithTag("laundry"), newPos, gameObject.transform.rotation); 
+	}
 
 }
