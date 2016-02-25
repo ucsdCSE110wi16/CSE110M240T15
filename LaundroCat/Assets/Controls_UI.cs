@@ -24,7 +24,9 @@ public class Controls_UI : MonoBehaviour {
 		} else {
 			controls_image.sprite = null;
 		}
-		this.transform.position = new Vector3 (player.transform.position.x,
-			player.transform.position.y + 1f, player.transform.position.z);
+		if (Input.mousePosition.x < Screen.width) {
+			this.transform.position = new Vector3 (Input.mousePosition.x,
+				Input.mousePosition.y + 1f, Input.mousePosition.z);
+		}
 	}
 }

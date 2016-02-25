@@ -16,7 +16,7 @@ public class GroundCheck : MonoBehaviour {
     // Gets called when the groundCheck enters something
     void OnTriggerEnter2D(Collider2D col)
     {
-        player.grounded = true;
+        	player.grounded = true;
 
         if (col.CompareTag("laundry"))
         {
@@ -35,7 +35,7 @@ public class GroundCheck : MonoBehaviour {
         }
 
 		if (col.CompareTag ("Enemy")) {
-			StartCoroutine (player.Knockback (0.02f, 25, player.transform.position));
+//			StartCoroutine (player.Knockback (0.02f, 25, player.transform.position));
 			Destroy (col.gameObject, 0.1f);
 		}
     }
@@ -49,6 +49,8 @@ public class GroundCheck : MonoBehaviour {
     void OnTriggerExit2D(Collider2D col)
     {
         player.grounded = false;
-        player.canDoubleJump = true;
+
+		if (col.CompareTag("Ground") || col.CompareTag("Platform"))
+        	player.canDoubleJump = true;
     }
 }
