@@ -48,7 +48,7 @@ public class GroundCheck : MonoBehaviour {
 		if (col.CompareTag ("Bounce")) {
 			//StartCoroutine (player.Knockback (0.02f, 25, player.transform.position));
 			player.canDoubleJump = true;
-			Destroy (col.gameObject, 0.1f);
+			Destroy (col.gameObject.transform.parent.gameObject, 0.1f);
 
 		}
     }

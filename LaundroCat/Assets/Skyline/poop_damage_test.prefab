@@ -34,7 +34,7 @@ GameObject:
   - 61: {fileID: 6194810}
   - 61: {fileID: 6175710}
   m_Layer: 0
-  m_Name: poop2 1
+  m_Name: poop_damage_test
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
