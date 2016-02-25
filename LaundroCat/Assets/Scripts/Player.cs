@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public float maxSpeed = 3;
     public float speed = 50f;
     public float jumpPower = 150f;
+	public float timer = 200f;
 
     // Booleans
     public bool grounded;
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     public bool wallSliding;
     public bool facingRight = true;
     public bool weapon_beam = false;
+	public bool invincible = false;
 
     // Reference
     private Rigidbody2D rb2d;
@@ -73,6 +75,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		// Player becomes damage-proof for two(ish) seconds after being damaged
+		if (this.invincible == true) {
+			timer -= Time.deltaTime;
+			if (timer > 0)
+				this.invincible = true;
+			else
+				this.invincible = false;
+		} else timer = 2f;
+
         anim.SetBool("grounded", grounded);
         anim.SetFloat("speed", Mathf.Abs(rb2d.velocity.x));
 

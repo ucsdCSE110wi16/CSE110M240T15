@@ -39,7 +39,10 @@ public class GroundCheck : MonoBehaviour {
 			//StartCoroutine (player.Knockback (0.02f, 25, player.transform.position));
 			//player.canDoubleJump = true;
 			//Destroy (col.gameObject, 0.1f);
+			if (player.invincible == true)
+				return;
 			player.Die();
+			player.invincible = true;
 		}
 
 		if (col.CompareTag ("Bounce")) {
