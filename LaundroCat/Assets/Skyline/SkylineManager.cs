@@ -27,7 +27,7 @@ public class SkylineManager : MonoBehaviour {
 
         for (int i = 0; i < NUM_OF_CHUNKS; i++) {
             int gap = Random.Range(0, 3);
-			int chunk =
+            int chunk = 
                 Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x += gap;
@@ -76,7 +76,7 @@ public class SkylineManager : MonoBehaviour {
                     Debug.Log("Terrain: Jump");
                     break;
                 case 10:
-                    nextPos = buildTerrainEnemy(nextPos);
+                    nextPos = buildTerrainArena(nextPos);
                     Debug.Log("Terrain: Enemy");
                     break;
                 case 11:
@@ -220,6 +220,11 @@ public class SkylineManager : MonoBehaviour {
         start.x++;
         buildBlock(start, skyline);
 
+        Vector3 laundrySpawn = end;
+        laundrySpawn.x += (float)7.5;
+        laundrySpawn.y += 4;
+        buildBlock(laundrySpawn, laundry);
+
         return end;
     }
 
@@ -256,13 +261,19 @@ public class SkylineManager : MonoBehaviour {
        
         start = buildLine(start, CHUNK_SIZE + 2, skyline);
         start = buildWall(start, 5);
+        Vector3 enemySpawn = start;
+        enemySpawn.y++;
+        enemySpawn.x--;
+        buildBlock(enemySpawn, poop);
+        enemySpawn.x--;
+        buildBlock(enemySpawn, laundry);
 
         start = buildLine(start, -3, skyline);
 
         return end;
     }
 
-    // build cuhnk 5: terrain hill
+    // build chunk 5: terrain hill
     Vector3 buildTerrainHill(Vector3 start)
     {
         Vector3 temp = start;
@@ -270,32 +281,30 @@ public class SkylineManager : MonoBehaviour {
 
         for (int i = 0; i < 3; i++) {
             next = temp;
-            for (int j = 0; j < CHUNK_SIZE - (i*2); j++) { 
-                Transform o = (Transform)Instantiate(skyline);
-
-                o.localPosition = next;
+            for (int j = 0; j < CHUNK_SIZE - (i*2); j++) {
+                buildBlock(next, skyline);
                 next.x++;
             }
             temp.x++;
             temp.y++;
         }
+        Vector3 enemySpawn = start;
+        enemySpawn.y+=3;
+        enemySpawn.x += 3;
+        buildBlock(enemySpawn, poop);
+        enemySpawn.x++;
+        buildBlock(enemySpawn, poop);
         start.x += CHUNK_SIZE;
         return start;
     }
 
-    //chunk 6: Builds a ramp to a bounce platform
-    Vector3 buildTerrainJump(Vector3 start) {
-        Vector3 temp = buildTerrainRunway(start);
-        temp.x += CHUNK_SIZE;
-        temp = buildLine(temp, CHUNK_SIZE, bounce);
-        temp.x += CHUNK_SIZE/2;
-        return temp;
-    }
 
-    // chunk 7: build terrain slope
+    // chunk 6: build terrain slope
     Vector3 buildTerrainSlope(Vector3 start) {
         Vector3 temp = start;
-        temp.y -= 2;
+        temp.y+= (float)1.5 ;
+        buildBlock(temp, laundry);
+        temp.y -= (float)3.5;
         buildLine(temp, CHUNK_SIZE, skyline);
         temp.y++;
 
@@ -304,20 +313,23 @@ public class SkylineManager : MonoBehaviour {
             next = temp;
 
             for (int j = 0; j < (CHUNK_SIZE/2)-i; j++) {
-               Transform o = (Transform)Instantiate(skyline);
-
-               o.localPosition = next;
+                buildBlock(next, skyline);
                 next.x++;
             }
             temp.x = start.x;
             temp.y++;
         }
 
+        Vector3 enemySpawn = start;
+        enemySpawn.x += 4;
+        enemySpawn.y--;
+        buildBlock(enemySpawn, poop);
+
         start.x += CHUNK_SIZE;
         return start;
     }
 
-    // chunk 8: build terrain holy fuck
+    // chunk 7: build terrain holy fuck
     Vector3 buildTerrainHOLYFUCK(Vector3 start) {
         Vector3 next = start;
         next.y++;
@@ -333,20 +345,39 @@ public class SkylineManager : MonoBehaviour {
         return start;
     }
 
-    // chunk 9: build terrain walljump
+    // chunk 8: build terrain walljump
     Vector3 buildTerrainWalljump(Vector3 start) {
         Vector3 next = start;
         buildLine(next, CHUNK_SIZE, skyline);
         next.x += 4;
 
-        buildWall(next, 7);
+        Vector3 laundrySpawn = buildWall(next, 7);
+        laundrySpawn.x--;
+        laundrySpawn.y-= (float)0.5;
+        buildBlock(laundrySpawn, laundry);
+        laundrySpawn.y -= (float)1.8;
+        buildBlock(laundrySpawn, laundry);
+        laundrySpawn.y -= (float)1.8;
+        buildBlock(laundrySpawn, laundry);
+        next.x++;
+        next.y++;
+        buildBlock(next, poop);
 
         start.x += CHUNK_SIZE;
         return start;
     }
 
-    // chunk 10: build terrain enemy
-    Vector3 buildTerrainEnemy(Vector3 start)
+    //chunk 9: Builds a ramp to a bounce platform
+    Vector3 buildTerrainJump(Vector3 start) {
+        Vector3 temp = buildTerrainRunway(start);
+        temp.x += CHUNK_SIZE;
+        temp = buildLine(temp, CHUNK_SIZE, bounce);
+        temp.x += CHUNK_SIZE / 2;
+        return temp;
+    }
+
+    // chunk 10: build terrain arena
+    Vector3 buildTerrainArena(Vector3 start)
     {
         Vector3 end = buildLine(start, CHUNK_SIZE, skyline);
         Vector3 temp = end;
@@ -367,6 +398,18 @@ public class SkylineManager : MonoBehaviour {
         int baseSize = CHUNK_SIZE * 2;
         int platSize = baseSize / 3;
 
+        Vector3 enemySpawn = start;
+        enemySpawn.y += (float)3.5;
+        enemySpawn.x += (float)2.5;
+        buildBlock(enemySpawn, laundry);
+        enemySpawn.x += (float)4.5;
+        enemySpawn.y += (float)3.5;
+        buildBlock(enemySpawn, poop);
+        enemySpawn.x += (float)5.5;
+        enemySpawn.y -= (float)3.5;
+        buildBlock(enemySpawn, laundry);
+
+
         Vector3 end = buildLine(start, baseSize, skyline);
         start.y += 2;
         Vector3 pos = buildLine(start, platSize, platform);
@@ -385,9 +428,17 @@ public class SkylineManager : MonoBehaviour {
         int platSize = baseSize;
 
         Vector3 end = buildLine(start, baseSize, skyline);
+        Vector3 laundrySpawn = end;
+        laundrySpawn.x--;
+        laundrySpawn.y++;
+        buildBlock(laundrySpawn, laundry);
         start.y += 2;
         start.x = (end.x + start.x) / 2;
         end = buildLine(start, platSize, platform);
+        Vector3 enemySpawn = end;
+        enemySpawn.y ++;
+        enemySpawn.x --;
+        buildBlock(enemySpawn, poop);
 
         start.y += 2;
         start.x = (end.x + start.x) / 2;
