@@ -36,9 +36,17 @@ public class GroundCheck : MonoBehaviour {
         }
 
 		if (col.CompareTag ("Enemy")) {
-//			StartCoroutine (player.Knockback (0.02f, 25, player.transform.position));
+			//StartCoroutine (player.Knockback (0.02f, 25, player.transform.position));
+			//player.canDoubleJump = true;
+			//Destroy (col.gameObject, 0.1f);
+			player.Die();
+		}
+
+		if (col.CompareTag ("Bounce")) {
+			//StartCoroutine (player.Knockback (0.02f, 25, player.transform.position));
 			player.canDoubleJump = true;
 			Destroy (col.gameObject, 0.1f);
+
 		}
     }
 
