@@ -8,6 +8,8 @@ TagManager:
   - GameMaster
   - Weapon
   - Enemy
+  - Platform
+  - Ground
   layers:
   - Default
   - TransparentFX
