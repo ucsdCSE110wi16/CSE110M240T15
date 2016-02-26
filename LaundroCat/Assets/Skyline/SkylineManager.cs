@@ -229,7 +229,7 @@ public class SkylineManager : MonoBehaviour {
         buildBlock(start, skyline);
 
         Vector3 laundrySpawn = end;
-        laundrySpawn.x += (float)7.5;
+        laundrySpawn.x += (float)7.2;
         laundrySpawn.y += 4;
         buildBlock(laundrySpawn, laundry);
 
@@ -263,7 +263,10 @@ public class SkylineManager : MonoBehaviour {
         end.x += CHUNK_SIZE + 3;
         start.x += 3;
         start.y++;
-        buildRamp(start, 2);
+        Vector3 blockLoc = buildRamp(start, 2);
+        blockLoc.y -= 2;
+        blockLoc.x--;
+        buildBlock(blockLoc, skyline);
         start.y--;
         start.x-=3;
        
@@ -340,6 +343,11 @@ public class SkylineManager : MonoBehaviour {
     // chunk 7: build terrain holy fuck
     Vector3 buildTerrainHOLYFUCK(Vector3 start) {
         Vector3 next = start;
+        Vector3 laundrySpawn = start;
+        laundrySpawn.x += CHUNK_SIZE / 2;
+        laundrySpawn.y--;
+        buildBlock(laundrySpawn, laundry);
+
         next.y++;
         next.x += (CHUNK_SIZE / 4);
 
@@ -510,6 +518,8 @@ public class SkylineManager : MonoBehaviour {
 
         return end;
     }
+
+    // build chunk 15: build terrain chunky
 
 
     /********** BUILD END *********/

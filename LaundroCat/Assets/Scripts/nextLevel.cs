@@ -8,6 +8,11 @@ public class nextLevel : MonoBehaviour {
     {
        if( col.tag == "Player")
         {
+            GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
+            for (int i = 0; i < objects.Length; i++) {
+                Destroy(objects[i]);
+            }
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
