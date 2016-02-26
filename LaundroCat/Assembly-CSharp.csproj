@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Controls_UI.cs" />
-     <Compile Include="Assets\Scripts\BounceCheck.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\GroundCheck.cs" />
      <Compile Include="Assets\Scripts\HUD.cs" />
@@ -61,6 +60,7 @@
      <Compile Include="Assets\Scripts\gameMaster.cs" />
      <Compile Include="Assets\Scripts\nextLevel.cs" />
      <Compile Include="Assets\Skyline\SkylineManager.cs" />
+     <Compile Include="Assets\Skyline\SpriteManager.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>

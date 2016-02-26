@@ -1,10 +1,18 @@
 fileFormatVersion: 2
 guid: 4ac49ef51231749469221735c6dbf26f
-timeCreated: 1454834469
+timeCreated: 1456526108
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - skyline: {instanceID: 0}
+  - bounce: {instanceID: 0}
+  - levelTrigger: {instanceID: 0}
+  - platform: {instanceID: 0}
+  - ramp: {instanceID: 0}
+  - rampRev: {instanceID: 0}
+  - poop: {fileID: 436024, guid: 749849d2cbb7941df842f961957efc9f, type: 2}
+  - laundry: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
