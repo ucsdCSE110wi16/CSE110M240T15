@@ -4,7 +4,7 @@ using System.Collections;
 public class SkylineManager : MonoBehaviour {
     private static int CHUNK_SIZE = 8;
     private static int NUM_OF_CHUNKS = 6;
-    private static int NUM_OF_CHUNK_TYPES= 15;
+    private static int NUM_OF_CHUNK_TYPES= 16;
 
     public Transform skyline;
     public Transform bounce;
@@ -94,6 +94,10 @@ public class SkylineManager : MonoBehaviour {
                 case 14:
                     nextPos = buildTerrainCrevice(nextPos);
                     Debug.Log("Terrain: Crevice");
+                    break;
+                case 15:
+                    nextPos = buildTerrainDropzone(nextPos);
+                    Debug.Log("Terrain: Dropzone");
                     break;
                 // in case we mess up heres a default case
                 default:
@@ -229,7 +233,7 @@ public class SkylineManager : MonoBehaviour {
         buildBlock(start, skyline);
 
         Vector3 laundrySpawn = end;
-        laundrySpawn.x += (float)7.2;
+        laundrySpawn.x += (float)6.8;
         laundrySpawn.y += 4;
         buildBlock(laundrySpawn, laundry);
 
@@ -256,7 +260,7 @@ public class SkylineManager : MonoBehaviour {
         return end;
     }
 
-    //build chunk 4
+    //build chunk 4: leap of faith
     Vector3 buildTerrainLeapOfFaith(Vector3 start)
     {
         Vector3 end = start;
@@ -486,7 +490,9 @@ public class SkylineManager : MonoBehaviour {
         start.y += (float)0.5;
         buildLine(start, 1, platform);
         start.y += (float)1.5;
-        buildBlock(start, laundry);
+        Vector3 lauundrySpawn = start;
+        lauundrySpawn.x += (float)0.2;
+        buildBlock(lauundrySpawn, laundry);
         start.y += 2;
         buildBlock(start, poop);
 
@@ -519,7 +525,34 @@ public class SkylineManager : MonoBehaviour {
         return end;
     }
 
-    // build chunk 15: build terrain chunky
+    // build chunk 15: build terrain dropzone
+    Vector3 buildTerrainDropzone(Vector3 start) {
+        Vector3 end = start;
+        end.x += CHUNK_SIZE;
+
+        start = buildLine(start, CHUNK_SIZE, skyline);
+        start.y++;
+        start.x--;
+        buildLine(start, -(CHUNK_SIZE / 2), skyline);
+        start.y++;
+        start = buildLine(start, -(CHUNK_SIZE / 2), skyline);
+        start.x-=2;
+        start = buildLine(start, -2, platform);
+        start.y++;
+        start.x += (float)1.5;
+        buildBlock(start, poop);
+        start.y -= 2;
+        buildBlock(start, laundry);
+
+        start.x += 2;
+        buildBlock(start, laundry);
+        start.x += 2;
+        start.y += 2;
+        buildBlock(start, poop);
+
+
+        return end;
+    }
 
 
     /********** BUILD END *********/
