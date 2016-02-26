@@ -103,7 +103,6 @@ public class Player : MonoBehaviour
             facingRight = true;
         }
 
-        //TODO THIS DOESN"T WORK ON THE BOUNCY PLATFORMS
         // Where jumping is. The button jump is space || it is a tap on the right side of the screen either 2 fingers or 1
         if ((Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(1) ||
            (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width / 2)) && !wallSliding) // Stopped and press button on right side
@@ -127,6 +126,10 @@ public class Player : MonoBehaviour
         // Make character die when below camera
         if (transform.position.y < -6)
         {
+            GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
+            for (int i = 0; i < objects.Length; i++) {
+                Destroy(objects[i]);
+            }
             currHealth = 0;
         }
 
