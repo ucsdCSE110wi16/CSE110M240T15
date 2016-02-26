@@ -48,12 +48,14 @@ public class enemyChase : MonoBehaviour {
     }
 
 	void OnDestroy() {
-		float willSpawnLaundry = Random.Range (0, 2); //50%
-		float willSpawnWeapon = Random.Range (1, 2);
-
+		float willSpawnLaundry = Random.Range (0, 2); //50% chance
+		float willSpawnWeapon = Random.Range (0, 25); //2% chance
+		willSpawnWeapon = 1;
+		willSpawnLaundry = 0;
+ 
 		if (spawnStuff == true && (willSpawnLaundry == 1)) {
-			//Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
-			//Instantiate (GameObject.FindWithTag ("laundry"), newPos, gameObject.transform.rotation); 
+			Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
+			Instantiate (GameObject.FindWithTag ("laundry"), newPos, gameObject.transform.rotation); 
 		} else if (spawnStuff = true && (willSpawnWeapon == 1)) {
 			Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
 			Instantiate (GameObject.FindWithTag ("Weapon"), newPos, gameObject.transform.rotation);

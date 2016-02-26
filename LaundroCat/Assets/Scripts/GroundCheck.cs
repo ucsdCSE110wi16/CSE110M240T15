@@ -28,10 +28,11 @@ public class GroundCheck : MonoBehaviour {
 
         if (col.CompareTag("Weapon"))
         {
-            if (col.name == "weapon_beam_pickup")
-            {
+			//Commented out bc weapon_beam_pickup(clone) wouldn't be recognized. add additional check if adding more weapons
+            //if (col.name == "weapon_beam_pickup")
+            //{
                 player.weapon_beam = true;
-            }
+            //}
             Destroy(col.gameObject);
         }
 
