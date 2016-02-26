@@ -4,7 +4,7 @@ using System.Collections;
 public class SkylineManager : MonoBehaviour {
     private static int CHUNK_SIZE = 8;
     private static int NUM_OF_CHUNKS = 6;
-    private static int NUM_OF_CHUNK_TYPES= 13;
+    private static int NUM_OF_CHUNK_TYPES= 15;
 
     public Transform skyline;
     public Transform bounce;
@@ -86,6 +86,14 @@ public class SkylineManager : MonoBehaviour {
                 case 12:
                     nextPos = buildTerrainSteps(nextPos);
                     Debug.Log("Terrain: Steps");
+                    break;
+                case 13:
+                    nextPos = buildTerrainTower(nextPos);
+                    Debug.Log("Terrain: Tower");
+                    break;
+                case 14:
+                    nextPos = buildTerrainCrevice(nextPos);
+                    Debug.Log("Terrain: Crevice");
                     break;
                 // in case we mess up heres a default case
                 default:
@@ -446,6 +454,60 @@ public class SkylineManager : MonoBehaviour {
 
         end = buildLine(end, baseSize, skyline);
         end.y -= 4;
+        return end;
+    }
+
+    // chunk 13: build tower
+    Vector3 buildTerrainTower(Vector3 start) {
+        Vector3 end = start;
+        end.x += 9;
+
+        start = buildLine(start, 4, skyline);
+        buildBlock(start, bounce);
+        start.x++;
+        buildLine(start, 4, skyline);
+        start.x -= 2;
+
+        start.y += 3;
+        start = buildWall(start, 4);
+        start.x++;
+        start = buildLine(start, 1, platform);
+        start.y -= 3;
+        buildWall(start, 4);
+        start.x--;
+        start.y += (float)0.5;
+        buildLine(start, 1, platform);
+        start.y += (float)1.5;
+        buildBlock(start, laundry);
+        start.y += 2;
+        buildBlock(start, poop);
+
+
+        return end;
+    }
+
+    // chunk 14: build terrain crevice
+    Vector3 buildTerrainCrevice(Vector3 start) {
+        Vector3 end = start;
+        Vector3 enemySpawn = start;
+
+        end.x += CHUNK_SIZE;
+        buildLine(start, 6, skyline);
+        start.y--;
+        start = buildLine(start, 4, skyline);
+        start.y--;
+        start = buildLine(start, 4, platform);
+        start.y += (float)1.5;
+        start.x -= (float)1.5;
+        buildBlock(start, laundry);
+
+        enemySpawn.x += 4;
+        enemySpawn.y++;
+        buildBlock(enemySpawn, poop);
+        enemySpawn.x += 2;
+        enemySpawn.y-=2;
+        buildBlock(enemySpawn, poop);
+
         return end;
     }
 
