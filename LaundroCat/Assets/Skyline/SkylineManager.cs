@@ -4,7 +4,7 @@ using System.Collections;
 public class SkylineManager : MonoBehaviour {
     private static int CHUNK_SIZE = 8;
     private static int NUM_OF_CHUNKS = 6;
-    private static int NUM_OF_CHUNK_TYPES= 16;
+    private static int NUM_OF_CHUNK_TYPES= 17;
 
     public Transform skyline;
     public Transform bounce;
@@ -73,31 +73,35 @@ public class SkylineManager : MonoBehaviour {
                     break;
                 case 9:
                     nextPos = buildTerrainJump(nextPos);
-                    Debug.Log("Terrain: Jump");
+                    Debug.Log("Terrain: Jump" + nextPos);
                     break;
                 case 10:
                     nextPos = buildTerrainArena(nextPos);
-                    Debug.Log("Terrain: Enemy");
+                    Debug.Log("Terrain: Enemy" + nextPos);
                     break;
                 case 11:
                     nextPos = buildTerrainBattlefield(nextPos);
-                    Debug.Log("Terrain: Battlefield");
+                    Debug.Log("Terrain: Battlefield" + nextPos);
                     break;
                 case 12:
                     nextPos = buildTerrainSteps(nextPos);
-                    Debug.Log("Terrain: Steps");
+                    Debug.Log("Terrain: Steps" + nextPos);
                     break;
                 case 13:
                     nextPos = buildTerrainTower(nextPos);
-                    Debug.Log("Terrain: Tower");
+                    Debug.Log("Terrain: Tower" + nextPos);
                     break;
                 case 14:
                     nextPos = buildTerrainCrevice(nextPos);
-                    Debug.Log("Terrain: Crevice");
+                    Debug.Log("Terrain: Crevice" + nextPos);
                     break;
                 case 15:
                     nextPos = buildTerrainDropzone(nextPos);
-                    Debug.Log("Terrain: Dropzone");
+                    Debug.Log("Terrain: Dropzone" + nextPos);
+                    break;
+                case 16:
+                    nextPos = buildTerrainMountain(nextPos);
+                    Debug.Log("Terrain: Mountain" + nextPos);
                     break;
                 // in case we mess up heres a default case
                 default:
@@ -550,6 +554,50 @@ public class SkylineManager : MonoBehaviour {
         start.y += 2;
         buildBlock(start, poop);
 
+
+        return end;
+    }
+
+    // build chunk 16: mountain
+    Vector3 buildTerrainMountain(Vector3 start) {
+        Vector3 end = start;
+        end.x += 9;
+
+        buildLine(start, 4, skyline);
+        start.y--;
+        start = buildLine(start, 4, skyline);
+        Vector3 bounceLoc = start;
+
+        start.x--;
+        start.y += 2;
+        buildLine(start, -3, skyline);
+        start.y++;
+        start = buildLine(start, -2, skyline);
+        buildLine(start, -1, platform);
+        start.x++;
+        start.y++;
+        buildBlock(start, skyline);
+        start.x++;
+        buildBlock(start, poop);
+        start.x++;
+        start.y += (float)0.5;
+        buildBlock(start, platform);
+        start.y -= (float)0.5;
+        start.x++;
+        start=buildLine(start, 2, poop);
+        start.y--;
+        buildRamp(start, -2);
+
+        start = bounceLoc;
+        buildBlock(start, bounce);
+        start.x++;
+        buildLine(start, 4, skyline);
+        start.y++;
+        buildLine(start, 4, skyline);
+        start.y++;
+        buildLine(start, 3, skyline);
+        start.y++;
+        buildLine(start, 2, skyline);
 
         return end;
     }
