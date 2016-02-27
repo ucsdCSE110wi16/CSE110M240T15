@@ -126,10 +126,6 @@ public class Player : MonoBehaviour
         // Make character die when below camera
         if (transform.position.y < -6)
         {
-            GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
-            for (int i = 0; i < objects.Length; i++) {
-                Destroy(objects[i]);
-            }
             currHealth = 0;
         }
 
@@ -229,6 +225,10 @@ public class Player : MonoBehaviour
         currHealth--;
         if (currHealth <= 0)
         {
+			GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
+			for (int i = 0; i < objects.Length; i++) {
+				Destroy(objects[i]);
+			}
             SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Loads current scene over again (restarts)
         }
     }
