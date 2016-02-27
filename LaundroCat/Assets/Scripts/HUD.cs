@@ -47,7 +47,7 @@ public class HUD : MonoBehaviour {
 		this.transform.position = new Vector3 (player.transform.position.x,
 			player.transform.position.y + 1f , player.transform.position.z);
 */
-		this.transform.position = new Vector3(Input.mousePosition.x/Screen.width, 
-			Input.mousePosition.y/Screen.height, 0);
+		this.transform.position = new Vector3(Input.mousePosition.x, 
+			Input.mousePosition.y, 0);
     }
 }
