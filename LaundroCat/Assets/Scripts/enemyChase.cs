@@ -6,6 +6,7 @@ public class enemyChase : MonoBehaviour {
     Transform target;
     public float speed = 1f;
     private Rigidbody2D r;
+	public bool spawnStuff = true;
 
     // Use this for initialization
     void Start () {
@@ -18,6 +19,14 @@ public class enemyChase : MonoBehaviour {
 		if (gameObject == null) {
 			return;
 		}
+
+		if (transform.position.y < -10f) {
+			spawnStuff = false;
+			Destroy (this.gameObject);
+		}
+		else 
+			spawnStuff = true;
+
         target = GameObject.FindWithTag("Player").transform;
 
         Vector3 forwardAxis = new Vector3(0, 0, -1);
@@ -39,8 +48,18 @@ public class enemyChase : MonoBehaviour {
     }
 
 	void OnDestroy() {
-		Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
-		Instantiate(GameObject.FindWithTag("laundry"), newPos, gameObject.transform.rotation); 
+		float willSpawnLaundry = Random.Range (0, 2); //50% chance
+		float willSpawnWeapon = Random.Range (0, 25); //2% chance
+		willSpawnWeapon = 1;
+		willSpawnLaundry = 0;
+ 
+		if (spawnStuff == true && (willSpawnLaundry == 1)) {
+			Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
+			Instantiate (GameObject.FindWithTag ("laundry"), newPos, gameObject.transform.rotation); 
+		} else if (spawnStuff = true && (willSpawnWeapon == 1)) {
+			Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
+			Instantiate (GameObject.FindWithTag ("Weapon"), newPos, gameObject.transform.rotation);
+		}
 	}
 
 }
