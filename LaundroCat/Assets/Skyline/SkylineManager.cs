@@ -4,7 +4,7 @@ using System.Collections;
 public class SkylineManager : MonoBehaviour {
     private static int CHUNK_SIZE = 8;
     private static int NUM_OF_CHUNKS = 6;
-    private static int NUM_OF_CHUNK_TYPES= 17;
+    private static int NUM_OF_CHUNK_TYPES= 18;
 
     public Transform skyline;
     public Transform bounce;
@@ -102,6 +102,10 @@ public class SkylineManager : MonoBehaviour {
                 case 16:
                     nextPos = buildTerrainMountain(nextPos);
                     Debug.Log("Terrain: Mountain" + nextPos);
+                    break;
+                case 17:
+                    nextPos = buildTerrainVolcano(nextPos);
+                    Debug.Log("Terrain: Volcano" + nextPos);
                     break;
                 // in case we mess up heres a default case
                 default:
@@ -598,6 +602,35 @@ public class SkylineManager : MonoBehaviour {
         buildLine(start, 3, skyline);
         start.y++;
         buildLine(start, 2, skyline);
+
+        return end;
+    }
+
+    //build chunk 17: volcano
+    Vector3 buildTerrainVolcano(Vector3 start) {
+        Vector3 end = start;
+        end.x += 8;
+
+        Vector3 next = start;
+
+        next= buildLine(next, 1, bounce);
+        next= buildLine(next, 6, skyline);
+        next = buildLine(next, 1, bounce);
+        next = start;
+        next.y += 3;
+        next.x++;
+        buildLine(next, 6, skyline);
+        next.y += 3;
+        next.x++;
+        buildLine(next, 4, platform);
+        next.x++;
+        next.y++;
+        next = buildLine(next, 2, laundry);
+        buildBlock(next, poop);
+        next = start;
+        next.y++;
+        next.x += 5;
+        buildBlock(next, poop);
 
         return end;
     }
