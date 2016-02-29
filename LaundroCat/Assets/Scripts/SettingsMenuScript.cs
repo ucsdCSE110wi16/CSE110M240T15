@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
+// using System.Collections;
 
-public class SettingsMenuMethods : MonoBehaviour {
+public class SettingsMenuScript : MonoBehaviour {
 
     public GameObject backButton;
 	public GameObject musicButton;
 	public GameObject musicSlider;
 	public GameObject soundsButton;
 	public GameObject soundsSlider;
-	public GameObject creditsButton;
 	public GameObject creditsPanel;
 
 	public void goBack() {
@@ -18,14 +17,9 @@ public class SettingsMenuMethods : MonoBehaviour {
 			creditsPanel.SetActive(false);
 		}
 		else {
-			SceneManager.LoadScene(0);
+			SceneManager.LoadScene("main_menu");
 		}
 	}
-	
-    public void returnToMain()
-    {
-        SceneManager.LoadScene(0);
-    }
 
     public void setMusicVolume(float value)
     {
