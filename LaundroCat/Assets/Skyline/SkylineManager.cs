@@ -3,7 +3,6 @@ using System.Collections;
 
 public class SkylineManager : MonoBehaviour {
     private static int CHUNK_SIZE = 8;
-    private static int NUM_OF_CHUNKS = 6;
     private static int NUM_OF_CHUNK_TYPES= 18;
 
     public Transform skyline;
@@ -18,6 +17,8 @@ public class SkylineManager : MonoBehaviour {
     public Vector3 startPos;
     private Vector3 nextPos;
 
+    public int levelSize;
+
     void Start()
     {
         buildInitialTerrain(startPos);
@@ -25,9 +26,9 @@ public class SkylineManager : MonoBehaviour {
         nextPos.y = startPos.y; 
         Random.seed = (int)System.DateTime.Now.Ticks;
 
-        for (int i = 0; i < NUM_OF_CHUNKS; i++) {
+        for (int i = 0; i < levelSize; i++) {
             int gap = Random.Range(0, 3);
-            int chunk = 
+            int chunk =
                 Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x += gap;
@@ -376,7 +377,7 @@ public class SkylineManager : MonoBehaviour {
     // chunk 8: build terrain walljump
     Vector3 buildTerrainWalljump(Vector3 start) {
         Vector3 next = start;
-        buildLine(next, CHUNK_SIZE, skyline);
+        buildLine(next, CHUNK_SIZE + 1, skyline);
         next.x += 4;
 
         Vector3 laundrySpawn = buildWall(next, 7);
@@ -391,7 +392,7 @@ public class SkylineManager : MonoBehaviour {
         next.y++;
         buildBlock(next, poop);
 
-        start.x += CHUNK_SIZE;
+        start.x += CHUNK_SIZE + 1;
         return start;
     }
 
@@ -620,7 +621,7 @@ public class SkylineManager : MonoBehaviour {
         next.y += 3;
         next.x++;
         buildLine(next, 6, skyline);
-        next.y += 3;
+        next.y += 2;
         next.x++;
         buildLine(next, 4, platform);
         next.x++;

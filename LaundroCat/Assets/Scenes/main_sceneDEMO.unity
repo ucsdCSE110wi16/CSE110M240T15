@@ -1227,6 +1227,7 @@ MonoBehaviour:
   poop: {fileID: 437002, guid: f000b848f5d576a45acd1c7fdeff1ae2, type: 2}
   laundry: {fileID: 437156, guid: 871b4d21e297bc046bf19666f88323f6, type: 2}
   startPos: {x: 0, y: -3.3, z: 0}
+  levelSize: 6
 --- !u!1001 &1005114148
 Prefab:
   m_ObjectHideFlags: 0

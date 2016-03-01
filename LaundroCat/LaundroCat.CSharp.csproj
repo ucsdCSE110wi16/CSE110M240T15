@@ -74,10 +74,10 @@
     <Compile Include="Assets\Scripts\GroundCheck.cs" />
     <Compile Include="Assets\Scripts\HUD.cs" />
     <Compile Include="Assets\Scripts\LoadData.cs" />
-    <Compile Include="Assets\Scripts\LoadOnClick.cs" />
+    <Compile Include="Assets\Scripts\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\SettingsMenuMethods.cs" />
-    <Compile Include="Assets\Scripts\UIFunctions.cs" />
+    <Compile Include="Assets\Scripts\SettingsMenuScript.cs" />
+    <Compile Include="Assets\Scripts\StoreMenuScript.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\enemyChase.cs" />
     <Compile Include="Assets\Scripts\enemyMove.cs" />
