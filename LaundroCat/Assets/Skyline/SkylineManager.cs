@@ -3,8 +3,7 @@ using System.Collections;
 
 public class SkylineManager : MonoBehaviour {
     private static int CHUNK_SIZE = 8;
-    private static int NUM_OF_CHUNKS = 6;
-    private static int NUM_OF_CHUNK_TYPES= 16;
+    private static int NUM_OF_CHUNK_TYPES= 18;
 
     public Transform skyline;
     public Transform bounce;
@@ -18,6 +17,8 @@ public class SkylineManager : MonoBehaviour {
     public Vector3 startPos;
     private Vector3 nextPos;
 
+    public int levelSize;
+
     void Start()
     {
         buildInitialTerrain(startPos);
@@ -25,9 +26,9 @@ public class SkylineManager : MonoBehaviour {
         nextPos.y = startPos.y; 
         Random.seed = (int)System.DateTime.Now.Ticks;
 
-        for (int i = 0; i < NUM_OF_CHUNKS; i++) {
+        for (int i = 0; i < levelSize; i++) {
             int gap = Random.Range(0, 3);
-            int chunk = 
+            int chunk =
                 Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x += gap;
@@ -73,31 +74,39 @@ public class SkylineManager : MonoBehaviour {
                     break;
                 case 9:
                     nextPos = buildTerrainJump(nextPos);
-                    Debug.Log("Terrain: Jump");
+                    Debug.Log("Terrain: Jump" + nextPos);
                     break;
                 case 10:
                     nextPos = buildTerrainArena(nextPos);
-                    Debug.Log("Terrain: Enemy");
+                    Debug.Log("Terrain: Enemy" + nextPos);
                     break;
                 case 11:
                     nextPos = buildTerrainBattlefield(nextPos);
-                    Debug.Log("Terrain: Battlefield");
+                    Debug.Log("Terrain: Battlefield" + nextPos);
                     break;
                 case 12:
                     nextPos = buildTerrainSteps(nextPos);
-                    Debug.Log("Terrain: Steps");
+                    Debug.Log("Terrain: Steps" + nextPos);
                     break;
                 case 13:
                     nextPos = buildTerrainTower(nextPos);
-                    Debug.Log("Terrain: Tower");
+                    Debug.Log("Terrain: Tower" + nextPos);
                     break;
                 case 14:
                     nextPos = buildTerrainCrevice(nextPos);
-                    Debug.Log("Terrain: Crevice");
+                    Debug.Log("Terrain: Crevice" + nextPos);
                     break;
                 case 15:
                     nextPos = buildTerrainDropzone(nextPos);
-                    Debug.Log("Terrain: Dropzone");
+                    Debug.Log("Terrain: Dropzone" + nextPos);
+                    break;
+                case 16:
+                    nextPos = buildTerrainMountain(nextPos);
+                    Debug.Log("Terrain: Mountain" + nextPos);
+                    break;
+                case 17:
+                    nextPos = buildTerrainVolcano(nextPos);
+                    Debug.Log("Terrain: Volcano" + nextPos);
                     break;
                 // in case we mess up heres a default case
                 default:
@@ -368,7 +377,7 @@ public class SkylineManager : MonoBehaviour {
     // chunk 8: build terrain walljump
     Vector3 buildTerrainWalljump(Vector3 start) {
         Vector3 next = start;
-        buildLine(next, CHUNK_SIZE, skyline);
+        buildLine(next, CHUNK_SIZE + 1, skyline);
         next.x += 4;
 
         Vector3 laundrySpawn = buildWall(next, 7);
@@ -383,7 +392,7 @@ public class SkylineManager : MonoBehaviour {
         next.y++;
         buildBlock(next, poop);
 
-        start.x += CHUNK_SIZE;
+        start.x += CHUNK_SIZE + 1;
         return start;
     }
 
@@ -550,6 +559,79 @@ public class SkylineManager : MonoBehaviour {
         start.y += 2;
         buildBlock(start, poop);
 
+
+        return end;
+    }
+
+    // build chunk 16: mountain
+    Vector3 buildTerrainMountain(Vector3 start) {
+        Vector3 end = start;
+        end.x += 9;
+
+        buildLine(start, 4, skyline);
+        start.y--;
+        start = buildLine(start, 4, skyline);
+        Vector3 bounceLoc = start;
+
+        start.x--;
+        start.y += 2;
+        buildLine(start, -3, skyline);
+        start.y++;
+        start = buildLine(start, -2, skyline);
+        buildLine(start, -1, platform);
+        start.x++;
+        start.y++;
+        buildBlock(start, skyline);
+        start.x++;
+        buildBlock(start, poop);
+        start.x++;
+        start.y += (float)0.5;
+        buildBlock(start, platform);
+        start.y -= (float)0.5;
+        start.x++;
+        start=buildLine(start, 2, poop);
+        start.y--;
+        buildRamp(start, -2);
+
+        start = bounceLoc;
+        buildBlock(start, bounce);
+        start.x++;
+        buildLine(start, 4, skyline);
+        start.y++;
+        buildLine(start, 4, skyline);
+        start.y++;
+        buildLine(start, 3, skyline);
+        start.y++;
+        buildLine(start, 2, skyline);
+
+        return end;
+    }
+
+    //build chunk 17: volcano
+    Vector3 buildTerrainVolcano(Vector3 start) {
+        Vector3 end = start;
+        end.x += 8;
+
+        Vector3 next = start;
+
+        next= buildLine(next, 1, bounce);
+        next= buildLine(next, 6, skyline);
+        next = buildLine(next, 1, bounce);
+        next = start;
+        next.y += 3;
+        next.x++;
+        buildLine(next, 6, skyline);
+        next.y += 2;
+        next.x++;
+        buildLine(next, 4, platform);
+        next.x++;
+        next.y++;
+        next = buildLine(next, 2, laundry);
+        buildBlock(next, poop);
+        next = start;
+        next.y++;
+        next.x += 5;
+        buildBlock(next, poop);
 
         return end;
     }

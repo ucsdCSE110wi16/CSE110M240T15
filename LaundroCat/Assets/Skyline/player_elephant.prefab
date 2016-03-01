@@ -13,6 +13,7 @@ GameObject:
   - 61: {fileID: 6112138}
   - 114: {fileID: 11473526}
   - 95: {fileID: 9518508}
+  - 58: {fileID: 5804012}
   m_Layer: 0
   m_Name: player_elephant
   m_TagString: Player
@@ -107,13 +108,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &5804012
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113022}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.41666666
 --- !u!61 &6112138
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113022}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -166,18 +181,20 @@ MonoBehaviour:
   maxSpeed: 5
   speed: 50
   jumpPower: 300
+  timer: 200
   grounded: 1
   canDoubleJump: 0
   wallSliding: 0
   facingRight: 1
   weapon_beam: 0
+  invincible: 0
   wallCheckPoint: {fileID: 413920}
   wallCheck: 1
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  currHealth: 0
-  maxHealth: 100
+  currHealth: 3
+  maxHealth: 3
 --- !u!114 &11477836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dfe12c2aab13bd498ae3e41f0361ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laundry_sound: {fileID: 0}
+  laundry_sound: {fileID: 476962, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
 --- !u!212 &21290166
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -226,7 +243,23 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: currHealth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxHealth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: laundry_sound
+      value: 
+      objectReference: {fileID: 476962, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 113022}

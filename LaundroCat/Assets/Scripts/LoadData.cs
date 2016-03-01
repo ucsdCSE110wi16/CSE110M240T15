@@ -4,20 +4,22 @@ public class LoadData : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	    if (!PlayerPrefs.HasKey("Socks"))
-        {
-            PlayerPrefs.SetFloat("Music", (float)1.0);
-            PlayerPrefs.SetFloat("Sound", (float)1.0);
+	    //if (!PlayerPrefs.HasKey("Socks"))
+        //{
+			Debug.Log("Creating defaults!");
+            PlayerPrefs.SetFloat("music", (float)1.0);
+            PlayerPrefs.SetFloat("sound", (float)1.0);
 
-            PlayerPrefs.SetInt("Socks", 0);
+            PlayerPrefs.SetInt("socks", 0);
 
-            PlayerPrefs.SetString("Cat", "true");
-            PlayerPrefs.SetString("Dino", "false");
-            PlayerPrefs.SetString("Duck", "false");
-            PlayerPrefs.SetString("Elephant", "false");
-            PlayerPrefs.SetString("Sheep", "false");
-            PlayerPrefs.SetString("Turtle", "false");
+			PlayerPrefs.SetString("current", "cat");
+            PlayerPrefs.SetString("cat", "true");
+            PlayerPrefs.SetString("dino", "false");
+            PlayerPrefs.SetString("duck", "false");
+            PlayerPrefs.SetString("elephant", "false");
+            PlayerPrefs.SetString("sheep", "false");
+            PlayerPrefs.SetString("turtle", "false");
             PlayerPrefs.Save();
-        }
+        //}
 	}
 }
