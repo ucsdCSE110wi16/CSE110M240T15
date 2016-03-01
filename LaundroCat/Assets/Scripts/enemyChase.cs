@@ -52,7 +52,6 @@ public class enemyChase : MonoBehaviour {
 		float willSpawnLaundry = Random.Range (0, 2); //50% chance
 		float willSpawnWeapon = Random.Range (0, 25); //2% chance
 
- 
 		if (spawnStuff && (willSpawnLaundry == 1)) {
 			Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
 			Instantiate (GameObject.FindWithTag ("laundry"), newPos, gameObject.transform.rotation); 

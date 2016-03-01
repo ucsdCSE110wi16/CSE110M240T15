@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public float maxSpeed = 3;
     public float speed = 50f;
     public float jumpPower = 150f;
-	public float timer = 200f;
+	public float timer = 5f;
 
     // Booleans
     public bool grounded;
@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     public Transform wallCheckPoint;
     public bool wallCheck;
     public LayerMask wallLayerMask;
+	//public Material m;
+	public Color32 c;
 
     // Stats
     public int currHealth;
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour
         // For health vars
         currHealth = maxHealth;
 
+		c = this.GetComponent<Renderer>().material.color;
     }
 
     public void Swipe()
@@ -76,13 +79,25 @@ public class Player : MonoBehaviour
     void Update()
     {
 		// Player becomes damage-proof for two(ish) seconds after being damaged
+		//m = this.GetComponent<Renderer>().material;
 		if (this.invincible == true) {
 			timer -= Time.deltaTime;
 			if (timer > 0)
 				this.invincible = true;
 			else
 				this.invincible = false;
-		} else timer = 2f;
+			
+			if (((int)timer % 2) == 0) {
+				//this.GetComponent<Renderer>().material = null;
+				this.GetComponent<Renderer> ().material.color = Color.yellow;
+			} else {
+				this.GetComponent<Renderer> ().material.color = c;
+			}
+		} else {
+			timer = 5f;
+			//this.GetComponent<Renderer>().material = m;
+			this.GetComponent<Renderer>().material.color = c;
+		}
 
         anim.SetBool("grounded", grounded);
         anim.SetFloat("speed", Mathf.Abs(rb2d.velocity.x));
