@@ -13,6 +13,9 @@ public class nextLevel : MonoBehaviour {
                 Destroy(objects[i]);
             }
 
+            // if # of enemies = 0
+            SkylineManager.levelSize += 2;
+            SkylineManager.currLevel++;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }

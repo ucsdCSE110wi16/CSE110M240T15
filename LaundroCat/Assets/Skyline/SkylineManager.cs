@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class SkylineManager : MonoBehaviour {
     private static int CHUNK_SIZE = 8;
     private static int NUM_OF_CHUNK_TYPES= 18;
+    private static int FINAL_LEVEL = 5;
 
     public Transform skyline;
     public Transform bounce;
@@ -17,10 +19,15 @@ public class SkylineManager : MonoBehaviour {
     public Vector3 startPos;
     private Vector3 nextPos;
 
-    public int levelSize;
+    public static int levelSize = 5;
+    public static int currLevel = 1;
 
     void Start()
     {
+        if (currLevel == FINAL_LEVEL) {
+            // load some other scene
+        }
+
         buildInitialTerrain(startPos);
         nextPos.x = startPos.x + CHUNK_SIZE;
         nextPos.y = startPos.y; 
@@ -118,6 +125,7 @@ public class SkylineManager : MonoBehaviour {
         }
         nextPos.x++;
         buildEnd(nextPos);
+        Debug.Log(SceneManager.GetActiveScene().name + ": " +  levelSize + nextPos);
     }
     
 
@@ -639,8 +647,7 @@ public class SkylineManager : MonoBehaviour {
 
     /********** BUILD END *********/
 
-    void buildEnd(Vector3 start)
-    {
+    void buildEnd(Vector3 start) {
         Transform o = (Transform)Instantiate(levelTrigger);
         o.localPosition = start;
     }
