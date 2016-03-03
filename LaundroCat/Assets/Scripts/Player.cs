@@ -213,10 +213,10 @@ public class Player : MonoBehaviour
 
 
         // fake friction / Easing the x speed of our player
-        if (grounded)
-        {
+//        if (grounded) COMMENTING THIS OUT REMOVES AIR FRICTION
+ //       {
             rb2d.velocity = easeVelocity;
-        }
+//        }
 
         // Make player stop at a certain speed instead of speeding up infinitely
         if (rb2d.velocity.x > maxSpeed)

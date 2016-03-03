@@ -10,7 +10,10 @@ public class GroundCheck : MonoBehaviour {
     void Start()
     {
         player = gameObject.GetComponentInParent<Player>();
-        gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
+
+
+        if (GameObject.FindGameObjectWithTag("GameMaster") != null)
+            gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
     }
 
     // Gets called when the groundCheck enters something

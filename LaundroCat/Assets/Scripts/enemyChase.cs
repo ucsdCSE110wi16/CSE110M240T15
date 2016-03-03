@@ -6,6 +6,7 @@ public class enemyChase : MonoBehaviour {
     Transform target;
     public float speed = 2f;
     private Rigidbody2D r;
+    public bool chasingPlayer;
 	public bool spawnStuff = true;
 	public static bool spawnWeapon = true;
     public int moveSpeed = 2;
@@ -36,7 +37,11 @@ public class enemyChase : MonoBehaviour {
         
 
         float distance = Vector3.Distance(target.position, transform.position);
-        if (distance > 5) return;
+        if (distance > 5) {
+            chasingPlayer = false;
+            return;
+        }
+        chasingPlayer = true;
 
         transform.LookAt(target.position, forwardAxis);
         Debug.DrawLine(transform.position, target.position);
@@ -70,7 +75,9 @@ public class enemyChase : MonoBehaviour {
 		} else if (spawnStuff && (willSpawnWeapon == 1) && spawnWeapon) {
 			spawnWeapon = false;
 			Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
-			Instantiate (GameObject.FindWithTag ("Weapon"), newPos, gameObject.transform.rotation);
+
+            if (GameObject.FindWithTag("Weapon") != null)
+                Instantiate (GameObject.FindWithTag ("Weapon"), newPos, gameObject.transform.rotation);
 		}
 	}
 

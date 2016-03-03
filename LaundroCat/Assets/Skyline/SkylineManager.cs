@@ -45,87 +45,87 @@ public class SkylineManager : MonoBehaviour {
             {
                 case 0:
                     nextPos = buildLine(nextPos, CHUNK_SIZE, skyline);
-                    Debug.Log("Terrain: Line" + nextPos);
+                    //Debug.Log("Terrain: Line" + nextPos);
                     break;
                 case 1:
                     nextPos = buildTerrainPlatform(nextPos);
-                    Debug.Log("Terrain: Platform" + nextPos);
+                    //Debug.Log("Terrain: Platform" + nextPos);
                     break;
                 case 2:
                     nextPos = buildTerrainRunway(nextPos);
-                    Debug.Log("Terrain: Runway" + nextPos);
+                    //Debug.Log("Terrain: Runway" + nextPos);
                     break;
                 case 3:
                     nextPos = buildTerrainRainingPoop(nextPos);
-                    Debug.Log("Terrain: Bounce" + nextPos);
+                    //Debug.Log("Terrain: Bounce" + nextPos);
                     break;
                 case 4:
                     nextPos = buildTerrainLeapOfFaith(nextPos);
-                    Debug.Log("Terrain: LeapOfFaith" + nextPos);
+                    //Debug.Log("Terrain: LeapOfFaith" + nextPos);
                     break;
                 case 5:
                     nextPos = buildTerrainHill(nextPos);
-                    Debug.Log("Terrain: Hill" + nextPos);
+                    //Debug.Log("Terrain: Hill" + nextPos);
                     break;
                 case 6:
                     nextPos = buildTerrainSlope(nextPos);
-                    Debug.Log("Terrain: Slope" + nextPos);
+                    //Debug.Log("Terrain: Slope" + nextPos);
                     break;
                 case 7:
                     nextPos = buildTerrainHOLYFUCK(nextPos);
-                    Debug.Log("Terrain: HOLYFUCK" + nextPos);
+                    //Debug.Log("Terrain: HOLYFUCK" + nextPos);
                     break;
                 case 8:
                     nextPos = buildTerrainWalljump(nextPos);
-                    Debug.Log("Terrain: WallJump" + nextPos);
+                    //Debug.Log("Terrain: WallJump" + nextPos);
                     break;
                 case 9:
                     nextPos = buildTerrainJump(nextPos);
-                    Debug.Log("Terrain: Jump" + nextPos);
+                    //Debug.Log("Terrain: Jump" + nextPos);
                     break;
                 case 10:
                     nextPos = buildTerrainArena(nextPos);
-                    Debug.Log("Terrain: Enemy" + nextPos);
+                    //Debug.Log("Terrain: Enemy" + nextPos);
                     break;
                 case 11:
                     nextPos = buildTerrainBattlefield(nextPos);
-                    Debug.Log("Terrain: Battlefield" + nextPos);
+                    //Debug.Log("Terrain: Battlefield" + nextPos);
                     break;
                 case 12:
                     nextPos = buildTerrainSteps(nextPos);
-                    Debug.Log("Terrain: Steps" + nextPos);
+                    //Debug.Log("Terrain: Steps" + nextPos);
                     break;
                 case 13:
                     nextPos = buildTerrainTower(nextPos);
-                    Debug.Log("Terrain: Tower" + nextPos);
+                    //Debug.Log("Terrain: Tower" + nextPos);
                     break;
                 case 14:
                     nextPos = buildTerrainCrevice(nextPos);
-                    Debug.Log("Terrain: Crevice" + nextPos);
+                    //Debug.Log("Terrain: Crevice" + nextPos);
                     break;
                 case 15:
                     nextPos = buildTerrainDropzone(nextPos);
-                    Debug.Log("Terrain: Dropzone" + nextPos);
+                    //Debug.Log("Terrain: Dropzone" + nextPos);
                     break;
                 case 16:
                     nextPos = buildTerrainMountain(nextPos);
-                    Debug.Log("Terrain: Mountain" + nextPos);
+                    //Debug.Log("Terrain: Mountain" + nextPos);
                     break;
                 case 17:
                     nextPos = buildTerrainVolcano(nextPos);
-                    Debug.Log("Terrain: Volcano" + nextPos);
+                    //Debug.Log("Terrain: Volcano" + nextPos);
                     break;
                 // in case we mess up heres a default case
                 default:
                     nextPos = buildLine(nextPos, CHUNK_SIZE, skyline);
-                    Debug.Log("Terrain: Line" + nextPos);
+                    //Debug.Log("Terrain: Line" + nextPos);
                     break;
               }
             
         }
         nextPos.x++;
         buildEnd(nextPos);
-        Debug.Log(SceneManager.GetActiveScene().name + ": " +  levelSize + nextPos);
+        //Debug.Log(SceneManager.GetActiveScene().name + ": " +  levelSize + nextPos);
     }
     
 
