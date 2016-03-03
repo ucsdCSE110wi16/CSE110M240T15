@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public float maxSpeed = 3;
     public float speed = 50f;
     public float jumpPower = 150f;
-	public float timer = 5f;
+	public float timer = 3f;
 
     // Booleans
     public bool grounded;
@@ -25,7 +25,6 @@ public class Player : MonoBehaviour
     public Transform wallCheckPoint;
     public bool wallCheck;
     public LayerMask wallLayerMask;
-	//public Material m;
 	public Color32 c;
 
     // Stats
@@ -78,8 +77,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		// Player becomes damage-proof for two(ish) seconds after being damaged
-		//m = this.GetComponent<Renderer>().material;
+		// Player becomes damage-proof for three(ish) seconds after being damaged
 		if (this.invincible == true) {
 			timer -= Time.deltaTime;
 			if (timer > 0)
@@ -87,15 +85,13 @@ public class Player : MonoBehaviour
 			else
 				this.invincible = false;
 			
-			if (((int)timer % 2) == 0) {
-				//this.GetComponent<Renderer>().material = null;
+			if (((int)timer % 2) != 0) {
 				this.GetComponent<Renderer> ().material.color = Color.yellow;
 			} else {
 				this.GetComponent<Renderer> ().material.color = c;
 			}
 		} else {
-			timer = 5f;
-			//this.GetComponent<Renderer>().material = m;
+			timer = 3f;
 			this.GetComponent<Renderer>().material.color = c;
 		}
 
