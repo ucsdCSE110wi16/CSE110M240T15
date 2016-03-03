@@ -4,11 +4,12 @@ using System.Collections;
 public class enemyChase : MonoBehaviour {
 
     Transform target;
-    public float speed = 1f;
+    public float speed = 2f;
     private Rigidbody2D r;
     public bool chasingPlayer;
 	public bool spawnStuff = true;
 	public static bool spawnWeapon = true;
+    public int moveSpeed = 2;
 
     // Use this for initialization
     void Start () {
@@ -33,6 +34,8 @@ public class enemyChase : MonoBehaviour {
 
         Vector3 forwardAxis = new Vector3(0, 0, -1);
 
+        
+
         float distance = Vector3.Distance(target.position, transform.position);
         if (distance > 5) {
             chasingPlayer = false;
@@ -43,7 +46,16 @@ public class enemyChase : MonoBehaviour {
         transform.LookAt(target.position, forwardAxis);
         Debug.DrawLine(transform.position, target.position);
         transform.eulerAngles = new Vector3(1, 0, 0);
-        transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), speed * 2 * Time.deltaTime);
+
+        int pos = Mathf.Abs((int) (transform.position.y - target.position.y));
+        //if (pos < 0.5) {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), speed * 2 * Time.deltaTime);
+        //}
+
+        /*Vector2 velocity = new Vector2((transform.position.x - target.position.x) * speed, 0);
+        Vector3 v = r.velocity;
+        v.x = -velocity.x;
+        r.velocity = v;*/
 
         var relativePoint = transform.InverseTransformPoint(target.position);
         if (relativePoint.x < 0.0) {
