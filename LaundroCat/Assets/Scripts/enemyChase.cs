@@ -14,7 +14,6 @@ public class enemyChase : MonoBehaviour {
     // Use this for initialization
     void Start () {
         r = gameObject.GetComponent<Rigidbody2D>();
-		//gameObject.tag = "Enemy";
     }
 
     // Update is called once per frame

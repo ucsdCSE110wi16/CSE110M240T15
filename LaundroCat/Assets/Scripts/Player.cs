@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public float maxSpeed = 3;
     public float speed = 50f;
     public float jumpPower = 150f;
-	public float timer = 3f;
+	public float timer = 4f;
 
     // Booleans
     public bool grounded;
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		// Player becomes damage-proof for three(ish) seconds after being damaged
+		// Player becomes damage-proof for four(ish) seconds after being damaged
 		if (this.invincible == true) {
 			timer -= Time.deltaTime;
 			if (timer > 0)
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
 				this.GetComponent<Renderer> ().material.color = c;
 			}
 		} else {
-			timer = 3f;
+			timer = 4f;
 			this.GetComponent<Renderer>().material.color = c;
 		}
 
