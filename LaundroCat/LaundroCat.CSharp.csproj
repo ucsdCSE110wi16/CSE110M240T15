@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\SettingsMenuScript.cs" />
     <Compile Include="Assets\Scripts\StoreMenuScript.cs" />
+    <Compile Include="Assets\Scripts\TestComponent.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\enemyChase.cs" />
     <Compile Include="Assets\Scripts\enemyMove.cs" />

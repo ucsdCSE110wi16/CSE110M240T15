@@ -6,6 +6,7 @@ public class enemyChase : MonoBehaviour {
     Transform target;
     public float speed = 1f;
     private Rigidbody2D r;
+    public bool chasingPlayer;
 	public bool spawnStuff = true;
 	public static bool spawnWeapon = true;
 
@@ -33,7 +34,11 @@ public class enemyChase : MonoBehaviour {
         Vector3 forwardAxis = new Vector3(0, 0, -1);
 
         float distance = Vector3.Distance(target.position, transform.position);
-        if (distance > 5) return;
+        if (distance > 5) {
+            chasingPlayer = false;
+            return;
+        }
+        chasingPlayer = true;
 
         transform.LookAt(target.position, forwardAxis);
         Debug.DrawLine(transform.position, target.position);
