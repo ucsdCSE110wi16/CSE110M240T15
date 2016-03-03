@@ -11,6 +11,9 @@ TagManager:
   - Platform
   - Ground
   - Bounce
+  - UnitTestPoop1
+  - UnitTestPoop2
+  - UnitTestSkylineManager
   layers:
   - Default
   - TransparentFX

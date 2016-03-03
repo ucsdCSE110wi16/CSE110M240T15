@@ -75,7 +75,9 @@ public class enemyChase : MonoBehaviour {
 		} else if (spawnStuff && (willSpawnWeapon == 1) && spawnWeapon) {
 			spawnWeapon = false;
 			Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
-			Instantiate (GameObject.FindWithTag ("Weapon"), newPos, gameObject.transform.rotation);
+
+            if (GameObject.FindWithTag("Weapon") != null)
+                Instantiate (GameObject.FindWithTag ("Weapon"), newPos, gameObject.transform.rotation);
 		}
 	}
 
