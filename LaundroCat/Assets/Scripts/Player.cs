@@ -153,7 +153,7 @@ public class Player : MonoBehaviour
         // Wall Jump
         if (!grounded)
         {
-            wallCheck = Physics2D.OverlapCircle(wallCheckPoint.position, 0.1f, wallLayerMask);
+            wallCheck = Physics2D.OverlapCircle(wallCheckPoint.position, 0.12f, wallLayerMask);
             if (facingRight && (Input.GetAxis("Horizontal") > 0.1f || currentSwipe.x > 0)
                 || !facingRight && (Input.GetAxis("Horizontal") < -0.1f || currentSwipe.x < 0))
             {

@@ -60,7 +60,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.381, y: 0.019, z: 0}
+  m_LocalPosition: {x: 0.407, y: -0.018, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 485882}
@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.34, y: -3.38, z: 0}
+  m_LocalPosition: {x: -7.491, y: -3.405, z: 0}
   m_LocalScale: {x: 1.0341421, y: 1.0341421, z: 1.0341421}
   m_Children:
   - {fileID: 446574}
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dfe12c2aab13bd498ae3e41f0361ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laundry_sound: {fileID: 476962, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+  laundry_sound: {fileID: 0}
 --- !u!114 &11412596
 MonoBehaviour:
   m_ObjectHideFlags: 1
