@@ -10,13 +10,17 @@ public class GroundCheck : MonoBehaviour {
     void Start()
     {
         player = gameObject.GetComponentInParent<Player>();
-        gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
+
+
+        if (GameObject.FindGameObjectWithTag("GameMaster") != null)
+            gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
     }
 
     // Gets called when the groundCheck enters something
     void OnTriggerEnter2D(Collider2D col)
     {
-        player.grounded = true;
+		if (col.CompareTag("Ground") || col.CompareTag("Platform") || col.CompareTag("Enemy"))
+        	player.grounded = true;
 
         if (col.CompareTag("laundry"))
         {
@@ -27,12 +31,20 @@ public class GroundCheck : MonoBehaviour {
 
         if (col.CompareTag("Weapon"))
         {
-            if (col.name == "weapon_beam_pickup")
-            {
+			//Commented out bc weapon_beam_pickup(clone) wouldn't be recognized. add additional check if adding more weapons
+            //if (col.name == "weapon_beam_pickup")
+            //{
                 player.weapon_beam = true;
-            }
+            //}
             Destroy(col.gameObject);
         }
+
+		if (col.CompareTag ("Bounce")) {
+			//StartCoroutine (player.Knockback (0.02f, 25, player.transform.position));
+			player.canDoubleJump = true;
+			Destroy (col.gameObject.transform.parent.gameObject, 0.1f);
+
+		}
     }
 
     void OnTriggerStay2D(Collider2D col)
@@ -43,7 +55,9 @@ public class GroundCheck : MonoBehaviour {
     // Gets called when the groundCheck exits something
     void OnTriggerExit2D(Collider2D col)
     {
-        player.grounded = false;
-        player.canDoubleJump = true;
+       	player.grounded = false;
+
+		if (col.CompareTag("Ground") || col.CompareTag("Platform"))
+        	player.canDoubleJump = true;
     }
 }

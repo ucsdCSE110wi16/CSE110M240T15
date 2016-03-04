@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public float maxSpeed = 3;
     public float speed = 50f;
     public float jumpPower = 150f;
+	public float timer = 4f;
 
     // Booleans
     public bool grounded;
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     public bool wallSliding;
     public bool facingRight = true;
     public bool weapon_beam = false;
+	public bool invincible = false;
 
     // Reference
     private Rigidbody2D rb2d;
@@ -23,6 +25,7 @@ public class Player : MonoBehaviour
     public Transform wallCheckPoint;
     public bool wallCheck;
     public LayerMask wallLayerMask;
+	public Color32 c;
 
     // Stats
     public int currHealth;
@@ -42,6 +45,7 @@ public class Player : MonoBehaviour
         // For health vars
         currHealth = maxHealth;
 
+		c = this.GetComponent<Renderer>().material.color;
     }
 
     public void Swipe()
@@ -73,6 +77,24 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		// Player becomes damage-proof for four(ish) seconds after being damaged
+		if (this.invincible == true) {
+			timer -= Time.deltaTime;
+			if (timer > 0)
+				this.invincible = true;
+			else
+				this.invincible = false;
+			
+			if (((int)timer % 2) != 0) {
+				this.GetComponent<Renderer> ().material.color = Color.yellow;
+			} else {
+				this.GetComponent<Renderer> ().material.color = c;
+			}
+		} else {
+			timer = 4f;
+			this.GetComponent<Renderer>().material.color = c;
+		}
+
         anim.SetBool("grounded", grounded);
         anim.SetFloat("speed", Mathf.Abs(rb2d.velocity.x));
 
@@ -92,7 +114,6 @@ public class Player : MonoBehaviour
             facingRight = true;
         }
 
-        //TODO THIS DOESN"T WORK ON THE BOUNCY PLATFORMS
         // Where jumping is. The button jump is space || it is a tap on the right side of the screen either 2 fingers or 1
         if ((Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(1) ||
            (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width / 2)) && !wallSliding) // Stopped and press button on right side
@@ -132,7 +153,7 @@ public class Player : MonoBehaviour
         // Wall Jump
         if (!grounded)
         {
-            wallCheck = Physics2D.OverlapCircle(wallCheckPoint.position, 0.1f, wallLayerMask);
+            wallCheck = Physics2D.OverlapCircle(wallCheckPoint.position, 0.12f, wallLayerMask);
             if (facingRight && (Input.GetAxis("Horizontal") > 0.1f || currentSwipe.x > 0)
                 || !facingRight && (Input.GetAxis("Horizontal") < -0.1f || currentSwipe.x < 0))
             {
@@ -160,11 +181,11 @@ public class Player : MonoBehaviour
         {
             if (facingRight)
             {
-                rb2d.AddForce(new Vector2(-1, 1) * jumpPower);
+                rb2d.AddForce(new Vector2(-1, 1) * jumpPower * 1.3f);
             }
             else
             {
-                rb2d.AddForce(new Vector2(1, 1) * jumpPower);
+				rb2d.AddForce (new Vector2 (1, 1) * jumpPower * 1.3f);
             }
         }
     }
@@ -192,10 +213,10 @@ public class Player : MonoBehaviour
 
 
         // fake friction / Easing the x speed of our player
-        if (grounded)
-        {
+//        if (grounded) COMMENTING THIS OUT REMOVES AIR FRICTION
+ //       {
             rb2d.velocity = easeVelocity;
-        }
+//        }
 
         // Make player stop at a certain speed instead of speeding up infinitely
         if (rb2d.velocity.x > maxSpeed)
@@ -215,6 +236,10 @@ public class Player : MonoBehaviour
         currHealth--;
         if (currHealth <= 0)
         {
+			GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
+			for (int i = 0; i < objects.Length; i++) {
+				Destroy(objects[i]);
+			}
             SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Loads current scene over again (restarts)
         }
     }
@@ -225,4 +250,23 @@ public class Player : MonoBehaviour
         rb2d.velocity = Vector3.zero;
         rb2d.Sleep();
     }
+
+	// Enemy knockback
+	public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir) {
+		float timer = 0; 
+
+		while (knockDur > timer) {
+			timer += Time.deltaTime;
+			rb2d.AddForce (new Vector3 (knockbackDir.x * -100, knockbackDir.y * knockbackPwr, transform.position.z));
+		}
+
+		yield return 0; 
+	}
+
+	/*
+	void OnTriggerEnter2D(Collider2D col) {
+		if (col.CompareTag("Enemy"))
+			StartCoroutine (Knockback (0.02f, 50, transform.position));
+	}
+	*/
 }

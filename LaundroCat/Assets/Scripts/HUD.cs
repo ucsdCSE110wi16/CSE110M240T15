@@ -9,10 +9,13 @@ public class HUD : MonoBehaviour {
     private Player player;
     public Sprite[] WeaponToggle;
     public Image PowerUpUI;
+	public Sprite[] controls_sprite;
+	public Image controls_image;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		controls_image = GameObject.Find("controls_UI").GetComponent<Image> ();
     }
 
     void Update()
@@ -29,5 +32,5 @@ public class HUD : MonoBehaviour {
         {
             PowerUpUI.sprite = WeaponToggle[0];
         }
-    }
+	}
 }
