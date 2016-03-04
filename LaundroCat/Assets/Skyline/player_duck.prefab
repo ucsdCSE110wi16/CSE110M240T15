@@ -205,6 +205,9 @@ MonoBehaviour:
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  c:
+    serializedVersion: 2
+    rgba: 0
   currHealth: 3
   maxHealth: 3
 --- !u!212 &21226764
@@ -264,6 +267,10 @@ Prefab:
       propertyPath: laundry_sound
       value: 
       objectReference: {fileID: 476962, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+    - target: {fileID: 0}
+      propertyPath: wallCheck
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 148812}
