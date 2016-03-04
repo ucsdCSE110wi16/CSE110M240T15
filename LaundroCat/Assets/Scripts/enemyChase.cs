@@ -10,10 +10,13 @@ public class enemyChase : MonoBehaviour {
 	public bool spawnStuff = true;
 	public static bool spawnWeapon = true;
     public int moveSpeed = 2;
+    private gameMaster gm;
 
     // Use this for initialization
     void Start () {
         r = gameObject.GetComponent<Rigidbody2D>();
+        if (GameObject.FindGameObjectWithTag("GameMaster") != null)
+            gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
     }
 
     // Update is called once per frame
@@ -26,14 +29,14 @@ public class enemyChase : MonoBehaviour {
 			spawnStuff = false;
 			Destroy (this.gameObject);
 		}
-		else 
+		else
 			spawnStuff = true;
 
         target = GameObject.FindWithTag("Player").transform;
 
         Vector3 forwardAxis = new Vector3(0, 0, -1);
 
-        
+
 
         float distance = Vector3.Distance(target.position, transform.position);
         if (distance > 5) {
@@ -70,7 +73,7 @@ public class enemyChase : MonoBehaviour {
 
 		if (spawnStuff && (willSpawnLaundry == 1)) {
 			Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
-			Instantiate (GameObject.FindWithTag ("laundry"), newPos, gameObject.transform.rotation); 
+			Instantiate (GameObject.FindWithTag ("laundry"), newPos, gameObject.transform.rotation);
 		} else if (spawnStuff && (willSpawnWeapon == 1) && spawnWeapon) {
 			spawnWeapon = false;
 			Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
@@ -78,6 +81,8 @@ public class enemyChase : MonoBehaviour {
             if (GameObject.FindWithTag("Weapon") != null)
                 Instantiate (GameObject.FindWithTag ("Weapon"), newPos, gameObject.transform.rotation);
 		}
+
+    gm.enemyDeathSound();
 	}
 
 }
