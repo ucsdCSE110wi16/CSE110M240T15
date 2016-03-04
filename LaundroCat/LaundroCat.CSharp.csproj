@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\nextLevel.cs" />
     <Compile Include="Assets\Skyline\SkylineManager.cs" />
     <Compile Include="Assets\Skyline\SpriteManager.cs" />
+    <Compile Include="Assets\damagePlayer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

@@ -130,7 +130,7 @@ MonoBehaviour:
   platform: {fileID: 454898, guid: c1b36d4be7679574087176db2064f8e1, type: 2}
   ramp: {fileID: 434822, guid: f2dbdc89ad48d2e4ead2ef015e734ab5, type: 2}
   rampRev: {fileID: 444034, guid: ea2614489a1c4d946b51c46092869ceb, type: 2}
-  poop: {fileID: 437002, guid: f000b848f5d576a45acd1c7fdeff1ae2, type: 2}
+  poop: {fileID: 436024, guid: 749849d2cbb7941df842f961957efc9f, type: 2}
   laundry: {fileID: 437156, guid: 871b4d21e297bc046bf19666f88323f6, type: 2}
   startPos: {x: 0, y: -3.3, z: 0}
 --- !u!1 &415821512
