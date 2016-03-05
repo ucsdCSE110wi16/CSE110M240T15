@@ -49,8 +49,12 @@ public class enemyShoot : MonoBehaviour {
         if (time <= 0)
         {
             time += toAdd;
-            GameObject obj = (GameObject)Instantiate(bullet, transform.position, transform.rotation);
-            Physics.IgnoreCollision(obj.GetComponent<Collider>(), GetComponent<Collider>());
+            try {
+                GameObject obj = (GameObject)Instantiate(bullet, transform.position, transform.rotation);
+                Physics.IgnoreCollision(obj.GetComponent<Collider>(), GetComponent<Collider>());
+            } catch (System.Exception e) {
+                //caught the exception!
+            }
         }
 
     }
