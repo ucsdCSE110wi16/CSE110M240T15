@@ -36,13 +36,13 @@ public class enemyShoot : MonoBehaviour {
         Debug.DrawLine(transform.position, target.position);
         transform.eulerAngles = new Vector3(1, 0, 0);
 
-        var relativePoint = transform.InverseTransformPoint(target.position);
+        /*var relativePoint = transform.InverseTransformPoint(target.position);
         if (relativePoint.x < 0.0)
         {
             Vector3 flipped = transform.localScale;
             flipped.x *= -1;
             transform.localScale = flipped;
-        }
+        }*/
 
         time -= Time.deltaTime;
 
