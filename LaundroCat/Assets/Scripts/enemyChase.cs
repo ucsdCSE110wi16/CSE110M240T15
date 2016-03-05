@@ -11,8 +11,7 @@ public class enemyChase : MonoBehaviour {
 	public int moveSpeed = 2;
     
     public bool chasingPlayer;
-	public bool spawnStuff = true;
-	public static bool spawnWeapon = true;    
+	public bool spawnStuff = true;    
 
     // Use this for initialization
     void Start () {
@@ -76,8 +75,8 @@ public class enemyChase : MonoBehaviour {
 		if (spawnStuff && (willSpawnLaundry == 1)) {
 			Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
 			Instantiate (GameObject.FindWithTag ("laundry"), newPos, gameObject.transform.rotation);
-		} else if (spawnStuff && (willSpawnWeapon == 1) && spawnWeapon) {
-			spawnWeapon = false;
+		} else if (spawnStuff && (willSpawnWeapon == 1) && gameMaster.spawnWeapon) {
+			gameMaster.spawnWeapon = false;
 			Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
 
             if (GameObject.FindWithTag("Weapon") != null)

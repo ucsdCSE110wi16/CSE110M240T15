@@ -12,8 +12,6 @@ public class enemyShoot : MonoBehaviour {
 	private float toAdd = 2f;
 
 	public bool spawnStuff = true;
-	public static bool spawnWeapon = true;
-    
 
     public Transform bullet;
 
@@ -64,8 +62,8 @@ public class enemyShoot : MonoBehaviour {
 		if (spawnStuff && (willSpawnLaundry == 1)) {
 			Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
 			Instantiate (GameObject.FindWithTag ("laundry"), newPos, gameObject.transform.rotation);
-		} else if (spawnStuff && (willSpawnWeapon == 1) && spawnWeapon) {
-			spawnWeapon = false;
+		} else if (spawnStuff && (willSpawnWeapon == 1) && gameMaster.spawnWeapon) {
+			gameMaster.spawnWeapon = false;
 			Vector3 newPos = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y);
 
 			if (GameObject.FindWithTag("Weapon") != null)

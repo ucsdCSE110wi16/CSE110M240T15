@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 418660}
   - 61: {fileID: 6124582}
-  - 58: {fileID: 5883728}
   m_Layer: 0
   m_Name: obj_bounceCheck
   m_TagString: Bounce
@@ -38,7 +37,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &418660
 Transform:
   m_ObjectHideFlags: 1
@@ -81,20 +80,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 1
---- !u!58 &5883728
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 106310}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 79f341d05c285a64787a15728cbabfd3, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!61 &6107468
 BoxCollider2D:
   m_ObjectHideFlags: 1

@@ -11,6 +11,9 @@ public class gameMaster : MonoBehaviour {
     public Transform enemyDeath_sound;
     public Transform playerJump_sound;
 
+	// to make sure only one weapon spawns per level
+	public static bool spawnWeapon = true;
+
     void Update()
     {
         laundryText.text = ("Laundry: " + laundryPoints.ToString());

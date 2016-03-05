@@ -59,14 +59,14 @@
      <Compile Include="Assets\Scripts\TestComponent2.cs" />
      <Compile Include="Assets\Scripts\TestComponentLevelTrigger.cs" />
      <Compile Include="Assets\Scripts\Weapon.cs" />
+     <Compile Include="Assets\Scripts\damagePlayer.cs" />
      <Compile Include="Assets\Scripts\enemyChase.cs" />
-     <Compile Include="Assets\Scripts\enemyMove.cs" />
+     <Compile Include="Assets\Scripts\enemyFloat.cs" />
      <Compile Include="Assets\Scripts\enemyShoot.cs" />
      <Compile Include="Assets\Scripts\gameMaster.cs" />
      <Compile Include="Assets\Scripts\nextLevel.cs" />
      <Compile Include="Assets\Skyline\SkylineManager.cs" />
      <Compile Include="Assets\Skyline\SpriteManager.cs" />
-     <Compile Include="Assets\damagePlayer.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>

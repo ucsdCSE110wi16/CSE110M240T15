@@ -8,7 +8,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 418660}
-  - 61: {fileID: 6124582}
   - 58: {fileID: 5845262}
   m_Layer: 0
   m_Name: obj_bounceCheck
@@ -36,7 +35,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &179556
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 178226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.1, y: -1.66, z: 0}
+  m_LocalPosition: {x: 6.52, y: -0.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418660}
@@ -137,20 +136,6 @@ BoxCollider2D:
   m_Offset: {x: -0.00938834, y: 0}
   serializedVersion: 2
   m_Size: {x: 1.732348, y: 1}
---- !u!61 &6124582
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 106310}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 79f341d05c285a64787a15728cbabfd3, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: -1.8876481}
-  serializedVersion: 2
-  m_Size: {x: 1.1, y: 2.258433}
 --- !u!61 &6175710
 BoxCollider2D:
   m_ObjectHideFlags: 1
