@@ -27,11 +27,8 @@ GameObject:
   - 4: {fileID: 436024}
   - 212: {fileID: 21236398}
   - 95: {fileID: 9507008}
-  - 61: {fileID: 6153680}
   - 50: {fileID: 5068290}
   - 114: {fileID: 11485922}
-  - 61: {fileID: 6107468}
-  - 61: {fileID: 6194810}
   - 61: {fileID: 6175710}
   m_Layer: 0
   m_Name: poop
@@ -76,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 178226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.35, y: -0.35, z: 0}
+  m_LocalPosition: {x: 5.1, y: -1.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418660}
@@ -126,20 +123,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!61 &6107468
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 178226}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: -0.4000001, y: -0.1}
-  serializedVersion: 2
-  m_Size: {x: 0.100000024, y: 0.57}
 --- !u!61 &6110986
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -168,20 +151,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -1.8876481}
   serializedVersion: 2
   m_Size: {x: 1.1, y: 2.258433}
---- !u!61 &6153680
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 178226}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 79f341d05c285a64787a15728cbabfd3, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0.3}
-  serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.1}
 --- !u!61 &6175710
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -196,20 +165,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.34}
   serializedVersion: 2
   m_Size: {x: 0.7, y: 0.1}
---- !u!61 &6194810
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 178226}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0.4000001, y: -0.1}
-  serializedVersion: 2
-  m_Size: {x: 0.100000024, y: 0.57}
 --- !u!95 &9507008
 Animator:
   serializedVersion: 3
@@ -250,9 +205,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  moveSpeed: 2
   chasingPlayer: 0
   spawnStuff: 1
-  moveSpeed: 2
 --- !u!212 &21236398
 SpriteRenderer:
   m_ObjectHideFlags: 1

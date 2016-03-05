@@ -4,13 +4,15 @@ using System.Collections;
 public class enemyChase : MonoBehaviour {
 
     Transform target;
+	private gameMaster gm;
+	private Rigidbody2D r;
+
     public float speed = 2f;
-    private Rigidbody2D r;
+	public int moveSpeed = 2;
+    
     public bool chasingPlayer;
 	public bool spawnStuff = true;
-	public static bool spawnWeapon = true;
-    public int moveSpeed = 2;
-    private gameMaster gm;
+	public static bool spawnWeapon = true;    
 
     // Use this for initialization
     void Start () {
@@ -82,7 +84,7 @@ public class enemyChase : MonoBehaviour {
                 Instantiate (GameObject.FindWithTag ("Weapon"), newPos, gameObject.transform.rotation);
 		}
 
-    gm.enemyDeathSound();
+    	gm.enemyDeathSound();
 	}
 
 }
