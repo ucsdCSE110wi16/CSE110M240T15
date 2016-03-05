@@ -51,6 +51,7 @@ public class Weapon : MonoBehaviour {
     {
         if (player.weapon_beam)
         {
+            GetComponent<AudioSource>().Play();
             weapon_beam_anim.enabled = true;
             if (player.facingRight)
                 weapon_beam.transform.localScale = new Vector3(-12, 5, 1);

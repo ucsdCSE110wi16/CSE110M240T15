@@ -6,6 +6,7 @@ public class GroundCheck : MonoBehaviour {
     private Player player;
     private gameMaster gm;
     public Transform laundry_sound;
+    public Transform weaponPickup_sound;
 
     void Start()
     {
@@ -37,13 +38,13 @@ public class GroundCheck : MonoBehaviour {
                 player.weapon_beam = true;
             //}
             Destroy(col.gameObject);
+            Instantiate(weaponPickup_sound, transform.position, transform.rotation);
         }
 
 		if (col.CompareTag ("Bounce")) {
 			//StartCoroutine (player.Knockback (0.02f, 25, player.transform.position));
 			player.canDoubleJump = true;
 			Destroy (col.gameObject.transform.parent.gameObject, 0.1f);
-
 		}
     }
 

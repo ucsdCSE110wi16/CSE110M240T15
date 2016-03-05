@@ -27,9 +27,13 @@ public class Player : MonoBehaviour
     public LayerMask wallLayerMask;
 	public Color32 c;
 
+
     // Stats
     public int currHealth;
     public int maxHealth = 3;
+
+    //for handling sounds
+    private gameMaster gm;
 
     // Used for mobile inputs
     Vector2 firstPressPos;
@@ -46,6 +50,9 @@ public class Player : MonoBehaviour
         currHealth = maxHealth;
 
 		c = this.GetComponent<Renderer>().material.color;
+
+        if (GameObject.FindGameObjectWithTag("GameMaster") != null)
+            gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
     }
 
     public void Swipe()
@@ -84,7 +91,7 @@ public class Player : MonoBehaviour
 				this.invincible = true;
 			else
 				this.invincible = false;
-			
+
 			if (((int)timer % 2) != 0) {
 				this.GetComponent<Renderer> ().material.color = Color.yellow;
 			} else {
@@ -102,7 +109,7 @@ public class Player : MonoBehaviour
         h = currentSwipe.x;
 
         // Moving to left change direction | left swipe
-        if (Input.GetAxis("Horizontal") < -0.1f || (currentSwipe.x < 0)) //&& currentSwipe.y > -0.1f && currentSwipe.y < 0.1f)) 
+        if (Input.GetAxis("Horizontal") < -0.1f || (currentSwipe.x < 0)) //&& currentSwipe.y > -0.1f && currentSwipe.y < 0.1f))
         {
             transform.localScale = new Vector3(-1, 1, 1);
             facingRight = false;
@@ -122,6 +129,7 @@ public class Player : MonoBehaviour
             {
                 rb2d.AddForce(Vector2.up * jumpPower / 1.50f); //1st jump power
                 canDoubleJump = true;
+                gm.playerJump();
             }
             else
             {
@@ -130,6 +138,7 @@ public class Player : MonoBehaviour
                     canDoubleJump = false;
                     rb2d.velocity = new Vector2(rb2d.velocity.x, 0); // x and y, new resets
                     rb2d.AddForce(Vector2.up * jumpPower); // 2nd jump power
+                    gm.playerJump();
                 }
             }
         }
@@ -207,7 +216,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            // If not grounded then add twice force we normally do so it's not too floaty 
+            // If not grounded then add twice force we normally do so it's not too floaty
             rb2d.AddForce((Vector2.right * speed * 2f) * h);
         }
 
@@ -236,11 +245,15 @@ public class Player : MonoBehaviour
         currHealth--;
         if (currHealth <= 0)
         {
-			GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
-			for (int i = 0; i < objects.Length; i++) {
-				Destroy(objects[i]);
-			}
+          gm.playerDeathSound();
+			    GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
+			    for (int i = 0; i < objects.Length; i++) {
+				        Destroy(objects[i]);
+			    }
             SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Loads current scene over again (restarts)
+        }
+        else {
+          gm.playerHurtSound();
         }
     }
 
@@ -253,14 +266,14 @@ public class Player : MonoBehaviour
 
 	// Enemy knockback
 	public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir) {
-		float timer = 0; 
+		float timer = 0;
 
 		while (knockDur > timer) {
 			timer += Time.deltaTime;
 			rb2d.AddForce (new Vector3 (knockbackDir.x * -100, knockbackDir.y * knockbackPwr, transform.position.z));
 		}
 
-		yield return 0; 
+		yield return 0;
 	}
 
 	/*
