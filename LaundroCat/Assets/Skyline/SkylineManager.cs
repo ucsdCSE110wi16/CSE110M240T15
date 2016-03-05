@@ -7,13 +7,18 @@ public class SkylineManager : MonoBehaviour {
     private static int NUM_OF_CHUNK_TYPES= 18;
     private static int FINAL_LEVEL = 5;
 
+    // terrain prefabs
     public Transform skyline;
     public Transform bounce;
     public Transform levelTrigger;
     public Transform platform;
     public Transform ramp;
     public Transform rampRev;
+
+    // enemy and laundry prefabs
     public Transform poop;
+    public Transform ghost;
+    public Transform turret;
     public Transform laundry;
     
     public Vector3 startPos;
@@ -35,7 +40,7 @@ public class SkylineManager : MonoBehaviour {
 
         for (int i = 0; i < levelSize; i++) {
             int gap = Random.Range(0, 3);
-            int chunk =
+            int chunk = 
                 Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x += gap;
@@ -149,6 +154,21 @@ public class SkylineManager : MonoBehaviour {
         o.localPosition = start;
     }
 
+    Transform randomEnemy() {
+        Random.seed = (int)System.DateTime.Now.Ticks;
+        System.Threading.Thread.Sleep(2);
+        switch (Random.Range(0,3)) {
+            case 0:
+                return poop;
+            case 1:
+                return ghost;
+            case 2:
+                return turret;
+            default:
+                return poop;
+        }
+    }
+
     Vector3 buildPlatform(Vector3 start, int length) {
         Vector3 next = start;
         for (int i = 0; i < length; i++) {
@@ -224,15 +244,17 @@ public class SkylineManager : MonoBehaviour {
         Vector3 end = start;
         end.x += CHUNK_SIZE;
         buildLine(start, CHUNK_SIZE, skyline);
-        start.y += 2;
+        start.y += (float)1.5;
         buildPlatform(start, CHUNK_SIZE);
+        start.y += (float)0.5;
 
         start.y--;
+        start.x++;
         buildBlock(start, poop);
-        start.x += 2;
-        buildBlock(start, laundry);
-        start.x += 2;
-        buildBlock(start, laundry);
+        start.x ++;
+        start = buildLine(start, 4, laundry);
+        buildBlock(start, turret);
+
 
         return end;
     }
@@ -245,9 +267,14 @@ public class SkylineManager : MonoBehaviour {
         buildLine(start, CHUNK_SIZE, skyline);
         start.x += 6;
         start.y++;
+        Vector3 enemySpawn = start;
         buildRamp(start, 2);
         start.x++;
         buildBlock(start, skyline);
+
+        Transform enemy = randomEnemy();
+        enemySpawn.x-=2;
+        buildBlock(enemySpawn, randomEnemy());
 
         Vector3 laundrySpawn = end;
         laundrySpawn.x += (float)6.8;
@@ -295,9 +322,8 @@ public class SkylineManager : MonoBehaviour {
         start = buildWall(start, 5);
         Vector3 enemySpawn = start;
         enemySpawn.y++;
-        enemySpawn.x--;
-        buildBlock(enemySpawn, poop);
-        enemySpawn.x--;
+        enemySpawn.x-=2;
+        buildBlock(enemySpawn, ghost);
         buildBlock(enemySpawn, laundry);
 
         start = buildLine(start, -3, skyline);
@@ -322,10 +348,10 @@ public class SkylineManager : MonoBehaviour {
         }
         Vector3 enemySpawn = start;
         enemySpawn.y+=3;
-        enemySpawn.x += 3;
+        enemySpawn.x += 4;
         buildBlock(enemySpawn, poop);
         enemySpawn.x++;
-        buildBlock(enemySpawn, poop);
+        buildBlock(enemySpawn, turret);
         start.x += CHUNK_SIZE;
         return start;
     }
@@ -353,9 +379,9 @@ public class SkylineManager : MonoBehaviour {
         }
 
         Vector3 enemySpawn = start;
-        enemySpawn.x += 4;
+        enemySpawn.x += 6;
         enemySpawn.y--;
-        buildBlock(enemySpawn, poop);
+        buildBlock(enemySpawn, randomEnemy());
 
         start.x += CHUNK_SIZE;
         return start;
@@ -365,9 +391,15 @@ public class SkylineManager : MonoBehaviour {
     Vector3 buildTerrainHOLYFUCK(Vector3 start) {
         Vector3 next = start;
         Vector3 laundrySpawn = start;
+
         laundrySpawn.x += CHUNK_SIZE / 2;
         laundrySpawn.y--;
         buildBlock(laundrySpawn, laundry);
+
+        Vector3 enemySpawn = laundrySpawn;
+        enemySpawn.x -= (float).8;
+        enemySpawn.y += (float)3.5;
+        buildBlock(enemySpawn, ghost);
 
         next.y++;
         next.x += (CHUNK_SIZE / 4);
@@ -389,6 +421,7 @@ public class SkylineManager : MonoBehaviour {
         next.x += 4;
 
         Vector3 laundrySpawn = buildWall(next, 7);
+        Vector3 ghostSpawn = laundrySpawn;
         laundrySpawn.x--;
         laundrySpawn.y-= (float)0.5;
         buildBlock(laundrySpawn, laundry);
@@ -399,6 +432,9 @@ public class SkylineManager : MonoBehaviour {
         next.x++;
         next.y++;
         buildBlock(next, poop);
+
+        ghostSpawn.x--;
+        buildBlock(ghostSpawn, ghost);
 
         start.x += CHUNK_SIZE + 1;
         return start;
@@ -421,9 +457,14 @@ public class SkylineManager : MonoBehaviour {
         temp.y++;
         temp.x--;
         buildBlock(temp, skyline);
-        temp.x -= CHUNK_SIZE / 2;
+        temp.y++;
+        buildBlock(temp, turret);
+        temp.y--;
+        temp.x -= 1;
         
         buildBlock(temp, poop);
+        temp.x -= 5;
+        buildBlock(temp, ghost);
         start.y++;
         buildBlock(start, skyline);
         return end;
@@ -455,6 +496,11 @@ public class SkylineManager : MonoBehaviour {
         pos.y -= 2;
         buildLine(pos, platSize, platform);
 
+        Vector3 turretSpawn = end;
+        turretSpawn.y++;
+        turretSpawn.x -= 3;
+        buildBlock(turretSpawn, turret);
+
         return end;
     }
 
@@ -474,14 +520,19 @@ public class SkylineManager : MonoBehaviour {
         end = buildLine(start, platSize, platform);
         Vector3 enemySpawn = end;
         enemySpawn.y ++;
-        enemySpawn.x --;
-        buildBlock(enemySpawn, poop);
+        enemySpawn.x -= (float)2.5;
+        buildBlock(enemySpawn, ghost);
 
         start.y += 2;
         start.x = (end.x + start.x) / 2;
         end = buildLine(start, platSize, platform);
 
         end = buildLine(end, baseSize, skyline);
+        Vector3 turretSpawn = end;
+        turretSpawn.x--;
+        turretSpawn.y++;
+        buildBlock(turretSpawn, turret);
+
         end.y -= 4;
         return end;
     }
@@ -535,9 +586,9 @@ public class SkylineManager : MonoBehaviour {
         enemySpawn.x += 4;
         enemySpawn.y++;
         buildBlock(enemySpawn, poop);
-        enemySpawn.x += 2;
+        enemySpawn.x ++;
         enemySpawn.y-=2;
-        buildBlock(enemySpawn, poop);
+        buildBlock(enemySpawn, ghost);
 
         return end;
     }
@@ -635,11 +686,11 @@ public class SkylineManager : MonoBehaviour {
         next.x++;
         next.y++;
         next = buildLine(next, 2, laundry);
-        buildBlock(next, poop);
+        buildBlock(next, randomEnemy());
         next = start;
         next.y++;
         next.x += 5;
-        buildBlock(next, poop);
+        buildBlock(next, randomEnemy());
 
         return end;
     }

@@ -95,6 +95,7 @@ public class enemyFloat : MonoBehaviour {
 				Instantiate (GameObject.FindWithTag ("Weapon"), newPos, gameObject.transform.rotation);
 		}
 
-		gm.enemyDeathSound();
+        if (gm != null)
+		    gm.enemyDeathSound();
 	}
 }
