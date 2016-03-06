@@ -40,7 +40,7 @@ public class SkylineManager : MonoBehaviour {
 
         for (int i = 0; i < levelSize; i++) {
             int gap = Random.Range(0, 3);
-            int chunk = 
+            int chunk = 19;
                 Random.Range(0, NUM_OF_CHUNK_TYPES);
 
             nextPos.x += gap;
@@ -249,10 +249,11 @@ public class SkylineManager : MonoBehaviour {
         start.y += (float)0.5;
 
         start.y--;
-        start.x++;
-        buildBlock(start, poop);
-        start.x ++;
+        start.x+= (float)2.5;
+        buildBlock(start, ghost);
+        start.x -= (float)0.5;
         start = buildLine(start, 4, laundry);
+        start.y += (float)1.5;
         buildBlock(start, turret);
 
 
