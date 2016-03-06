@@ -309,6 +309,49 @@ MonoBehaviour:
   bounds: 1
   minCameraPos: {x: -100, y: 0, z: -10}
   maxCameraPos: {x: 1000, y: 0, z: 0}
+--- !u!1 &156262037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 156262038}
+  - 114: {fileID: 156262039}
+  m_Layer: 0
+  m_Name: Sprite Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &156262038
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 156262037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1165027921}
+  m_RootOrder: 1
+--- !u!114 &156262039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 156262037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab3b03abd52bfcc44957447c4a062546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texture1: {fileID: 2800000, guid: 904f3960d757cb44fa323f058623da28, type: 3}
+  texture2: {fileID: 0}
+  texture3: {fileID: 0}
+  texture4: {fileID: 0}
 --- !u!1 &170256484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1875,6 +1918,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 986502848}
+  - {fileID: 156262038}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!4 &1191762884 stripped
@@ -2166,7 +2210,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 4
 --- !u!114 &1533425724
 MonoBehaviour:
   m_ObjectHideFlags: 0
