@@ -5,18 +5,19 @@ using UnityEngine.UI;
 public class gameMaster : MonoBehaviour {
 
     public int laundryPoints = 0;
-	public Text laundryText;
+	  public Text laundryText;
     public Transform playerDeath_sound;
     public Transform playerHurt_sound;
     public Transform enemyDeath_sound;
     public Transform playerJump_sound;
+
 
 	// to make sure only one weapon spawns per level
 	public static bool spawnWeapon = true;
 
     void Update()
     {
-        laundryText.text = ("Laundry: " + laundryPoints.ToString());
+        laundryText.text = ("              " + laundryPoints.ToString());
     }
 
     public void playerDeathSound()

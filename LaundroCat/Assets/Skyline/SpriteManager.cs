@@ -9,6 +9,11 @@ public class SpriteManager : MonoBehaviour {
     public Texture2D texture3;
     public Texture2D texture4;
 
+    public Sprite bg1;
+    public Sprite bg2;
+    public Sprite bg3;
+    public Sprite bg4;
+
     private static int ABOVE = 0x01;
     private static int BELOW = 0x02;
     private static int LEFT = 0x04;
@@ -21,24 +26,32 @@ public class SpriteManager : MonoBehaviour {
     // Use this for initialization
     void Start() {
         Random.seed = (int)System.DateTime.Now.Ticks;
-        rando = 0;
+        rando = 1; //Currently testing second texture type
             Random.Range(0, 4);
     }
 
     void doTheSprites(GameObject[] obj) {
         Texture2D texture = null;
+        GameObject bg = GameObject.FindGameObjectWithTag("Background");
+        SpriteRenderer bgRender = null;
+        bgRender = bg.GetComponent<SpriteRenderer>();
+
         switch (rando) {
             case 0:
                 texture = texture1;
+                bgRender.sprite = bg1;
                 break;
             case 1:
                 texture = texture2;
+                bgRender.sprite = bg2;
                 break;
             case 2:
                 texture = texture3;
+                bgRender.sprite = bg3;
                 break;
             case 3:
                 texture = texture4;
+                bgRender.sprite = bg4;
                 break;
         }
 
@@ -47,6 +60,7 @@ public class SpriteManager : MonoBehaviour {
             float originX = textureRect.x;
             float originY = textureRect.y;
             float newX = originX;
+            float newY = originY;
 
             SpriteRenderer spriteR = (SpriteRenderer)g.GetComponent<Renderer>();
             Transform trans = (Transform)g.GetComponent<Transform>();
@@ -59,64 +73,96 @@ public class SpriteManager : MonoBehaviour {
                     //block directly above
                     if (col.transform.position.x == pos.x && col.transform.position.y > pos.y) {
                         blockinfo |= ABOVE;
-                        Debug.Log("Block above");
+                        //Debug.Log("Block above");
                     }
                     //block directly to right
                     if (col.transform.position.x > pos.x && col.transform.position.y == pos.y) {
                         blockinfo |= RIGHT;
-                        Debug.Log("Block to right");
+                        //Debug.Log("Block to right");
                     }
                     //block directly to left
                     if (col.transform.position.x < pos.x && col.transform.position.y == pos.y) {
                         blockinfo |= LEFT;
-                        Debug.Log("Block to left");
+                        //Debug.Log("Block to left");
                     }
                     //block directly below
                     if (col.transform.position.x == pos.x && col.transform.position.y < pos.y) {
                         blockinfo |= BELOW;
-                        Debug.Log("Block below");
+                        //Debug.Log("Block below");
                     }
                 }
             }
 
             if(((blockinfo & LEFT) != 0) && ((blockinfo & ABOVE) != 0) && ((blockinfo & RIGHT) != 0)) {
                 //set the rectangle's x coordinate to the sprite for bottom blocks
-                newX = originX + 16f;
+                newX = originX + 16f + 1;
+                if((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
             if(((blockinfo & LEFT) != 0) && ((blockinfo & ABOVE) == 0) && ((blockinfo & RIGHT) == 0)) {
                 //set x coordinate to sprite for block with nothing above or to the right (a block that is top right)
-                newX = originX + 32f;
+                newX = originX + 32f + 2;
+                if ((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
             if(((blockinfo & LEFT) == 0) && ((blockinfo & ABOVE) == 0) && ((blockinfo & RIGHT) != 0)) {
                 //set x coordinate to sprite for block that is top left
-                newX = originX + 48f;
+                newX = originX + 48f + 3;
+                if ((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
             if(((blockinfo & LEFT) == 0) && ((blockinfo & ABOVE) != 0) && ((blockinfo & RIGHT) != 0)) {
                 //set x coordinate to sprite for block that is mid/bottom left
-                newX = originX + 64f;
+                newX = originX + 64f + 4;
+                if ((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
             if(((blockinfo & LEFT) != 0) && ((blockinfo & ABOVE) != 0) && ((blockinfo & RIGHT) == 0)) {
                 //set x coordinate to sprite for block that is mid/bottom right
-                newX = originX + 80f;
+                newX = originX + 80f + 5;
+                if ((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
             if(((blockinfo & LEFT) == 0) && ((blockinfo & ABOVE) == 0) && ((blockinfo & RIGHT) == 0)) {
                 //set x coordinate to sprite for block that is alone
-                newX = originX + 96f;
+                newX = originX + 96f + 6;
+                if ((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
             if (((blockinfo & LEFT) == 0) && ((blockinfo & ABOVE) != 0) && ((blockinfo & RIGHT) == 0))
             {
                 //set x coordinate to sprite for block that is only covered on top
-                newX = originX + 112;
+                newX = originX + 112 + 7;
+                if ((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
 
             if(((blockinfo & LEFT) != 0) && ((blockinfo & ABOVE) == 0) && ((blockinfo & RIGHT) != 0)) {
                 //set x coordinate to default sprite
                 newX = originX;
+                if ((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
 
             
-            textureRect.Set(newX, originY, textureRect.width, textureRect.height);
-            spriteR.sprite = Sprite.Create(texture, textureRect, new Vector2(0.5f, 0.5f), 16);
+            textureRect.Set(newX, newY, textureRect.width, textureRect.height);
+            spriteR.sprite = Sprite.Create(texture, textureRect, new Vector2(0.5f, 0.5f), 15);
             spriteR.color = Color.white;
         }
 

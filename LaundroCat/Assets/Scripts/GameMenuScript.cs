@@ -11,23 +11,26 @@ public class GameMenuScript : MonoBehaviour {
 	public void pause() {
 		if (!paused) {
 			Time.timeScale = 0;
-			pause_b.GetComponentInChildren<Text>().text =
-					"Exit Game";
+//			pause_b.GetComponentInChildren<Text>().text =
+//					"resume";
 			resume_b.gameObject.SetActive(true);
 			paused = true;
 		}
 		else {
 			resume();
-			SceneManager.LoadScene("main_menu");
 		}
 	}
 	
 	/* resumes game when it is paused */
 	public void resume() {
-		pause_b.GetComponentInChildren<Text>().text =
-				"Pause";
+//		pause_b.GetComponentInChildren<Text>().text =
+//				"Pause";
 		resume_b.gameObject.SetActive(false);
 		Time.timeScale = 1;
 		paused = false;
+	}
+	public void quit() {
+		resume ();
+		SceneManager.LoadScene("main_menu");
 	}
 }
