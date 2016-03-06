@@ -28,6 +28,10 @@ public class GroundCheck : MonoBehaviour {
             Instantiate(laundry_sound, transform.position, transform.rotation);
             Destroy(col.gameObject);
             gm.laundryPoints += 1;
+
+            PlayerPrefs.SetInt("socks", gm.laundryPoints);
+            PlayerPrefs.Save();
+
         }
 
         if (col.CompareTag("Weapon"))
