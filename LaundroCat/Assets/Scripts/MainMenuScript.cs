@@ -25,7 +25,7 @@ public class MainMenuScript : MonoBehaviour {
 	
 	// loads game scene
 	public void loadGame() {
-		SceneManager.LoadScene("test_AndyNathan");
+		SceneManager.LoadScene("main_sceneDEMO");
 	}
 	
 	// loads store scene
