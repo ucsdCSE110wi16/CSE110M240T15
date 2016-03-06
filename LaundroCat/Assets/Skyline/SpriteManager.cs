@@ -47,6 +47,7 @@ public class SpriteManager : MonoBehaviour {
             float originX = textureRect.x;
             float originY = textureRect.y;
             float newX = originX;
+            float newY = originY;
 
             SpriteRenderer spriteR = (SpriteRenderer)g.GetComponent<Renderer>();
             Transform trans = (Transform)g.GetComponent<Transform>();
@@ -81,42 +82,74 @@ public class SpriteManager : MonoBehaviour {
 
             if(((blockinfo & LEFT) != 0) && ((blockinfo & ABOVE) != 0) && ((blockinfo & RIGHT) != 0)) {
                 //set the rectangle's x coordinate to the sprite for bottom blocks
-                newX = originX + 16f;
+                newX = originX + 16f + 1;
+                if((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
             if(((blockinfo & LEFT) != 0) && ((blockinfo & ABOVE) == 0) && ((blockinfo & RIGHT) == 0)) {
                 //set x coordinate to sprite for block with nothing above or to the right (a block that is top right)
-                newX = originX + 32f;
+                newX = originX + 32f + 2;
+                if ((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
             if(((blockinfo & LEFT) == 0) && ((blockinfo & ABOVE) == 0) && ((blockinfo & RIGHT) != 0)) {
                 //set x coordinate to sprite for block that is top left
-                newX = originX + 48f;
+                newX = originX + 48f + 3;
+                if ((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
             if(((blockinfo & LEFT) == 0) && ((blockinfo & ABOVE) != 0) && ((blockinfo & RIGHT) != 0)) {
                 //set x coordinate to sprite for block that is mid/bottom left
-                newX = originX + 64f;
+                newX = originX + 64f + 4;
+                if ((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
             if(((blockinfo & LEFT) != 0) && ((blockinfo & ABOVE) != 0) && ((blockinfo & RIGHT) == 0)) {
                 //set x coordinate to sprite for block that is mid/bottom right
-                newX = originX + 80f;
+                newX = originX + 80f + 5;
+                if ((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
             if(((blockinfo & LEFT) == 0) && ((blockinfo & ABOVE) == 0) && ((blockinfo & RIGHT) == 0)) {
                 //set x coordinate to sprite for block that is alone
-                newX = originX + 96f;
+                newX = originX + 96f + 6;
+                if ((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
             if (((blockinfo & LEFT) == 0) && ((blockinfo & ABOVE) != 0) && ((blockinfo & RIGHT) == 0))
             {
                 //set x coordinate to sprite for block that is only covered on top
-                newX = originX + 112;
+                newX = originX + 112 + 7;
+                if ((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
 
             if(((blockinfo & LEFT) != 0) && ((blockinfo & ABOVE) == 0) && ((blockinfo & RIGHT) != 0)) {
                 //set x coordinate to default sprite
                 newX = originX;
+                if ((blockinfo & BELOW) != 0)
+                {
+                    newY = originY + 16f + 1;
+                }
             }
 
             
-            textureRect.Set(newX, originY, textureRect.width, textureRect.height);
-            spriteR.sprite = Sprite.Create(texture, textureRect, new Vector2(0.5f, 0.5f), 16);
+            textureRect.Set(newX, newY, textureRect.width, textureRect.height);
+            spriteR.sprite = Sprite.Create(texture, textureRect, new Vector2(0.5f, 0.5f), 15);
             spriteR.color = Color.white;
         }
 

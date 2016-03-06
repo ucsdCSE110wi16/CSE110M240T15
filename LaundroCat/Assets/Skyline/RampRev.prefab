@@ -12,7 +12,7 @@ GameObject:
   - 60: {fileID: 6048842}
   m_Layer: 0
   m_Name: RampRev
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,7 +87,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_TagString
-      value: Ground
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
