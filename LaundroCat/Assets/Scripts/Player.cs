@@ -188,6 +188,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(1) ||
            (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width / 2))
         {
+            gm.playerJump();
             if (facingRight)
             {
                 rb2d.AddForce(new Vector2(-1, 1) * jumpPower * 1.3f);
