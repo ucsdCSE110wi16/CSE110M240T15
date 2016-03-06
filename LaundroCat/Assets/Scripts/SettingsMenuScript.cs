@@ -33,6 +33,23 @@ public class SettingsMenuScript : MonoBehaviour {
         PlayerPrefs.Save();
     }
 	
+	public void reset() {
+		Debug.Log("Creating defaults!");
+        PlayerPrefs.SetFloat("music", (float)1.0);
+        PlayerPrefs.SetFloat("sound", (float)1.0);
+
+        PlayerPrefs.SetInt("socks", 499);
+
+		PlayerPrefs.SetString("current", "cat");
+        PlayerPrefs.SetString("cat", "true");
+        PlayerPrefs.SetString("dino", "false");
+        PlayerPrefs.SetString("duck", "false");
+        PlayerPrefs.SetString("elephant", "false");
+        PlayerPrefs.SetString("sheep", "false");
+        PlayerPrefs.SetString("turtle", "false");
+        PlayerPrefs.Save();
+	}
+	
 	public void openCredits() {
 		creditsPanel.SetActive(true);
 	}
