@@ -9,6 +9,11 @@ public class SpriteManager : MonoBehaviour {
     public Texture2D texture3;
     public Texture2D texture4;
 
+    public Sprite bg1;
+    public Sprite bg2;
+    public Sprite bg3;
+    public Sprite bg4;
+
     private static int ABOVE = 0x01;
     private static int BELOW = 0x02;
     private static int LEFT = 0x04;
@@ -21,24 +26,32 @@ public class SpriteManager : MonoBehaviour {
     // Use this for initialization
     void Start() {
         Random.seed = (int)System.DateTime.Now.Ticks;
-        rando = 0;
+        rando = 1; //Currently testing second texture type
             Random.Range(0, 4);
     }
 
     void doTheSprites(GameObject[] obj) {
         Texture2D texture = null;
+        GameObject bg = GameObject.FindGameObjectWithTag("Background");
+        SpriteRenderer bgRender = null;
+        bgRender = bg.GetComponent<SpriteRenderer>();
+
         switch (rando) {
             case 0:
                 texture = texture1;
+                bgRender.sprite = bg1;
                 break;
             case 1:
                 texture = texture2;
+                bgRender.sprite = bg2;
                 break;
             case 2:
                 texture = texture3;
+                bgRender.sprite = bg3;
                 break;
             case 3:
                 texture = texture4;
+                bgRender.sprite = bg4;
                 break;
         }
 
@@ -60,22 +73,22 @@ public class SpriteManager : MonoBehaviour {
                     //block directly above
                     if (col.transform.position.x == pos.x && col.transform.position.y > pos.y) {
                         blockinfo |= ABOVE;
-                        Debug.Log("Block above");
+                        //Debug.Log("Block above");
                     }
                     //block directly to right
                     if (col.transform.position.x > pos.x && col.transform.position.y == pos.y) {
                         blockinfo |= RIGHT;
-                        Debug.Log("Block to right");
+                        //Debug.Log("Block to right");
                     }
                     //block directly to left
                     if (col.transform.position.x < pos.x && col.transform.position.y == pos.y) {
                         blockinfo |= LEFT;
-                        Debug.Log("Block to left");
+                        //Debug.Log("Block to left");
                     }
                     //block directly below
                     if (col.transform.position.x == pos.x && col.transform.position.y < pos.y) {
                         blockinfo |= BELOW;
-                        Debug.Log("Block below");
+                        //Debug.Log("Block below");
                     }
                 }
             }

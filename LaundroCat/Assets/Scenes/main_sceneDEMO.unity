@@ -349,9 +349,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texture1: {fileID: 2800000, guid: 904f3960d757cb44fa323f058623da28, type: 3}
-  texture2: {fileID: 0}
+  texture2: {fileID: 2800000, guid: c071c18058d9cf34d900efad102abcb3, type: 3}
   texture3: {fileID: 0}
   texture4: {fileID: 0}
+  bg1: {fileID: 21300000, guid: 033029f58085040629fb37bcea5b4b22, type: 3}
+  bg2: {fileID: 21300000, guid: 4bf92f4b1faf8a04891f678879fd4e0a, type: 3}
+  bg3: {fileID: 21300000, guid: 9bb0691b0628cc04193916a402fc591e, type: 3}
+  bg4: {fileID: 21300000, guid: 409fd705be92a5246b787fda43ce3322, type: 3}
 --- !u!1 &170256484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,7 +1014,7 @@ GameObject:
   - 212: {fileID: 587702662}
   m_Layer: 9
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1053,7 +1057,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 033029f58085040629fb37bcea5b4b22, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4bf92f4b1faf8a04891f678879fd4e0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
