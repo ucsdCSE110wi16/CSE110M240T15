@@ -27,10 +27,10 @@ public class GroundCheck : MonoBehaviour {
         {
             Instantiate(laundry_sound, transform.position, transform.rotation);
             Destroy(col.gameObject);
-            gm.laundryPoints += 47;
+            gm.laundryPoints ++;
 
 			if (PlayerPrefs.GetInt("socks") < 9999) {
-			    PlayerPrefs.SetInt("socks", PlayerPrefs.GetInt("socks")+47);
+			    PlayerPrefs.SetInt("socks", PlayerPrefs.GetInt("socks")+1);
 				if (PlayerPrefs.GetInt("socks") > 9999) {
 					PlayerPrefs.SetInt("socks", 9999);
 				}

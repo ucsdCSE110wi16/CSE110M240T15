@@ -94,11 +94,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 485882, guid: 7cd0bafceff8c394e9a90ec0f0b760bc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.491
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 485882, guid: 7cd0bafceff8c394e9a90ec0f0b760bc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.405
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 485882, guid: 7cd0bafceff8c394e9a90ec0f0b760bc, type: 2}
       propertyPath: m_LocalPosition.z
@@ -122,7 +122,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 485882, guid: 7cd0bafceff8c394e9a90ec0f0b760bc, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11400558, guid: 7cd0bafceff8c394e9a90ec0f0b760bc, type: 2}
       propertyPath: laundry_sound
@@ -138,7 +138,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 148812, guid: 7cd0bafceff8c394e9a90ec0f0b760bc, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400558, guid: 7cd0bafceff8c394e9a90ec0f0b760bc, type: 2}
       propertyPath: weaponPickup_sound
@@ -506,11 +506,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 417056, guid: 7aa4dc665aae37642b053c840c4e3ed0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.82
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 417056, guid: 7aa4dc665aae37642b053c840c4e3ed0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.45
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 417056, guid: 7aa4dc665aae37642b053c840c4e3ed0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -534,7 +534,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417056, guid: 7aa4dc665aae37642b053c840c4e3ed0, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 11467888, guid: 7aa4dc665aae37642b053c840c4e3ed0, type: 2}
       propertyPath: laundry_sound
@@ -546,7 +546,7 @@ Prefab:
       objectReference: {fileID: 2077400233}
     - target: {fileID: 155150, guid: 7aa4dc665aae37642b053c840c4e3ed0, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6179364, guid: 7aa4dc665aae37642b053c840c4e3ed0, type: 2}
       propertyPath: m_Enabled
@@ -1037,11 +1037,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 442570, guid: f61dbd14e3a6df546bbe197c7461e805, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.63
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 442570, guid: f61dbd14e3a6df546bbe197c7461e805, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.27
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 442570, guid: f61dbd14e3a6df546bbe197c7461e805, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1065,7 +1065,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 442570, guid: f61dbd14e3a6df546bbe197c7461e805, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 11482622, guid: f61dbd14e3a6df546bbe197c7461e805, type: 2}
       propertyPath: laundry_sound
@@ -1077,7 +1077,7 @@ Prefab:
       objectReference: {fileID: 172008653}
     - target: {fileID: 174102, guid: f61dbd14e3a6df546bbe197c7461e805, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11466734, guid: f61dbd14e3a6df546bbe197c7461e805, type: 2}
       propertyPath: wallLayerMask.m_Bits
@@ -1161,11 +1161,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 415314, guid: 454563737ded72844bc71fc23b9c8767, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.44
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 415314, guid: 454563737ded72844bc71fc23b9c8767, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.28
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 415314, guid: 454563737ded72844bc71fc23b9c8767, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1205,7 +1205,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 108576, guid: 454563737ded72844bc71fc23b9c8767, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11419760, guid: 454563737ded72844bc71fc23b9c8767, type: 2}
       propertyPath: weaponPickup_sound
@@ -2025,11 +2025,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 405080, guid: 327498ed6e020594c979f251857e42a5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -6.92
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 405080, guid: 327498ed6e020594c979f251857e42a5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.49
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 405080, guid: 327498ed6e020594c979f251857e42a5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2053,7 +2053,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 405080, guid: 327498ed6e020594c979f251857e42a5, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11477836, guid: 327498ed6e020594c979f251857e42a5, type: 2}
       propertyPath: laundry_sound
@@ -2065,7 +2065,7 @@ Prefab:
       objectReference: {fileID: 438090430}
     - target: {fileID: 113022, guid: 327498ed6e020594c979f251857e42a5, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11473526, guid: 327498ed6e020594c979f251857e42a5, type: 2}
       propertyPath: currHealth
