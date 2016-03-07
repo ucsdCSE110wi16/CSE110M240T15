@@ -1,37 +1,46 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-// using System.Collections;
+using UnityEngine.UI;
 
 public class SettingsMenuScript : MonoBehaviour {
 
-    public GameObject backButton;
-	public GameObject musicButton;
-	public GameObject musicSlider;
-	public GameObject soundsButton;
-	public GameObject soundsSlider;
-	public GameObject creditsPanel;
+    public Button backButton;
+	public Button musicButton;
+	public Slider musicSlider;
 
+	public void Start() {
+		musicSlider.value = PlayerPrefs.GetFloat("volume");
+	}
+	
 	public void goBack() {
-		Debug.Log(creditsPanel.activeSelf);
-		if (creditsPanel.activeSelf == true) {
-			creditsPanel.SetActive(false);
-		}
-		else {
+		//Debug.Log(creditsPanel.activeSelf);
+		//if (creditsPanel.activeSelf == true) {
+		//	creditsPanel.SetActive(false);
+		//}
+		//else {
 			SceneManager.LoadScene("main_menu");
-		}
+		//}
 	}
 
-    public void setMusicVolume(float value)
+    public void setMusicVolume()
     {
-        PlayerPrefs.SetFloat("music", value);
+		AudioListener.volume = musicSlider.value;
+        PlayerPrefs.SetFloat("volume", musicSlider.value);
         PlayerPrefs.Save();
     }
+	
+	public void muteAndUnMute() {
+		if (PlayerPrefs.GetFloat("volume") == 0) {
+			AudioListener.volume = (float)0.5;
+			PlayerPrefs.SetFloat("volume", (float)0.5);
+		}
+		else {
+			AudioListener.volume = (float)0;
+			PlayerPrefs.SetFloat("volume", (float)0);
+		}
+		PlayerPrefs.Save();
+	}
 
-    public void setSoundsVolume(float value)
-    {
-        PlayerPrefs.SetFloat("sounds", value);
-        PlayerPrefs.Save();
-    }
 	
 	public void reset() {
 		Debug.Log("Creating defaults!");
@@ -51,6 +60,6 @@ public class SettingsMenuScript : MonoBehaviour {
 	}
 	
 	public void openCredits() {
-		creditsPanel.SetActive(true);
+		//creditsPanel.SetActive(true);
 	}
 }

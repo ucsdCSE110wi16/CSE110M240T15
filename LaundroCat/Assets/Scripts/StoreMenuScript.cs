@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-//using System.Collections;
 
 public class StoreMenuScript : MonoBehaviour {
 
@@ -21,6 +20,7 @@ public class StoreMenuScript : MonoBehaviour {
 	
 	public void Start () {
 		update();
+		hideCost();
 	}
 	
 	public void goBack() {
@@ -109,10 +109,6 @@ public class StoreMenuScript : MonoBehaviour {
 	}
 	
 	public void displayCost() {
-		if (chosen == null) {
-			return;
-		}
-		
 		int cost = getCost();
 		thousand_c.sprite = digits[(cost%10000)/1000];
 		hundred_c.sprite = digits[(cost%1000)/100];
@@ -141,6 +137,6 @@ public class StoreMenuScript : MonoBehaviour {
 			case "sheep": return costs[4];
 			case "turtle": return costs[5];
 		}
-		return -1;
+		return 0;
 	}
 }

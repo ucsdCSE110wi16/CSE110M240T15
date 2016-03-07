@@ -7,8 +7,7 @@ public class MainMenuScript : MonoBehaviour {
 	void Start () {
 	    if(PlayerPrefs.GetInt("socks", -1) == -1) {
 			Debug.Log("Creating defaults!");
-            PlayerPrefs.SetFloat("music", (float)0.5);
-            PlayerPrefs.SetFloat("sound", (float)0.5);
+            PlayerPrefs.SetFloat("volume", (float)0.5);
 
             PlayerPrefs.SetInt("socks", 0);
 
@@ -21,6 +20,9 @@ public class MainMenuScript : MonoBehaviour {
             PlayerPrefs.SetString("turtle", "false");
             PlayerPrefs.Save();
         }
+		else {
+			AudioListener.volume = PlayerPrefs.GetFloat("volume");
+		}
 	}
 	
 	// loads game scene
