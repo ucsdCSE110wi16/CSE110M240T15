@@ -34,6 +34,9 @@ public class SkylineManager : MonoBehaviour {
             // load some other scene
         }
 
+        //build level end for demonstration purposes
+        buildEnd(new Vector3(-7f, -3f, 0));
+
         buildInitialTerrain(startPos);
         nextPos.x = startPos.x + CHUNK_SIZE;
         nextPos.y = startPos.y; 
