@@ -1,0 +1,222 @@
+fileFormatVersion: 2
+guid: f60f1196a71dc29418224f709f70a6c5
+timeCreated: 1457326278
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Digit_Spritesheet_0
+    21300002: Digit_Spritesheet_1
+    21300004: Digit_Spritesheet_2
+    21300006: Digit_Spritesheet_3
+    21300008: Digit_Spritesheet_4
+    21300010: Digit_Spritesheet_5
+    21300012: Digit_Spritesheet_6
+    21300014: Digit_Spritesheet_7
+    21300016: Digit_Spritesheet_8
+    21300018: Digit_Spritesheet_9
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Digit_Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 3
+        width: 35
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.5, y: 22.5}
+        - {x: -17.5, y: 14.5}
+        - {x: -17.5, y: -22.5}
+        - {x: 10.5, y: -22.5}
+        - {x: 17.5, y: -20.5}
+        - {x: 17.5, y: 22.5}
+    - name: Digit_Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 5
+        width: 14
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Digit_Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 5
+        width: 35
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8.5, y: 21.5}
+        - {x: -9.5, y: 21.5}
+        - {x: -17.5, y: 13.5}
+        - {x: -17.5, y: -21.5}
+        - {x: 17.5, y: -21.5}
+        - {x: 17.5, y: 15.5}
+        - {x: 16.5, y: 17.5}
+    - name: Digit_Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 3
+        width: 32
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 22}
+        - {x: -16, y: 20}
+        - {x: -16, y: -21}
+        - {x: -13, y: -22}
+        - {x: 15, y: -22}
+        - {x: 16, y: -19}
+        - {x: 16, y: 16}
+        - {x: 13, y: 22}
+    - name: Digit_Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 4
+        width: 29
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Digit_Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 2
+        width: 30
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Digit_Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 6
+        width: 32
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 21}
+        - {x: -16, y: 13}
+        - {x: -16, y: -16}
+        - {x: -12, y: -21}
+        - {x: 15, y: -21}
+        - {x: 16, y: -18}
+        - {x: 16, y: 10}
+        - {x: 7, y: 21}
+    - name: Digit_Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 2
+        width: 32
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 21.5}
+        - {x: -16, y: 8.5}
+        - {x: -15, y: 7.5}
+        - {x: -16, y: 3.5}
+        - {x: -16, y: -20.5}
+        - {x: -13, y: -21.5}
+        - {x: -1, y: -21.5}
+        - {x: 16, y: 6.5}
+        - {x: 16, y: 21.5}
+    - name: Digit_Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 2
+        width: 32
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 22.5}
+        - {x: -16, y: 21.5}
+        - {x: -16, y: -22.5}
+        - {x: 9, y: -22.5}
+        - {x: 16, y: -14.5}
+        - {x: 16, y: 18.5}
+        - {x: 13, y: 22.5}
+    - name: Digit_Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 7
+        width: 29
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

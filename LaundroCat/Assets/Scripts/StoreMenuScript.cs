@@ -8,7 +8,9 @@ public class StoreMenuScript : MonoBehaviour {
 	public string chosen = null;
 	public Sprite cat_s, dino_s, duck_s,
 			elephant_s, sheep_s, turtle_s;
-			
+	public Sprite thousand, hundred, ten, one;
+	public Sprite[] digits;
+	
 	public Button cat_b, dino_b, duck_b,
 			elephant_b, sheep_b, turtle_b;
 	public Text socks;
@@ -94,6 +96,14 @@ public class StoreMenuScript : MonoBehaviour {
 				multiuse.interactable = false;
 			}
 		}
+	}
+	
+	public int displaySocks() {
+		int socks = PlayerPrefs.GetInt("socks");
+		thousand.image.sprite = digits[socks%10000];
+		hundred.image.sprite = digits[socks%1000];
+		ten.image.sprite = digits[socks%100];
+		one.image.sprite = digits[socks%10];
 	}
 	
 	public int getCost() {

@@ -23,13 +23,13 @@ public class SettingsMenuScript : MonoBehaviour {
 
     public void setMusicVolume(float value)
     {
-        PlayerPrefs.SetFloat("Music", value);
+        PlayerPrefs.SetFloat("music", value);
         PlayerPrefs.Save();
     }
 
     public void setSoundsVolume(float value)
     {
-        PlayerPrefs.SetFloat("Sounds", value);
+        PlayerPrefs.SetFloat("sounds", value);
         PlayerPrefs.Save();
     }
 	
@@ -38,7 +38,7 @@ public class SettingsMenuScript : MonoBehaviour {
         PlayerPrefs.SetFloat("music", (float)1.0);
         PlayerPrefs.SetFloat("sound", (float)1.0);
 
-        PlayerPrefs.SetInt("socks", 499);
+        PlayerPrefs.SetInt("socks", 0);
 
 		PlayerPrefs.SetString("current", "cat");
         PlayerPrefs.SetString("cat", "true");
