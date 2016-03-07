@@ -14,6 +14,7 @@ public class SkylineManager : MonoBehaviour {
     public Transform platform;
     public Transform ramp;
     public Transform rampRev;
+    public Transform stopSign;
 
     // enemy and laundry prefabs
     public Transform poop;
@@ -704,9 +705,7 @@ public class SkylineManager : MonoBehaviour {
         start.y++;
         start.x++;
 
-        Transform o = (Transform)Instantiate(levelTrigger);
-        o.localPosition = start;
-
-
+        buildBlock(start, stopSign);
+        buildBlock(start, levelTrigger);
     }
 }

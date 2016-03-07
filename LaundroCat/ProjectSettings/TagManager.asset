@@ -15,6 +15,7 @@ TagManager:
   - UnitTestPoop2
   - UnitTestSkylineManager
   - Background
+  - StopSign
   layers:
   - Default
   - TransparentFX

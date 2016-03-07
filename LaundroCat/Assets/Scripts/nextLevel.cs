@@ -7,12 +7,8 @@ public class nextLevel : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        GameObject[] enemeiesRemaining = GameObject.FindGameObjectsWithTag("Enemy");
-        if (enemeiesRemaining.Length == 0)
-            canProgress = true;
-
         if (canProgress)
-            {
+        {
             if (col.tag == "Player") {
                 GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
                 for (int i = 0; i < objects.Length; i++) {
@@ -23,6 +19,20 @@ public class nextLevel : MonoBehaviour {
                 SkylineManager.levelSize += 2;
                 SkylineManager.currLevel++;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
+    }
+
+    void Update() {
+        GameObject[] enemeiesRemaining = GameObject.FindGameObjectsWithTag("Enemy");
+
+        if (enemeiesRemaining.Length == 0)
+            canProgress = true;
+
+        if (canProgress) {
+            GameObject[] stopsigns = GameObject.FindGameObjectsWithTag("StopSign");
+            foreach (GameObject sign in stopsigns) {
+                Destroy(sign);
             }
         }
     }
