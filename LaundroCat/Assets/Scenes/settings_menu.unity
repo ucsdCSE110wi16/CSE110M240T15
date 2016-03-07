@@ -1047,9 +1047,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf6714f6ceb3cc4d993ca8688bbed13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backButton: {fileID: 49992143}
+  regular_back: {fileID: 21300000, guid: af1c39642518a5d48aecddd85eded192, type: 3}
+  other_back: {fileID: 21300000, guid: f5208dfe2a4079642ab320f94ce3cc6c, type: 3}
+  background: {fileID: 0}
   musicButton: {fileID: 573319061}
   musicSlider: {fileID: 1465739870}
+  reset_b: {fileID: 0}
+  credit_b: {fileID: 0}
+  credit_mode: 0
 --- !u!1 &1139805715
 GameObject:
   m_ObjectHideFlags: 0

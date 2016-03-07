@@ -4,22 +4,29 @@ using UnityEngine.UI;
 
 public class SettingsMenuScript : MonoBehaviour {
 
-    public Button backButton;
+	public Sprite regular_back;
+	public Sprite other_back;
+	public Image background;
+
 	public Button musicButton;
 	public Slider musicSlider;
+	public Button reset_b;
+	public Button credit_b;
+	
+	public bool credit_mode = false;
 
 	public void Start() {
 		musicSlider.value = PlayerPrefs.GetFloat("volume");
 	}
 	
 	public void goBack() {
-		//Debug.Log(creditsPanel.activeSelf);
-		//if (creditsPanel.activeSelf == true) {
-		//	creditsPanel.SetActive(false);
-		//}
-		//else {
+		if (credit_mode) {
+			credit_mode = false;
+		//	background.sprite = regular_back;
+		}
+		else {
 			SceneManager.LoadScene("main_menu");
-		//}
+		}
 	}
 
     public void setMusicVolume()
@@ -38,14 +45,13 @@ public class SettingsMenuScript : MonoBehaviour {
 			AudioListener.volume = (float)0;
 			PlayerPrefs.SetFloat("volume", (float)0);
 		}
+		musicSlider.value = PlayerPrefs.GetFloat("volume");
 		PlayerPrefs.Save();
 	}
-
 	
 	public void reset() {
 		Debug.Log("Creating defaults!");
-        PlayerPrefs.SetFloat("music", (float)1.0);
-        PlayerPrefs.SetFloat("sound", (float)1.0);
+        PlayerPrefs.SetFloat("volume", (float)1.0);
 
         PlayerPrefs.SetInt("socks", 0);
 
@@ -60,6 +66,8 @@ public class SettingsMenuScript : MonoBehaviour {
 	}
 	
 	public void openCredits() {
+		credit_mode = true;
+	//	background.sprite = other_back;
 		//creditsPanel.SetActive(true);
 	}
 }

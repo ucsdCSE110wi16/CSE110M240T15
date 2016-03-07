@@ -17,7 +17,7 @@ public class gameMaster : MonoBehaviour {
 
     void Update()
     {
-        laundryText.text = ("              " + laundryPoints.ToString());
+        laundryText.text = ("              " + PlayerPrefs.GetInt("socks"));
     }
 
     public void playerDeathSound()
