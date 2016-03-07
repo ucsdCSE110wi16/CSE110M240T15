@@ -26,7 +26,7 @@ public class SpriteManager : MonoBehaviour {
     // Use this for initialization
     void Start() {
         Random.seed = (int)System.DateTime.Now.Ticks;
-        rando = 1; //Currently testing second texture type
+        rando = 
             Random.Range(0, 4);
     }
 
