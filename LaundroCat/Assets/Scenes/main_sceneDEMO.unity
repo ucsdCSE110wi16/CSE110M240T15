@@ -1657,6 +1657,10 @@ Prefab:
       propertyPath: weaponPickup_sound
       value: 
       objectReference: {fileID: 1191762884}
+    - target: {fileID: 5007058, guid: eb5f323f95285f243a298f21eca40fd3, type: 2}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb5f323f95285f243a298f21eca40fd3, type: 2}
   m_IsPrefabParent: 0
