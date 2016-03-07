@@ -198,6 +198,10 @@ Prefab:
       propertyPath: m_PlayOnAwake
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8283184, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
   m_IsPrefabParent: 0
@@ -481,6 +485,10 @@ Prefab:
     - target: {fileID: 8283184, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
       propertyPath: m_PlayOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283184, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_Volume
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
@@ -876,6 +884,10 @@ Prefab:
     - target: {fileID: 8283184, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
       propertyPath: m_PlayOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283184, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_Volume
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
@@ -2017,6 +2029,10 @@ Prefab:
       propertyPath: spreadCustomCurve.m_RotationOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8283184, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
   m_IsPrefabParent: 0
@@ -2244,6 +2260,10 @@ Prefab:
     - target: {fileID: 8283184, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
       propertyPath: m_PlayOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283184, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_Volume
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
@@ -2500,6 +2520,10 @@ Prefab:
     - target: {fileID: 8283184, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
       propertyPath: m_PlayOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283184, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_Volume
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
