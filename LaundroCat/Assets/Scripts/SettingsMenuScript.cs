@@ -4,25 +4,26 @@ using UnityEngine.UI;
 
 public class SettingsMenuScript : MonoBehaviour {
 
-	public Sprite regular_back;
-	public Sprite other_back;
-	public Image background;
+	public GameObject background, alt_background;
 
 	public Button musicButton;
 	public Slider musicSlider;
-	public Button reset_b;
-	public Button credit_b;
+	public Button credit_b, reset_b;
 	
-	public bool credit_mode = false;
+	public Image credits, reset_warning;
+	
+	public bool alt_mode = false;
 
 	public void Start() {
 		musicSlider.value = PlayerPrefs.GetFloat("volume");
+		credits.enabled = false;
+		reset_warning.enabled = false;
 	}
 	
 	public void goBack() {
-		if (credit_mode) {
-			credit_mode = false;
-		//	background.sprite = regular_back;
+		if (alt_mode) {
+			alt_mode = false;
+			showSettings();
 		}
 		else {
 			SceneManager.LoadScene("main_menu");
@@ -49,6 +50,26 @@ public class SettingsMenuScript : MonoBehaviour {
 		PlayerPrefs.Save();
 	}
 	
+	public void hideSettings() {
+		background.active = false;
+		alt_background.active = true;
+		musicButton.gameObject.SetActive(false);
+		musicSlider.gameObject.SetActive(false);
+		credit_b.gameObject.SetActive(false);
+		reset_b.gameObject.SetActive(false);
+	}
+	
+	public void showSettings() {
+		background.active = true;
+		alt_background.active = false;
+		musicButton.gameObject.SetActive(true);
+		musicSlider.gameObject.SetActive(true);
+		credit_b.gameObject.SetActive(true);
+		reset_b.gameObject.SetActive(true);
+		credits.enabled = false;
+		reset_warning.enabled = false;
+	}
+	
 	public void reset() {
 		Debug.Log("Creating defaults!");
         PlayerPrefs.SetFloat("volume", (float)1.0);
@@ -66,8 +87,21 @@ public class SettingsMenuScript : MonoBehaviour {
 	}
 	
 	public void openCredits() {
-		credit_mode = true;
-	//	background.sprite = other_back;
-		//creditsPanel.SetActive(true);
+		alt_mode = true;
+		hideSettings();
+		credits.enabled = true;
+	}
+	
+	public void onReset() {
+		if (!alt_mode) {
+			alt_mode = true;
+			hideSettings();
+			reset_warning.enabled = true;
+			reset_b.gameObject.SetActive(true);
+		}
+		else {
+			reset();
+			SceneManager.LoadScene("main_menu");
+		}
 	}
 }

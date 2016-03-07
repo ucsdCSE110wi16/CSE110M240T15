@@ -16,7 +16,7 @@ public class StoreMenuScript : MonoBehaviour {
 	public Button multiuse;
 	public Sprite equipped, equip, buy;
 	
-	private int[] costs = {0, 250, 250, 500, 500, 1000};
+	private int[] costs = {0, 250, 250, 250, 250, 250};
 	
 	public void Start () {
 		update();
