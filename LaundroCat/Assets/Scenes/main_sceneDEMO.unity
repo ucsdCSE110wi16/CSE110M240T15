@@ -98,7 +98,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 485882, guid: 7cd0bafceff8c394e9a90ec0f0b760bc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 485882, guid: 7cd0bafceff8c394e9a90ec0f0b760bc, type: 2}
       propertyPath: m_LocalPosition.z
@@ -510,7 +510,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417056, guid: 7aa4dc665aae37642b053c840c4e3ed0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 417056, guid: 7aa4dc665aae37642b053c840c4e3ed0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1041,7 +1041,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 442570, guid: f61dbd14e3a6df546bbe197c7461e805, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 442570, guid: f61dbd14e3a6df546bbe197c7461e805, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1165,7 +1165,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 415314, guid: 454563737ded72844bc71fc23b9c8767, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 415314, guid: 454563737ded72844bc71fc23b9c8767, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1548,7 +1548,7 @@ MonoBehaviour:
   ghost: {fileID: 470990, guid: 6685a01bf4b046049ba10dfadf15269d, type: 2}
   turret: {fileID: 436024, guid: 5c8fd5aaa083b894ebac76467f9ee622, type: 2}
   laundry: {fileID: 437156, guid: 871b4d21e297bc046bf19666f88323f6, type: 2}
-  startPos: {x: -3, y: -2, z: 0}
+  startPos: {x: -3, y: -3, z: 0}
 --- !u!4 &994450545 stripped
 Transform:
   m_PrefabParentObject: {fileID: 476962, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
@@ -1566,7 +1566,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 456178, guid: eb5f323f95285f243a298f21eca40fd3, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 456178, guid: eb5f323f95285f243a298f21eca40fd3, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1590,7 +1590,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 456178, guid: eb5f323f95285f243a298f21eca40fd3, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11474108, guid: eb5f323f95285f243a298f21eca40fd3, type: 2}
       propertyPath: laundry_sound
@@ -2029,7 +2029,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 405080, guid: 327498ed6e020594c979f251857e42a5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 405080, guid: 327498ed6e020594c979f251857e42a5, type: 2}
       propertyPath: m_LocalPosition.z
