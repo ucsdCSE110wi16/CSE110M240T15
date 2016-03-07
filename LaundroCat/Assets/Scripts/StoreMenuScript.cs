@@ -8,13 +8,14 @@ public class StoreMenuScript : MonoBehaviour {
 	public string chosen = null;
 	public Sprite cat_s, dino_s, duck_s,
 			elephant_s, sheep_s, turtle_s;
-	public Sprite thousand, hundred, ten, one;
+	public Image thousand, hundred, ten, one;
+	public Image thousand_c, hundred_c, ten_c, one_c;
 	public Sprite[] digits;
 	
 	public Button cat_b, dino_b, duck_b,
 			elephant_b, sheep_b, turtle_b;
-	public Text socks;
 	public Button multiuse;
+	public Sprite equipped, equip, buy;
 	
 	private int[] costs = {0, 250, 250, 500, 500, 1000};
 	
@@ -34,8 +35,9 @@ public class StoreMenuScript : MonoBehaviour {
 		}
 		else {
 			this.chosen = null;
-			update();
+			//update();
 			multiuse.gameObject.SetActive(false);
+			hideCost();
 		}
 	}
 	
@@ -74,21 +76,21 @@ public class StoreMenuScript : MonoBehaviour {
 			turtle_b.image.sprite = turtle_s;
 		}
 		
-		socks.text = ""+PlayerPrefs.GetInt("socks");
+		displaySocks();
 		
 		if (PlayerPrefs.GetString("current") == chosen) {
-			multiuse.GetComponentInChildren<Text>().text =
-					"Equipped!";
+			multiuse.image.sprite = equipped;
 			multiuse.interactable = false;
+			hideCost();
 		}
 		else if (PlayerPrefs.GetString(chosen) == "true") {
-			multiuse.GetComponentInChildren<Text>().text =
-					"Equip";
+			multiuse.image.sprite = equip;
 			multiuse.interactable = true;
+			hideCost();
 		}
 		else {
-			multiuse.GetComponentInChildren<Text>().text =
-					"Buy: "+getCost();
+			multiuse.image.sprite = buy;
+			displayCost();
 			if (getCost() < PlayerPrefs.GetInt("socks")) {
 				multiuse.interactable = true;
 			}
@@ -98,12 +100,36 @@ public class StoreMenuScript : MonoBehaviour {
 		}
 	}
 	
-	public int displaySocks() {
+	public void displaySocks() {
 		int socks = PlayerPrefs.GetInt("socks");
-		thousand.image.sprite = digits[socks%10000];
-		hundred.image.sprite = digits[socks%1000];
-		ten.image.sprite = digits[socks%100];
-		one.image.sprite = digits[socks%10];
+		thousand.sprite = digits[(socks%10000)/1000];
+		hundred.sprite = digits[(socks%1000)/100];
+		ten.sprite = digits[(socks%100)/10];
+		one.sprite = digits[socks%10];
+	}
+	
+	public void displayCost() {
+		if (chosen == null) {
+			return;
+		}
+		
+		int cost = getCost();
+		thousand_c.sprite = digits[(cost%10000)/1000];
+		hundred_c.sprite = digits[(cost%1000)/100];
+		ten_c.sprite = digits[(cost%100)/10];
+		one_c.sprite = digits[cost%10];
+		
+		thousand_c.enabled = true;
+		hundred_c.enabled = true;
+		ten_c.enabled = true;
+		one_c.enabled = true;
+	}
+	
+	public void hideCost() {
+		thousand_c.enabled = false;
+		hundred_c.enabled = false;
+		ten_c.enabled = false;
+		one_c.enabled = false;
 	}
 	
 	public int getCost() {
