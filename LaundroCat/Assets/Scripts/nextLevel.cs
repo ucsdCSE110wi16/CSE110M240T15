@@ -3,11 +3,16 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class nextLevel : MonoBehaviour {
+    public bool canProgress = false;
 
     void OnTriggerEnter2D(Collider2D col)
     {
         GameObject[] enemeiesRemaining = GameObject.FindGameObjectsWithTag("Enemy");
-        if (enemeiesRemaining.Length == 0) {
+        if (enemeiesRemaining.Length == 0)
+            canProgress = true;
+
+        if (canProgress)
+            {
             if (col.tag == "Player") {
                 GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
                 for (int i = 0; i < objects.Length; i++) {

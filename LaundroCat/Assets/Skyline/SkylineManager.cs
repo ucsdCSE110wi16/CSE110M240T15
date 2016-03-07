@@ -700,7 +700,13 @@ public class SkylineManager : MonoBehaviour {
     /********** BUILD END *********/
 
     void buildEnd(Vector3 start) {
+        buildLine(start, 3, skyline);
+        start.y++;
+        start.x++;
+
         Transform o = (Transform)Instantiate(levelTrigger);
         o.localPosition = start;
+
+
     }
 }
