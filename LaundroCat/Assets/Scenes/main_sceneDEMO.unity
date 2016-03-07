@@ -350,12 +350,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texture1: {fileID: 2800000, guid: 904f3960d757cb44fa323f058623da28, type: 3}
   texture2: {fileID: 2800000, guid: c071c18058d9cf34d900efad102abcb3, type: 3}
-  texture3: {fileID: 0}
-  texture4: {fileID: 0}
+  texture3: {fileID: 2800000, guid: d8661b340771bf24f9b2a3dfdaf2b281, type: 3}
+  texture4: {fileID: 2800000, guid: 4424cf6bc5cd5b94ebe275ca0f1e9676, type: 3}
   bg1: {fileID: 21300000, guid: 033029f58085040629fb37bcea5b4b22, type: 3}
   bg2: {fileID: 21300000, guid: 4bf92f4b1faf8a04891f678879fd4e0a, type: 3}
-  bg3: {fileID: 21300000, guid: 9bb0691b0628cc04193916a402fc591e, type: 3}
-  bg4: {fileID: 21300000, guid: 409fd705be92a5246b787fda43ce3322, type: 3}
+  bg3: {fileID: 21300000, guid: 409fd705be92a5246b787fda43ce3322, type: 3}
+  bg4: {fileID: 21300000, guid: 9bb0691b0628cc04193916a402fc591e, type: 3}
 --- !u!1 &170256484
 GameObject:
   m_ObjectHideFlags: 0
