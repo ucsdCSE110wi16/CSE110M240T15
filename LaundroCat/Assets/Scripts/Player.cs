@@ -251,7 +251,7 @@ public class Player : MonoBehaviour
 			    for (int i = 0; i < objects.Length; i++) {
 				        Destroy(objects[i]);
 			    }
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Loads current scene over again (restarts)
+            SceneManager.LoadScene("main_menu"); // Loads current scene over again (restarts)
         }
         else {
           gm.playerHurtSound();
