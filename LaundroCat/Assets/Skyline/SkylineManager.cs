@@ -34,12 +34,7 @@ public class SkylineManager : MonoBehaviour {
             // load some other scene
         }
 
-        //build level end for demonstration purposes
-        buildEnd(new Vector3(-7f, -3f, 0));
-
-        buildInitialTerrain(startPos);
-        nextPos.x = startPos.x + CHUNK_SIZE;
-        nextPos.y = startPos.y; 
+        nextPos = buildInitialTerrain(startPos);
         Random.seed = (int)System.DateTime.Now.Ticks;
 
         for (int i = 0; i < levelSize; i++) {
@@ -134,20 +129,13 @@ public class SkylineManager : MonoBehaviour {
         }
         nextPos.x++;
         buildEnd(nextPos);
-        //Debug.Log(SceneManager.GetActiveScene().name + ": " +  levelSize + nextPos);
     }
     
 
     // build initial chunk
-    void buildInitialTerrain(Vector3 start)
+    Vector3 buildInitialTerrain(Vector3 start)
     {
-        Vector3 next = start;
-        for (int i = 0; i < CHUNK_SIZE; i++)
-        {
-            Transform o = (Transform)Instantiate(skyline);
-            o.localPosition = next;
-            next.x++;
-        }
+        return buildLine(start, CHUNK_SIZE + 2 , skyline);
     }
 
     /*******  BUILD BASIC UNITS (BLOCKS/LINES/ETC) *******/

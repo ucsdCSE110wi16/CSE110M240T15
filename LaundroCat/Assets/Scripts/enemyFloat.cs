@@ -5,13 +5,10 @@ public class enemyFloat : MonoBehaviour {
 
 	public float speed = 1f;
     public float moveSpeed = 0.01f;
-
     private float time = 3f;
     private float toAdd = 3f;
-
     private int toGo = -1;
 
-	//private Rigidbody2D r;
 	private gameMaster gm;
 	public LayerMask mask = -1;
 
@@ -20,12 +17,12 @@ public class enemyFloat : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        //r = gameObject.GetComponent<Rigidbody2D>();
-        //r.gravityScale = 0;
         if (GameObject.FindGameObjectWithTag("GameMaster") != null)
             gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
 
-        RaycastHit hit;
+
+		// doesn't work... just spawn at appropriate locations
+        /*RaycastHit hit;
         Ray ray = new Ray(transform.position + Vector3.up * 100, Vector3.down);
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, mask))
@@ -34,9 +31,7 @@ public class enemyFloat : MonoBehaviour {
             {
                 transform.position = new Vector3(transform.position.x, hit.point.y + 20f, transform.position.z);
             }
-        }
-
-        
+        }*/
 
         /* float newYPos = Terrain.activeTerrain.SampleHeight (transform.position) + 20f;
 		transform.position = new Vector3 (transform.position.x, newYPos, transform.position.z);*/
@@ -44,17 +39,7 @@ public class enemyFloat : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		RaycastHit hit;
-		Ray ray = new Ray (transform.position + Vector3.up * 100, Vector3.down);
-
-		if (Physics.Raycast (ray, out hit, Mathf.Infinity, mask)) {
-			if (hit.collider != null) {
-				transform.position = new Vector3 (transform.position.x, hit.point.y + 20f, transform.position.z);
-			}
-		}
-
         time -= Time.deltaTime;
-        //print(time);
 
         transform.position = new Vector3 (transform.position.x + moveSpeed, transform.position.y, transform.position.z);
 
@@ -66,10 +51,6 @@ public class enemyFloat : MonoBehaviour {
             flipped.x *= -1;
             transform.localScale = flipped;
         }
-
-        if (gameObject == null) {
-			return;
-		}
 
 		if (transform.position.y < -10f) {
 			spawnStuff = false;
