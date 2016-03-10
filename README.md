@@ -6,12 +6,14 @@ LaundroCat is a 2D, Rogue-like, Action Platformer game developed for CSE 110.
 
 ## Synopsis
 
+<img src = "https://github.com/ucsdCSE110wi16/CSE110M240T15/blob/master/Screenshot_2.png"/>
+
  * Play through randomly generated levels to collect laundry!
  * Defeat enemies to gain awesome abilities!
  * Unlock new characters with laundry!
  * The possibilities are endless here at LaundroCat!
 
-<img src = "https://github.com/ucsdCSE110wi16/CSE110M240T15/blob/master/Screenshot_2.png"/>
+<img src = "https://github.com/ucsdCSE110wi16/CSE110M240T15/blob/master/Screenshot_3.png"/>
 
 ## Get the Game!
 
