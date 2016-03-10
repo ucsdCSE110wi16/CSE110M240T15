@@ -318,6 +318,68 @@ MonoBehaviour:
   minCameraPos: {x: -100, y: 0, z: -10}
   maxCameraPos: {x: 1000, y: 0, z: 0}
   gms: {fileID: 0}
+--- !u!1001 &87336204
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 476962, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.3663893
+      objectReference: {fileID: 0}
+    - target: {fileID: 476962, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.12056048
+      objectReference: {fileID: 0}
+    - target: {fileID: 476962, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476962, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476962, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476962, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476962, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 476962, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 180072, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_Name
+      value: weaponUse_sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283184, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9e4082149539ea0409d07486e976dcbf, type: 3}
+    - target: {fileID: 8283184, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283184, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+      propertyPath: m_Volume
+      value: 0.05
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &87336205 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 476962, guid: ee0dd25e708700e4fa5fdf75bb9f8929, type: 2}
+  m_PrefabInternal: {fileID: 87336204}
 --- !u!1 &156262037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,6 +1424,7 @@ MonoBehaviour:
   playerHurt_sound: {fileID: 26404466}
   enemyDeath_sound: {fileID: 1713382469}
   playerJump_sound: {fileID: 994450545}
+  weaponUse_sound: {fileID: 87336205}
 --- !u!222 &848382916
 CanvasRenderer:
   m_ObjectHideFlags: 0

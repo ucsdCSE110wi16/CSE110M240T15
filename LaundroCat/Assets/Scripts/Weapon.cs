@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour {
     private Animator weapon_beam_anim;
     private BoxCollider2D weapon_beam_collider;
     private GameObject[] enemy;
+    private gameMaster gm;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +17,9 @@ public class Weapon : MonoBehaviour {
         weapon_beam_anim = GameObject.Find("weapon_beam").GetComponent<Animator>();
         weapon_beam_collider = GameObject.Find("weapon_beam").GetComponent<BoxCollider2D>();
         enemy = GameObject.FindGameObjectsWithTag("Enemy");
+
+        if (GameObject.FindGameObjectWithTag("GameMaster") != null)
+            gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
     }
 
     // Update is called once per frame
@@ -51,7 +55,7 @@ public class Weapon : MonoBehaviour {
     {
         if (player.weapon_beam)
         {
-            GetComponent<AudioSource>().Play();
+            gm.useWeapon();
             weapon_beam_anim.enabled = true;
             if (player.facingRight)
                 weapon_beam.transform.localScale = new Vector3(-12, 5, 1);

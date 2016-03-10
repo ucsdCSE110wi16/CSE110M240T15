@@ -10,6 +10,7 @@ public class gameMaster : MonoBehaviour {
     public Transform playerHurt_sound;
     public Transform enemyDeath_sound;
     public Transform playerJump_sound;
+    public Transform weaponUse_sound;
 
 
 	// to make sure only one weapon spawns per level
@@ -38,5 +39,10 @@ public class gameMaster : MonoBehaviour {
     public void playerJump()
     {
       Instantiate(playerJump_sound, transform.position, transform.rotation);
+    }
+
+    public void useWeapon()
+    {
+      Instantiate(weaponUse_sound, transform.position, transform.rotation);
     }
 }
