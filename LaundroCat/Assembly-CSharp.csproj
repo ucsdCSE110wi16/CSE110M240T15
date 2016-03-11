@@ -67,6 +67,7 @@
      <Compile Include="Assets\UnitTests\TestComponent.cs" />
      <Compile Include="Assets\UnitTests\TestComponent2.cs" />
      <Compile Include="Assets\UnitTests\TestComponentLevelTrigger.cs" />
+     <Compile Include="Assets\UnitTests\TestGetLaundry.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>

@@ -7,17 +7,22 @@ public class enemyChase : MonoBehaviour {
 	private gameMaster gm;
 	private Rigidbody2D r;
 
-    public float speed = 2f;
-	public int moveSpeed = 2;
-	public float dampingFactor = 0.93f;
-	public float dampingThreshold = 0.1f;
-	public float maxSpeed = 5f;
+    public float speed;
+	public float dampingFactor;
+	public float dampingThreshold;
+	public float maxSpeed;
+	//private float distToGround;
     
 	public bool chasingPlayer = false;
-	public bool spawnStuff = true;    
+	public bool spawnStuff = true;  
+	public bool grounded = false;
 
     // Use this for initialization
     void Start () {
+		speed = 2f;
+		dampingFactor = 0.93f;
+		dampingThreshold = 0.1f;
+		maxSpeed = 3f;
         r = gameObject.GetComponent<Rigidbody2D>();
         if (GameObject.FindGameObjectWithTag("GameMaster") != null)
             gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
@@ -31,16 +36,9 @@ public class enemyChase : MonoBehaviour {
 		else
 			r.velocity = Vector3.zero;
 	}
-		
-	void FixedUpdate() {
-		if(r.velocity.magnitude > maxSpeed)
-		{
-			r.velocity = r.velocity.normalized * maxSpeed;
-		}
-	}
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
 		if (transform.position.y < -6f) {
 			spawnStuff = false;
 			Destroy (this.gameObject);
@@ -48,11 +46,13 @@ public class enemyChase : MonoBehaviour {
 		else
 			spawnStuff = true;
 
+		r.velocity = Vector3.ClampMagnitude (r.velocity, maxSpeed);
+
         Vector3 forwardAxis = new Vector3(0, 0, -1);
 
         float distance = Vector3.Distance(target.position, transform.position);
 		//float distance = Mathf.Abs(target.position.x - transform.position.x);
-		if (distance > 5) {
+		if (distance > 6) {
 			chasingPlayer = false;
 			SlowDown ();
 		}
@@ -60,7 +60,7 @@ public class enemyChase : MonoBehaviour {
 			chasingPlayer = true;
 		}
 			
-		if (chasingPlayer) {
+		if (chasingPlayer && grounded) {
 			transform.LookAt (target.position, forwardAxis);
 			Debug.DrawLine (transform.position, target.position);
 			transform.eulerAngles = new Vector3 (1, 0, 0);
@@ -71,7 +71,7 @@ public class enemyChase : MonoBehaviour {
 			dir.Normalize ();
 			dir.y = 0;
 			transform.position += dir * speed * Time.deltaTime;
-		}
+		} else if (!grounded) SlowDown ();
 
         var relativePoint = transform.InverseTransformPoint(target.position);
         if (relativePoint.x < 0.0) {
