@@ -84,6 +84,7 @@
     <Compile Include="Assets\UnitTests\TestComponent.cs" />
     <Compile Include="Assets\UnitTests\TestComponent2.cs" />
     <Compile Include="Assets\UnitTests\TestComponentLevelTrigger.cs" />
+    <Compile Include="Assets\UnitTests\TestGetLaundry.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
