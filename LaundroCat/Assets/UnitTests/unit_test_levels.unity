@@ -130,6 +130,7 @@ MonoBehaviour:
   platform: {fileID: 454898, guid: c1b36d4be7679574087176db2064f8e1, type: 2}
   ramp: {fileID: 434822, guid: f2dbdc89ad48d2e4ead2ef015e734ab5, type: 2}
   rampRev: {fileID: 444034, guid: ea2614489a1c4d946b51c46092869ceb, type: 2}
+  stopSign: {fileID: 400930, guid: e61ad14a09c28144bb575314a9d53e6e, type: 2}
   poop: {fileID: 436024, guid: 749849d2cbb7941df842f961957efc9f, type: 2}
   ghost: {fileID: 470990, guid: 6685a01bf4b046049ba10dfadf15269d, type: 2}
   turret: {fileID: 436024, guid: 5c8fd5aaa083b894ebac76467f9ee622, type: 2}
@@ -147,7 +148,6 @@ GameObject:
   - 92: {fileID: 415821516}
   - 124: {fileID: 415821515}
   - 81: {fileID: 415821514}
-  - 114: {fileID: 415821513}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -155,23 +155,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &415821513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 415821512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0f37c99d0e37e64ead67f6689ad1a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smoothTimeY: 0.2
-  smoothTimeX: 0.2
-  player: {fileID: 0}
-  bounds: 1
-  minCameraPos: {x: -100, y: 0, z: -10}
-  maxCameraPos: {x: 1000, y: 0, z: 0}
 --- !u!81 &415821514
 AudioListener:
   m_ObjectHideFlags: 0
