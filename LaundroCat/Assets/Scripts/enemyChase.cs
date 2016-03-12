@@ -60,7 +60,7 @@ public class enemyChase : MonoBehaviour {
 			chasingPlayer = true;
 		}
 			
-		if (chasingPlayer && grounded) {
+		if (chasingPlayer) {
 			transform.LookAt (target.position, forwardAxis);
 			Debug.DrawLine (transform.position, target.position);
 			transform.eulerAngles = new Vector3 (1, 0, 0);
@@ -70,8 +70,11 @@ public class enemyChase : MonoBehaviour {
 			Vector3 dir = target.position - transform.position;
 			dir.Normalize ();
 			dir.y = 0;
-			transform.position += dir * speed * Time.deltaTime;
-		} else if (!grounded) SlowDown ();
+			float currSpeed = speed;
+			if (!grounded)
+				currSpeed /= 2;
+			transform.position += dir * currSpeed * Time.deltaTime;
+		} //else if (!grounded) SlowDown ();
 
         var relativePoint = transform.InverseTransformPoint(target.position);
         if (relativePoint.x < 0.0) {
