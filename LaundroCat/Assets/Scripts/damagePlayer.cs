@@ -29,12 +29,15 @@ public class damagePlayer : MonoBehaviour {
 		//Vector2 pos = new Vector2(gameObject.GetComponent<Collider2D> ().bounds.center.x, gameObject.GetComponent<Collider2D> ().bounds.center.y);
 		Vector2 pos = new Vector2(transform.position.x, transform.position.y-distToGround-0.1f);
 		RaycastHit2D hit = Physics2D.Raycast (pos, -Vector2.up, 0.1f);
-		poop.grounded = false;
-		if (hit.collider != null) {	
-			//print (hit.collider.name);
-			if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Platform") || hit.collider.name == "Ramp(Clone)")
-				poop.grounded = true;
-		}
+        if(poop != null) { 
+            poop.grounded = false;
+            if (hit.collider != null)
+            {
+                //print (hit.collider.name);
+                if (hit.collider.CompareTag("Ground") || hit.collider.CompareTag("Platform") || hit.collider.name == "Ramp(Clone)")
+                    poop.grounded = true;
+            }
+        }
 	}
 
 	// Update is called once per frame
