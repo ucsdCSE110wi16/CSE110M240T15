@@ -19,10 +19,10 @@ public class enemyChase : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		speed = 2f;
+		speed = 4f;
 		dampingFactor = 0.93f;
 		dampingThreshold = 0.1f;
-		maxSpeed = 3f;
+		maxSpeed = 6f;
         r = gameObject.GetComponent<Rigidbody2D>();
         if (GameObject.FindGameObjectWithTag("GameMaster") != null)
             gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
